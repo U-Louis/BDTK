@@ -4,3 +4,10 @@
 .btn-link:hover{
     color: crimson;
 }
+nav{
+    float: left;
+    z-index:2;
+}
+#titre{
+ z-index: 1;
+}

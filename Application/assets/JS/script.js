@@ -5,12 +5,14 @@ function makeMenu(){
     document.createAttribute("class")
     var nav = document.querySelector("nav")
     nav.appendChild(ul);
-    document.querySelector("ul").setAttribute("class","w-25")
+    
     for (i in menu){
         var li = document.createElement("li")
-        
+        // var a = document.createElement("a")
         li.setAttribute("class","list-group-item")
+        //  document.querySelector("li").appendChild(a);
         document.querySelector("ul").appendChild(li);
+       
         li.innerHTML = menu[i] ;
     }
 

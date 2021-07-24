@@ -5,21 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/CSS/theme/sketchy/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/CSS/all.min.css">
     <link rel="stylesheet" href="../assets/CSS/style.css">
     <title>Accueil utilisateur</title>
 </head>
 <body class="bg-primary">
-    <div id="wrapper" class="bg-primary d-flex justify-content-around">
-        <header>
-            <nav><!-- menu généré par js --></nav>
-            <div id="titre" class="border bg-light ">
+    <div id="wrapper" class="bg-primary d-flex flex-column ">
+        <header class="container-md d-flex justify-content-around mt-3">
+            <nav class="align-self-center">
+                <ul class="d-none d-md-block "></ul>
+                <button type="button" class="btn btn-info d-md-none"><i class="fas fa-bars"></i></button>
+            </nav>
+            <div id="titre" class=" container border bg-light text-center w-75 mx-2">
                 <h1>Accueil</h1>
+                <img src="https://i.servimg.com/u/f71/13/11/33/61/kaam_b10.jpg" alt="" class="w-100">
+            </div>
+            <div id="utilisateur " class=" fa-stack bg-light fa-2x h-33 align-self-center w-25">
+                
+                <i class="fas fa-circle icon-cog  fa-stack-2x "></i>
+                <i class="fas fas fa-user icon-cog  fa-inverse fa-stack-1x "></i><br>
+                <p class="text-center fs-5 bg-light w-100">Cédric</p>
                 
             </div>
-            <img src="" alt="U" id="utilisateur " class="border rounded-circle bg-warning">
         </header>
-        <main>
-
+        <main class=" container d-flex flex-column align-items-center mt-5  h-auto bg-light border rounded-3 w-75">
+            <a class="btn btn-success btn-lg mb-5  w-50 mx-auto fs-3" href="#" role="button">Catalogue</a>
+            <a class="btn btn-warning btn-lg mb-5  w-50 mx-auto fs-3" href="#" role="button">Mon compte</a>
         </main>
     </div>
    
