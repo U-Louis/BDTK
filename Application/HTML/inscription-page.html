@@ -20,17 +20,21 @@
         <main class="container d-flex flex-column col-12 col-sm-6 col-lg-4 mt-5 p-3 bg-light rounded-3 ">
             <div class="" id="divform" >
                 <form class="container d-flex flex-column" method="GET" action="accueil-page.html" >
-                    <input class="mt-2" id="inputnom" type="text" placeholder="Nom">
-                    <input class="mt-2" id="inputprenom" type="text" placeholder="Prénom">
-                    <input class="mt-2" id="inputadresse1" type="text" placeholder="adresse">
+                    <input class="mt-2" id="inputnom" type="text" placeholder="*Nom" class="" required>
+                   
+                    <input class="mt-2" id="inputprenom" type="text" placeholder="*Prénom" required>
+                    <input class="mt-2" id="inputbirth" type="text" placeholder="date de naissance : 03/05/1987">
+                    <input class="mt-2" id="inputadresse1" type="text" placeholder="adresse" >
                     <input class="mt-2" id="inputadresse2" type="text" placeholder="adresse 2">
                     <input class="mt-2" id="inputpostale" type="text" placeholder="Code postale">
-                    <input class="mt-2" id="inputemail" type="email" placeholder="email">
-                    <input class="mt-2" id="inputmobile" type="text" placeholder="N° de téléphone mobile">
-                    <input class="mt-2" id="inputfixe" type="text" placeholder="N° de téléphone fix">
-                    <div id="divlink" class="container mt-2 w-100">
+                    <input class="mt-2" id="inputville" type="text" placeholder="Ville">
+                    <input class="mt-2" id="inputemail" type="email" placeholder="*email : exemple@axy.com" required>
+                    <input class="mt-2" id="inputmobile" type="text" placeholder="*N° de téléphone mobile" required>
+                    <input class="mt-2" id="inputfixe" type="text" placeholder="N° de téléphone fixe" >
+                    <div id="nomHelp" class="form-text mt-2">*Champ obligatoire</div>
+                    <div id="divlink" class="container mt-2 w-100" href="../landing-page">
                         <input class="btn btn-danger" type="reset" value="Annuler">
-                        <input class="btn btn-success" type="submit" value="S'inscrire">
+                        <input class="btn btn-success" id="btninscrire"type="submit" value="S'inscrire">
                     </div>
 
                 </form>
