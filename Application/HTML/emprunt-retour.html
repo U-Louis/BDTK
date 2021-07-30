@@ -19,11 +19,11 @@
 
         <div id="wrapper" class="container w-75 my-auto h-75 ">
 
-            <!-- Search bar -->
+            <!-- User Search bar -->
             <form class="d-flex">
-                <input class="form-control me-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
+                <input class="form-control me-sm-2" type="text" placeholder="Rechercher un adhérent...">
+                <!--                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+ --></form>
 
             <br>
 
@@ -54,10 +54,10 @@ Informations utilisateur </a>
 
             <br>
 
-            <!-- Emprunts Collapse -->
+            <!-- Emprunts en cours Collapse -->
             <p>
                 <a class="btn btn-secondary" data-bs-toggle="collapse" href="#empruntCollapse" role="button" aria-expanded="false" aria-controls="empruntCollapse">
-Emprunts </a>
+Emprunts en cours </a>
             </p>
             <div class="collapse" id="empruntCollapse">
                 <div class="card card-body">
@@ -104,28 +104,37 @@ Emprunts </a>
                     </table>
                 </div>
             </div>
-        </div>
 
-        <!-- Confirmer RETOUR modal -->
-        <!-- Button trigger modal -->
+            <br>
 
+            <!-- Confirmer RETOUR modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-body">
-                        Confirmer le retour de <span id="">"#ID + TITRE"</span> ? </div>
-                    <div class="modal-footer">
-                        <button id="" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
-                        <button type="button" class="btn btn-danger">Annuler</button>
+                        <div class="modal-body">
+                            Confirmer le retour de <span id="">"#ID + TITRE"</span> ? </div>
+                        <div class="modal-footer">
+                            <button id="" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                            <button type="button" class="btn btn-danger">Annuler</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- emprunter -->
+            <p>
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#emprunterCollapse" role="button" aria-expanded="false" aria-controls="emprunterCollapse">
+Catalogue </a>
+            </p>
+            <div class="collapse" id="emprunterCollapse">
+                <!-- element catalogue -->
+                <!-- A INSERER -->
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="text" placeholder="Rechercher une BD...">
+                </form>
+            </div>
         </div>
-
-
     </div>
 </body>
 
