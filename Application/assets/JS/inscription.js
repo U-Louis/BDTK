@@ -19,16 +19,30 @@ function controlInputText(inputTextToTest){
     
 }
 
-function controlInputNumber(){
-    var myReg = /^0\d{9}$/;
+function controlInputNumberMobile(){
+    var myReg = /^0[6,7](\ \d{2}){4}$/;
+    return myReg.test(varElement["mobile"].value);
 
 }
+ function controlInputBirth(birth){
+   let myReg = /^\d{2}\/\d{2}\/\d{4}$/
+   return myReg.test(birth);
+ }
+
+function controlInputPostal(){
+  var myReg = /^\d{2}\ \d{3}$/;
+  return myReg.test(varElement["postalCode"].value);
+}
+
+
 
 function controlAdd(event){
     for (key in varElement){
       if(!controlInputText(varElement[key].value)){
-        
+        document.getElementById("alertname").innerHTML = "Vous devez remplir ce champ"
         event.preventDefault();
-      };
+       };
+      
+      
     }
 }
