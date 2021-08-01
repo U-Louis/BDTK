@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/CSS/theme/sketchy/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/CSS/all.min.css">
+    <link rel="stylesheet" href="../assets/CSS/style.css">
+    <title>Inscription</title>
+</head>
+<body class="bg-primary ">
+    <!-- La div qui contient toute la page  -->
+    <div id="wrapper" class="d-flex  flex-column container-sm w-75"> 
+        <!-- L'entête de la page avec le titre de la page. -->
+        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3"> 
+            <h1 class="text-uppercase text-center my-3">inscription</h1>
+        </header>
+        <!-- Le corp principale de la page  -->
+        <main class="container d-flex flex-column col-12 col-sm-6 col-lg-4 mt-5 p-3 bg-light rounded-3 ">
+            <div class="" id="divform" >
+                <form class="container d-flex flex-column" method="GET" action="accueil-page.html" >
+                    <input class="mt-2" id="inputnom" type="text" placeholder="Nom">
+                    <input class="mt-2" id="inputprenom" type="text" placeholder="Prénom">
+                    <input class="mt-2" id="inputadresse1" type="text" placeholder="adresse">
+                    <input class="mt-2" id="inputadresse2" type="text" placeholder="adresse 2">
+                    <input class="mt-2" id="inputpostale" type="text" placeholder="Code postale">
+                    <input class="mt-2" id="inputemail" type="email" placeholder="email">
+                    <input class="mt-2" id="inputmobile" type="text" placeholder="N° de téléphone mobile">
+                    <input class="mt-2" id="inputfixe" type="text" placeholder="N° de téléphone fix">
+                    <div id="divlink" class="container mt-2 w-100">
+                        <input class="btn btn-danger" type="reset" value="Annuler">
+                        <input class="btn btn-success" type="submit" value="S'inscrire">
+                    </div>
+
+                </form>
+            </div>
+            
+               
+        </main>
+    
+    </div>
+
+</body>
+<script src="../assets/JS/bootstrap.bundle.min.js"></script>
+<script src="../assets/JS/inscription.js"></script>
+
+
+</html>
