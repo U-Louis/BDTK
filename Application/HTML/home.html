@@ -14,15 +14,33 @@
 <body class="bg-gradient">
     <div id="wrapper" class="bg-primary d-flex flex-column ">
         <header class="container-md d-flex justify-content-around mt-3">
-            <nav class="align-self-center">
-                <ul class="d-none d-md "></ul>
-                <button type="button" class="btn btn-info d-md-none"><i class="fas fa-bars"></i></button>
+            
+                <!-- <ul class="d-none d-md "></ul>
+                <button type="button" class="btn btn-info d-md-none"><i class="fas fa-bars"></i></button> -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start col-3 col-sm-2">
+                <div class="container-fluid flex-column">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav flex-column">
+                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        <a class="nav-link" href="#">Catalogue</a>
+                        <a class="nav-link" href="#">Mon compte</a>
+                        
+                    </div>
+                    </div>
+                </div>
             </nav>
-            <div id="titre" class=" container border bg-light text-center align-self-center mx-2 w-50">
+            
+            <div id="titre" class=" container-fluid border bg-light text-center mx-2 col-6 col-sm-7 h-50">
                 <h1>Accueil</h1>
                 <img src="https://i.servimg.com/u/f71/13/11/33/61/kaam_b10.jpg" alt="Une image de présentation" class="w-75">
             </div>
+            
             <div id="utilisateur " class=" fa-stack bg-light fa-1x h-33  w-25">
+                
 
                 <i class="fas fa-circle icon-cog  fa-stack-2x "></i>
                 <i class="fas fas fa-user icon-cog  fa-inverse fa-stack-1x "></i><br>
@@ -33,11 +51,12 @@
         <main class=" container d-flex flex-column  align-items-center mt-5  h-auto bg-light border rounded-3 w-75">
             <a class="btn btn-success btn-lg my-5  w-50 mx-auto fs-3" href="./borrow_return.html" role="button">Catalogue</a>  <!-- if !logged => href="./catalog.html" -->
             <a class="btn btn-warning btn-lg mb-5  w-50 mx-auto fs-3" href="./account.html" role="button">Mon compte</a>
+
         </main>
     </div>
 
 </body>
 <script src="../assets/JS/bootstrap.bundle.min.js"></script>
-<script src="../assets/JS/script.js"></script>
 
-</html>
+<!-- <script src="../assets/JS/script.js"></script> -->
+
