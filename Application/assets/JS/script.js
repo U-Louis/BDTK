@@ -49,16 +49,21 @@ var tempResults = [];
 
 /**
  * adding an event (e) to the onkeyup event
- * @param {String} letter typed in searchBarInput
+ * @param {String} letters typed in searchBarInput
  */
 searchBarInput.onkeyup = (e) => {
 searchData = e.target.value; //filling this var with all letters typed
 autoCompletion(searchData, '5');
 }
 
-
+/**
+ * Searches for close matches beetwin user input and database items
+ * @param {String} data : updates everytime the user types
+ * //param {String} inputKey : allows to change database tables and entry keys
+ * //inputKeys : ref, titre, auteur, serie
+ * @param {Number} itemsReturned : number of items wanted for display
+ */
 function autoCompletion(data, /*inputKey,*/ itemsReturned){
-//inputKeys : ref, titre, auteur, serie
 
 let found = false; //flag
 let k =0; //iterator for number of items to return
@@ -76,22 +81,46 @@ for (let i =1; k < itemsReturned  ; i++){
      target = albums.get(j).titre;
   }
   catch {
-    console.log("Ref. "+i+" doesn't exist.");
+ //   console.log("Ref. "+i+" doesn't exist.");
     continue;
   }
-  console.log("Ref. "+i+ " checked");
+ // console.log("Ref. "+i+ " checked");
     
   if(target != undefined && target.indexOf(data) != -1 ){
     found = true;
     k++;
     tempResults.push(albums.get(j));
-    //updateTempResultsBox();
-    console.log("found !");
+    updateTempResultsBox();
+    console.log("Ref. "+i+" found !");
   }
 }
 if(!found){
   console.log("no match");
 }
+}
+
+/**
+ * displays a list of the closest matches found by autoCompletion()
+ */
+function updateTempResultsBox(){
+//patern
+let tempResultItemPaternUl = document.createElement("ul");
+let tempResultItemPaternLi = document.createElement("li");
+tempResultItemPaternLi.style.listStyle = "none";
+
+//Clear box
+searchBarSuggestionsBox.innerHTML = "";
+
+//Fill box
+for(let i = 0; i< tempResults.length; i++){
+let tempItem = tempResultItemPaternLi;
+tempItem.innerHTML = tempResults[i].titre;
+tempResultItemPaternUl.appendChild(tempItem);
+}
+searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
+
+
+
 }
 
 
