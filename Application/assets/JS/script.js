@@ -36,6 +36,9 @@ makeMenu(); */
 
 /** === CATALOG === */
 const LASTINDEXOFALBUMS = 629;
+const LASTINDEXOFAUTEURS = 159;
+const LASTINDEXOFSERIES = 114;
+
 
 /** == Search bars == */
 
@@ -52,7 +55,7 @@ var tempResults = [];
  * @param {String} letters typed in searchBarInput
  */
 searchBarInput.onkeyup = (e) => {
-searchData = e.target.value; //filling this var with all letters typed
+searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
 autoCompletion(searchData, '5');
 }
 
@@ -78,51 +81,48 @@ for (let i =1; k < itemsReturned  ; i++){
   let target;
 
   try {
-     target = albums.get(j).titre;
+     target = albums.get(j).titre.toLowerCase();
   }
   catch {
- //   console.log("Ref. "+i+" doesn't exist.");
+ //console.log("Ref. "+i+" doesn't exist.");
     continue;
   }
- // console.log("Ref. "+i+ " checked");
+ //console.log("Ref. "+i+ " checked");
     
   if(target != undefined && target.indexOf(data) != -1 ){
     found = true;
     k++;
     tempResults.push(albums.get(j));
     updateTempResultsBox();
-    console.log("Ref. "+i+" found !");
+    //console.log("Ref. "+i+" found !");
   }
 }
 if(!found){
   console.log("no match");
 }
+
+//clear the temporary results everytime to avoid multiplicating items
+tempResults = [];
+
 }
 
 /**
  * displays a list of the closest matches found by autoCompletion()
  */
 function updateTempResultsBox(){
-//patern
-let tempResultItemPaternUl = document.createElement("ul");
-let tempResultItemPaternLi = document.createElement("li");
-tempResultItemPaternLi.style.listStyle = "none";
-
 //Clear box
 searchBarSuggestionsBox.innerHTML = "";
 
 //Fill box
+let tempResultItemPaternUl = document.createElement("ul");
 for(let i = 0; i< tempResults.length; i++){
-let tempItem = tempResultItemPaternLi;
-tempItem.innerHTML = tempResults[i].titre;
-tempResultItemPaternUl.appendChild(tempItem);
+  let tempResultItemPaternLi = document.createElement("li");
+  tempResultItemPaternLi.style.listStyle = "none";
+  tempResultItemPaternLi.innerHTML = tempResults[i].titre;
+  tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
 }
 searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
-
-
-
 }
-
 
 
 
