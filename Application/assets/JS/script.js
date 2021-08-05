@@ -138,11 +138,11 @@ function displayTempResultsBox(match) {
     }
 }
 
-/** Assembler */
-/**
- * 
- * @param {String} albumsKey : String containing a number, implicite conversion doesn't work everytime
- * @returns 
+/** Item Assembler
+ * Pulls all parameters of a ref from all database maps +img source url, and assembles them in one item
+ * @param {String} albumsKey : String containing a number (!)implicite conversion doesn't work everytime
+ *                 key of an item from database map named albums
+ * @returns {Object} returns an object with all parameters, same parameter names as the database maps'
  */
 function assembleItem(albumsKey) {
     if (albumsKey == undefined || albumsKey == null) {
@@ -160,13 +160,11 @@ function assembleItem(albumsKey) {
     //series params
     let idSerie = series.get(albumsKey.idSerie).nom;
 
-    //img
+    //img source URL
     let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
 
     //output
     return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
-
-
 }
 
 
@@ -187,8 +185,11 @@ function generateCard(albumsKey) {
 
     let img = document.createElement('img');
     img.classList.add("card-img-top", "p-2");
-    //img.setAttribute('src', cardItem.);
-    //img.setAttribute('alt', itemTitle);
+    img.setAttribute('src', cardItem.img);
+    img.setAttribute('alt', cardItem.titre);
+
+    let cardBody = document.createElement('div');
+    continuerIci
 
     patern.appendChild(img)
 
