@@ -139,8 +139,13 @@ function displayTempResultsBox(match) {
 }
 
 /** Assembler */
+/**
+ * 
+ * @param {String} albumsKey : String containing a number, implicite conversion doesn't work everytime
+ * @returns 
+ */
 function assembleItem(albumsKey) {
-    if (albumsKey == undefined || albumsKey == null || typeof albumsKey != Object) {
+    if (albumsKey == undefined || albumsKey == null) {
         return "item doesn't exist";
     }
 
@@ -162,15 +167,12 @@ function assembleItem(albumsKey) {
 
 /** == BD card == */
 
-function generateCard(fullItem) {
+function generateCard(albumsKey) {
     //clear box
     // BDCardWrapper.innerHTML = "";
 
-    //process input
-    //get item 
-    //get 
-    let itemSource;
-    let itemTitle;
+    //Init
+    let cardItem = assembleItem(albumsKey);
 
     //fill box
 
@@ -181,8 +183,8 @@ function generateCard(fullItem) {
 
     let img = document.createElement('img');
     img.classList.add("card-img-top", "p-2");
-    img.setAttribute('src', itemSource);
-    img.setAttribute('alt', itemTitle);
+    //   img.setAttribute('src', itemSource);
+    //  img.setAttribute('alt', itemTitle);
 
     patern.appendChild(img)
 
