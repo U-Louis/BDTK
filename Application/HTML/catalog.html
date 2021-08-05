@@ -17,24 +17,24 @@
             <h1 class="text-uppercase text-center my-3 fs-3">Catalogue</h1>
         </header>
 
-<!-- ========== Element catalog ========== Element catalog ========== Element catalog ========== Element catalog ==========-->
-<div id="catalogWrapper" class="container w-85 my-auto h-75 ">
+        <!-- ========== Element catalog ========== Element catalog ========== Element catalog ========== Element catalog ==========-->
+        <div id="catalogWrapper" class="container w-85 my-auto h-75 ">
 
-    <!-- catalog navbar -->
-    <ul class="nav nav-tabs bg-light " id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="Ref-tab" data-bs-toggle="tab" data-bs-target="#Ref" type="button" role="tab" aria-controls="Ref" aria-selected="true">Ref.</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="Titre-tab" data-bs-toggle="tab" data-bs-target="#Titre" type="button" role="tab" aria-controls="Titre" aria-selected="false">Titre</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="Auteur-tab" data-bs-toggle="tab" data-bs-target="#Auteur" type="button" role="tab" aria-controls="contact" aria-selected="false">Auteur</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="Serie-tab" data-bs-toggle="tab" data-bs-target="#Serie" type="button" role="tab" aria-controls="Serie" aria-selected="false">Série</button>
-        </li>                
-    </ul>
+            <!-- catalog navbar -->
+            <ul class="nav nav-tabs bg-light " id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="Ref-tab" data-bs-toggle="tab" data-bs-target="#Ref" type="button" role="tab" aria-controls="Ref" aria-selected="true">Ref.</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="Titre-tab" data-bs-toggle="tab" data-bs-target="#Titre" type="button" role="tab" aria-controls="Titre" aria-selected="false">Titre</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="Auteur-tab" data-bs-toggle="tab" data-bs-target="#Auteur" type="button" role="tab" aria-controls="contact" aria-selected="false">Auteur</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="Serie-tab" data-bs-toggle="tab" data-bs-target="#Serie" type="button" role="tab" aria-controls="Serie" aria-selected="false">Série</button>
+                </li>
+            </ul>
 
     <!-- catalog tab s content -->
     <div class="tab-content" id="myTabContent">
@@ -43,11 +43,52 @@
         <div class="tab-pane fade show active" id="Ref" role="tabpanel" aria-labelledby="Ref-tab">
             <table class="table table-striped">
 
-                <div class="input-group">
-                    <div class="form-outline col-8 m-1">
-                      <input type="search" id="form1" class="form-control" placeholder="Rechercher une Ref..." />
-                    </div>
-                    <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
+                        <div class="input-group d-flex align-items-center">
+                            <div class="form-outline col-8 m-0">
+                                <input type="search" id="searchBarInput" class="form-control" placeholder="Rechercher une Ref..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="searchButton">Rechercher</button>
+                            <div class="form-outline col-8 m-0">
+                                <div class="form-control p-0 border-0 position-absolute" id="searchBarSuggestionsBox">
+                                </div>
+                            </div>
+                        </div>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Ref.</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Auteur</th>
+                                <th scope="col">Série</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><a href="">439</a></th>
+                                <td>Montespa</td>
+                                <td>(ID 127) Convard, Falque</td>
+                                <td>(ID 86) Le triangle secret hertz</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a href="">439</a></th>
+                                <td>Montespa</td>
+                                <td>(ID 127) Convard, Falque</td>
+                                <td>(ID 86) Le triangle secret hertz</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a href="">439</a></th>
+                                <td>Montespa</td>
+                                <td>(ID 127) Convard, Falque</td>
+                                <td>(ID 86) Le triangle secret hertz</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a href="">439</a></th>
+                                <td>Montespa</td>
+                                <td>(ID 127) Convard, Falque</td>
+                                <td>(ID 86) Le triangle secret hertz</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                   
                 <thead>
@@ -87,9 +128,16 @@
             </table>
         </div>
 
-        <!-- tab titre -->
-        <div class="tab-pane fade" id="Titre" role="tabpanel" aria-labelledby="Titre-tab">
-            <table class="table table-striped">
+                <!-- tab titre -->
+                <div class="tab-pane fade" id="Titre" role="tabpanel" aria-labelledby="Titre-tab">
+                    <table class="table table-striped">
+
+                        <div class="input-group">
+                            <div class="form-outline col-8 m-1">
+                                <input type="search" id="form1" class="form-control" placeholder="Rechercher un titre..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
+                        </div>
 
                 <div class="input-group">
                     <div class="form-outline col-8 m-1">
@@ -135,9 +183,12 @@
             </table>
         </div>
 
-        <!-- tab auteur -->
-        <div class="tab-pane fade" id="Auteur" role="tabpanel" aria-labelledby="Auteur-tab">
-            <table class="table table-striped">
+                        <div class="input-group">
+                            <div class="form-outline col-8 m-1">
+                                <input type="search" id="form1" class="form-control" placeholder="Rechercher un auteur..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
+                        </div>
 
                 <div class="input-group">
                     <div class="form-outline col-8 m-1">
@@ -183,9 +234,13 @@
             </table>
         </div>
 
-        <!-- tab serie -->
-        <div class="tab-pane fade" id="Serie" role="tabpanel" aria-labelledby="Serie-tab">
-            <table class="table table-striped">
+                        <div class="input-group">
+                            <div class="form-outline col-8 m-1">
+                                <input type="search" id="form1" class="form-control" placeholder="Rechercher une série..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
+                        </div>
+
 
                 <div class="input-group">
                     <div class="form-outline col-8 m-1">
@@ -194,85 +249,52 @@
                     <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
                 </div>
 
-                <thead>
-                    <tr>
-                        <th scope="col">Série</th>
-                        <th scope="col">Ref.</th>
-                        <th scope="col">Titre</th>
-                        <th scope="col">Auteur</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>(ID 86) Le triangle secret hertz</td>
-                        <th scope="row"><a href="">439</a></th>
-                        <td>Montespa</td>
-                        <td>(ID 127) Convard, Falque</td>
-                    </tr>
-                    <tr>
-                        <td>(ID 86) Le triangle secret hertz</td>
-                        <th scope="row"><a href="">439</a></th>
-                        <td>Montespa</td>
-                        <td>(ID 127) Convard, Falque</td>
-                    </tr>
-                    <tr>
-                        <td>(ID 86) Le triangle secret hertz</td>
-                        <th scope="row"><a href="">439</a></th>
-                        <td>Montespa</td>
-                        <td>(ID 127) Convard, Falque</td>
-                    </tr>
-                    <tr>
-                        <td>(ID 86) Le triangle secret hertz</td>
-                        <th scope="row"><a href="">439</a></th>
-                        <td>Montespa</td>
-                        <td>(ID 127) Convard, Falque</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+            <!-- selected BD card (placeholder)-->
+            <div id="BDCardWrapper">
+                <div class="card p-2 rounded-0 col-md-6" style="width: 100%;">
+                    <img src="../ressource/albums/Astérix-06-Astérix et Cléopatre.jpg" class="card-img-top p-2" alt="asterix et cleopatre">
+                    <div class="card-body">
+                        <h3 class="card-title">Astérix et Cléopatre</h5>
+                            <p class="card-text">
+                                Auteurs : <a href="">Uderzo</a> , <a href="">Goscinny</a>
+                            </p>
 
-    <!-- selected BD card (placeholder)-->
-    <div class="card p-2 rounded-0 col-md-6" style="width: 100%;">
-        <img src="../ressource/albums/Astérix-06-Astérix et Cléopatre.jpg" class="card-img-top p-2" alt="asterix et cleopatre">
-        <div class="card-body">
-          <h3 class="card-title">Astérix et Cléopatre</h5>
-          <p class="card-text">
-              Auteurs : <a href="">Uderzo</a> , <a href="">Goscinny</a>
-          </p>
+                            <p class="card-text">
+                                Ref. : <a href="">326</a>
+                            </p>
 
-          <p class="card-text">
-              Ref. :    <a href="">326</a> 
-          </p>
+                            <p class="card-text">
+                                Séries : <a href="">Astérix</a>
+                            </p>
+                            <p class="card-text">
+                                Numero : 06
+                            </p>
 
-          <p class="card-text">
-            Séries : <a href="">Astérix</a>
-        </p>
-        <p class="card-text">
-            Numero : 06
-        </p>
+                            <h6 class="card-title"> Exemplaires :</h6>
+                            <p><span class="badge bg-success">1</span><span class="badge bg-success">2</span><span class="badge bg-warning">3</span><span class="badge bg-success">4</span><span class="badge bg-success">5</span></p>
 
-          <h6 class="card-title"> Exemplaires :</h6>
-          <p><span class="badge bg-success">1</span><span class="badge bg-success">2</span><span class="badge bg-warning">3</span><span class="badge bg-success">4</span><span class="badge bg-success">5</span></p>
+                            <a href="#" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#confirmBorrow">Emprunter</a>
+                    </div>
 
-          <a href="#" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#confirmBorrow">Emprunter</a>
-        </div>
-        
-      <!-- confirmer emprunt modale -->
-      <div class="modal fade" id="confirmBorrow" tabindex="-1" aria-labelledby="confirmBorrow" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+                    <!-- confirmer emprunt modale -->
+                    <div class="modal fade" id="confirmBorrow" tabindex="-1" aria-labelledby="confirmBorrow" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-                <div class="modal-body">
-                    Pour emprunter une BD, veuillez vous adresser à un bibliothécaire</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                                <div class="modal-body">
+                                    Pour emprunter une BD, veuillez vous adresser à un bibliothécaire</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
         </div>
-    </div>
-
     </div>
 
 
@@ -280,8 +302,10 @@
 
     </div>
 </body>
-
 <script src="../assets/JS/bootstrap.bundle.min.js"></script>
+<script src="../ressource/data/albums.js"></script>
+<script src="../ressource/data/auteurs.js"></script>
+<script src="../ressource/data/series.js"></script>
 <script src="../assets/JS/script.js"></script>
 
 </html>
