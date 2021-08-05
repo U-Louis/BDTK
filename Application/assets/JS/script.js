@@ -35,9 +35,11 @@ makeMenu(); */
 
 
 /** === CATALOG === */
+//Init
 const LASTINDEXOFALBUMS = 629;
 const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
+var BDCardWrapper = document.getElementById("BDCardWrapper");
 
 
 /** == Search bars == */
@@ -135,3 +137,56 @@ function displayTempResultsBox(match) {
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
     }
 }
+
+/** Assembler */
+function assembleItem(albumsKey) {
+    if (albumsKey == undefined || albumsKey == null || typeof albumsKey != Object) {
+        return "item doesn't exist";
+    }
+
+    //albums params
+    let titre = albumsKey.titre;
+    let numero = albumsKey.numero;
+    let prix = albumsKey.prix; // remove ?
+
+    //auteurs params
+    let idAuteur = auteurs.get(albumsKey.idAuteur).nom;
+
+    //series params
+    let idSerie = series.get(albumsKey.idSerie).nom;
+
+    //output
+    return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie };
+}
+
+
+/** == BD card == */
+
+function generateCard(fullItem) {
+    //clear box
+    // BDCardWrapper.innerHTML = "";
+
+    //process input
+    //get item 
+    //get 
+    let itemSource;
+    let itemTitle;
+
+    //fill box
+
+
+    let patern = document.createElement('div');
+    patern.classList.add("card", "p-2", "rounded-0", "col-md-6");
+    patern.style = "width: 100%;";
+
+    let img = document.createElement('img');
+    img.classList.add("card-img-top", "p-2");
+    img.setAttribute('src', itemSource);
+    img.setAttribute('alt', itemTitle);
+
+    patern.appendChild(img)
+
+    BDCardWrapper.appendChild(patern);
+}
+
+generateCard();
