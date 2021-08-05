@@ -41,88 +41,97 @@ const LASTINDEXOFSERIES = 114;
 
 
 /** == Search bars == */
+//inputKeys : ref, titre, auteur, serie
+
 
 /**Init */
 var searchBarSuggestionsBox = document.getElementById("searchBarSuggestionsBox");
 var searchBarInput = document.getElementById("searchBarInput");
-var searchButton =  document.getElementById("searchButton");
+var searchButton = document.getElementById("searchButton");
 var searchData = searchBarInput.value;
 var tempResults = [];
 
 
-/**
- * adding an event (e) to the onkeyup event
+
+/**adding an event (e) to the onkeyup event
  * @param {String} letters typed in searchBarInput
  */
 searchBarInput.onkeyup = (e) => {
-searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-autoCompletion(searchData, '5');
+    searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    autoCompletion(searchData, '5');
 }
 
-/**
- * Searches for close matches beetwin user input and database items
+/**Searches for close matches beetwin user input and database items
+ * The data found is stored in the local {Array} tempResults
  * @param {String} data : updates everytime the user types
  * //param {String} inputKey : allows to change database tables and entry keys
- * //inputKeys : ref, titre, auteur, serie
- * @param {Number} itemsReturned : number of items wanted for display
+ * @param {Number} numOfItemsReturned : number of items wanted for display
  */
-function autoCompletion(data, /*inputKey,*/ itemsReturned){
+function autoCompletion(data, /*inputKey,*/ numOfItemsReturned) {
 
-let found = false; //flag
-let k =0; //iterator for number of items to return
+    let found = false; //flag
+    let k = 0; //iterator for number of items to return
 
-for (let i =1; k < itemsReturned  ; i++){
+    //Check if input bar is empty, if so, stop
+    if (data == "") {
+        searchBarSuggestionsBox.innerHTML = "";
+        return;
+    }
 
-  if(i==LASTINDEXOFALBUMS+1){
-    break;
-  }  
+    //Run iterator trough database
+    for (let i = 1; k < numOfItemsReturned; i++) {
+        //End of iteration if no result
+        if (i == LASTINDEXOFALBUMS + 1) {
+            break;
+        }
 
-  let j = i.toString();
-  let target;
+        //Init
+        let j = i.toString();
+        let target;
 
-  try {
-     target = albums.get(j).titre.toLowerCase();
-  }
-  catch {
- //console.log("Ref. "+i+" doesn't exist.");
-    continue;
-  }
- //console.log("Ref. "+i+ " checked");
-    
-  if(target != undefined && target.indexOf(data) != -1 ){
-    found = true;
-    k++;
-    tempResults.push(albums.get(j));
-    updateTempResultsBox();
-    //console.log("Ref. "+i+" found !");
-  }
+        //Leap over empty refs and pass to next iteration
+        try {
+            target = albums.get(j).titre.toLowerCase();
+        } catch {
+            continue;
+        }
+
+        //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
+        if (target != undefined && target.indexOf(data) != -1) {
+            found = true;
+            k++;
+            tempResults.push(albums.get(j));
+            displayTempResultsBox(true);
+        }
+    }
+
+    //Notify if nothing is found
+    if (!found) {
+        displayTempResultsBox(false);
+    }
+
+    //clear the temporary results everytime to avoid multiplicating items
+    tempResults = [];
 }
-if(!found){
-  console.log("no match");
-}
 
-//clear the temporary results everytime to avoid multiplicating items
-tempResults = [];
-
-}
-
-/**
- * displays a list of the closest matches found by autoCompletion()
+/**Displays a list of the closest matches found by the function autoCompletion()
+ * @param {Boolean} match : false when no match is found  
  */
-function updateTempResultsBox(){
-//Clear box
-searchBarSuggestionsBox.innerHTML = "";
+function displayTempResultsBox(match) {
+    //Clear box
+    searchBarSuggestionsBox.innerHTML = "";
 
-//Fill box
-let tempResultItemPaternUl = document.createElement("ul");
-for(let i = 0; i< tempResults.length; i++){
-  let tempResultItemPaternLi = document.createElement("li");
-  tempResultItemPaternLi.style.listStyle = "none";
-  tempResultItemPaternLi.innerHTML = tempResults[i].titre;
-  tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+    //Fill box
+    if (!match) {
+        searchBarSuggestionsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
+    } else {
+        let tempResultItemPaternUl = document.createElement("ul");
+        for (let i = 0; i < tempResults.length; i++) {
+            let tempResultItemPaternLi = document.createElement("li");
+            tempResultItemPaternLi.style.listStyle = "none";
+            tempResultItemPaternLi.innerHTML = tempResults[i].titre;
+            tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+        }
+        searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
+    }
 }
-searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
-}
-
-
-
