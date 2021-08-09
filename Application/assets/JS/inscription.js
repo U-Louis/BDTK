@@ -10,7 +10,7 @@ var varElement = {
 "fixe" : document.getElementById("inputfixe")
 };
 
-document.getElementById("btninscrire").addEventListener("click",function(e){controlAdd(e)});
+// document.getElementById("btninscrire").addEventListener("submit",function(e){controlAdd(e)});
 
 
 function controlInputText(inputTextToTest){
@@ -34,15 +34,38 @@ function controlInputPostal(){
   return myReg.test(varElement["postalCode"].value);
 }
 
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
 
-function controlAdd(event){
-    for (key in varElement){
-      if(!controlInputText(varElement[key].value)){
-        document.getElementById("alertname").innerHTML = "Vous devez remplir ce champ"
-        event.preventDefault();
-       };
-      
-      
-    }
-}
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity() ) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+         if (!controlInputBirth(varElement["dateOfBirth"].value && varElement["dateOfBirth"].value!="")){
+          document.querySelector(".invalid-date").classList.replace("d-none","d-inline");
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        if (!controlInputNumberMobile(varElement["dateOfBirth"].value )){
+          document.querySelector(".invalid-date").classList.replace("d-none","d-inline");
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        if (!controlInputFixe(varElement["dateOfBirth"].value)){
+          document.querySelector(".invalid-date").classList.replace("d-none","d-inline");
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        
+      }, false)
+    })
+})()
