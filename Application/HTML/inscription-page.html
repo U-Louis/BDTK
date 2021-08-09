@@ -19,32 +19,54 @@
         <!-- Le corp principale de la page  -->
         <main class="container d-flex flex-column col-12 col-sm-6 col-lg-4 mt-5 p-3 bg-light rounded-3 ">
             <div class="" id="divform" >
-                <form class="container d-flex flex-column" method="GET" action="accueil-page.html" >
-                    <input class="mt-2" id="inputname" type="text" placeholder="*Nom"  required>
-                    <span id="alertname"></span>
-                    <input class="mt-2" id="inputfirstname" type="text" placeholder="*Prénom" required>
-                    <span id="alertbirth"></span>
-                    <input class="mt-2" id="inputbirth" type="text" placeholder="date de naissance : 03/05/1987">
+                <form class="container d-flex flex-column needs-validation" method="GET"  action="accueil-page.html" novalidate>
+                    <input class="mt-2 form-control" id="inputname" type="text" placeholder="*Nom"  required>
+                    
+                    <input class="mt-2 form-control" id="inputfirstname" type="text" placeholder="*Prénom" required>
+                    <div class="invalid-feedback">
+                        Champ obligatoire!
+                      </div>
 
-                    <input class="mt-2" id="inputadresse1" type="text" placeholder="*adresse"  required>
-
+                    <input class="mt-2 form-control" id="inputbirth" type="text" placeholder="jj/mm/aaaa">
+                    <div class="invalid-date d-none text-danger">
+                        La date doit être de la forme jj/mm/aaaa!
+                      </div>
+                    <input class="mt-2 form-control" id="inputadresse1" type="text" placeholder="*adresse"  required>
+                    <div class="invalid-feedback">
+                        Champ obligatoire!
+                      </div>
+                   
                     <input class="mt-2" id="inputadresse2" type="text" placeholder="adresse 2" >
-                    <input class="mt-2" id="inputpostale" type="text" placeholder="*Code postale" required>
+                    <input class="mt-2 form-control" id="inputpostale" type="text" placeholder="*Code postale" required>
+                    <div class="invalid-feedback">
+                        Champ obligatoire!
+                    </div>
+                    <div class="invalid-date  d-none">
+                        <p class="text-danger">code postale doit être de la forme CC CCC!</p> 
+                    </div>
 
-                    <input class="mt-2" id="inputville" type="text" placeholder="*Ville" required>
+                    <input class="mt-2 form-control" id="inputville" type="text" placeholder="*Ville" required>
+                    <div class="invalid-feedback">
+                        Champ obligatoire!
+                    </div>
 
-                    <input class="mt-2" id="inputemail" type="email" placeholder="*email : exemple@axy.com" required>
+                    <input class="mt-2 form-control" id="inputemail" type="email" placeholder="*email : exemple@axy.com" required>
+                    <div class="invalid-feedback">
+                        Champ obligatoire!
+         
+                    </div>
 
-                    <input class="mt-2" id="inputmobile" type="text" placeholder="N° de téléphone mobile: 06 36 98 74 12">
-
-                    <input class="mt-2" id="inputfixe" type="text" placeholder="N° de téléphone fixe: " >
-                    <div id="nomHelp" class="form-text mt-2">*Champ obligatoire</div>
+                    <input class="mt-2" id="inputmobile" type="tel" placeholder="N° de téléphone mobile: 06 36 98 74 12">
+                   
+                    <input class="mt-2" id="inputfixe" type="tel" placeholder="N° de téléphone fixe: " >
+                  
                     <div id="divlink" class="container mt-2 w-100" href="../landing-page">
                         <input class="btn btn-danger" type="reset" value="Annuler">
                         <input class="btn btn-success" id="btninscrire"type="submit" value="S'inscrire">
                     </div>
 
                 </form>
+                
             </div>
             
                

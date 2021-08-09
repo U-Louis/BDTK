@@ -5,7 +5,7 @@
  * IN:NONE
  * OUT:NONE
  * */
-function makeMenu(){
+/* function makeMenu(){
     var menu =["Catalogue", "Mon-compte", "Accueil"]
     var pageHTML = ["#","#","accueil-page.html"];
     var ul = document.createElement("ul");
@@ -30,5 +30,170 @@ function makeMenu(){
     }
 
 }
+makeMenu(); */
 
-// makeMenu();
+
+
+/** === CATALOG === */
+//Init
+const LASTINDEXOFALBUMS = 629;
+const LASTINDEXOFAUTEURS = 159;
+const LASTINDEXOFSERIES = 114;
+var BDCardWrapper = document.getElementById("BDCardWrapper");
+
+
+/** == Search bars == */
+//inputKeys : ref, titre, auteur, serie
+
+
+/**Init */
+var searchBarSuggestionsBox = document.getElementById("searchBarSuggestionsBox");
+var searchBarInput = document.getElementById("searchBarInput");
+var searchButton = document.getElementById("searchButton");
+var searchData = searchBarInput.value;
+var tempResults = [];
+
+
+
+/**adding an event (e) to the onkeyup event
+ * @param {String} letters typed in searchBarInput
+ */
+searchBarInput.onkeyup = (e) => {
+    searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    autoCompletion(searchData, '5');
+}
+
+/**Searches for close matches beetwin user input and database items
+ * The data found is stored in the local {Array} tempResults
+ * @param {String} data : updates everytime the user types
+ * //param {String} inputKey : allows to change database tables and entry keys
+ * @param {Number} numOfItemsReturned : number of items wanted for display
+ */
+function autoCompletion(data, /*inputKey,*/ numOfItemsReturned) {
+
+    let found = false; //flag
+    let k = 0; //iterator for number of items to return
+
+    //Check if input bar is empty, if so, stop
+    if (data == "") {
+        searchBarSuggestionsBox.innerHTML = "";
+        return;
+    }
+
+    //Run iterator trough database
+    for (let i = 1; k < numOfItemsReturned; i++) {
+        //End of iteration if no result
+        if (i == LASTINDEXOFALBUMS + 1) {
+            break;
+        }
+
+        //Init
+        let j = i.toString();
+        let target;
+
+        //Leap over empty refs and pass to next iteration
+        try {
+            target = albums.get(j).titre.toLowerCase();
+        } catch {
+            continue;
+        }
+
+        //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
+        if (target != undefined && target.indexOf(data) != -1) {
+            found = true;
+            k++;
+            tempResults.push(albums.get(j));
+            displayTempResultsBox(true);
+        }
+    }
+
+    //Notify if nothing is found
+    if (!found) {
+        displayTempResultsBox(false);
+    }
+
+    //clear the temporary results everytime to avoid multiplicating items
+    tempResults = [];
+}
+
+/**Displays a list of the closest matches found by the function autoCompletion()
+ * @param {Boolean} match : false when no match is found  
+ */
+function displayTempResultsBox(match) {
+    //Clear box
+    searchBarSuggestionsBox.innerHTML = "";
+
+    //Fill box
+    if (!match) {
+        searchBarSuggestionsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
+    } else {
+        let tempResultItemPaternUl = document.createElement("ul");
+        for (let i = 0; i < tempResults.length; i++) {
+            let tempResultItemPaternLi = document.createElement("li");
+            tempResultItemPaternLi.style.listStyle = "none";
+            tempResultItemPaternLi.innerHTML = tempResults[i].titre;
+            tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+        }
+        searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
+    }
+}
+
+/** Item Assembler
+ * Pulls all parameters of a ref from all database maps +img source url, and assembles them in one item
+ * @param {String} albumsKey : String containing a number (!)implicite conversion doesn't work everytime
+ *                 key of an item from database map named albums
+ * @returns {Object} returns an object with all parameters, same parameter names as the database maps'
+ */
+function assembleItem(albumsKey) {
+    if (albumsKey == undefined || albumsKey == null) {
+        return "item doesn't exist";
+    }
+
+    //albums params
+    let titre = albumsKey.titre;
+    let numero = albumsKey.numero;
+    let prix = albumsKey.prix; // remove ?
+
+    //auteurs params
+    let idAuteur = auteurs.get(albumsKey.idAuteur).nom;
+
+    //series params
+    let idSerie = series.get(albumsKey.idSerie).nom;
+
+    //img source URL
+    let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
+
+    //output
+    return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
+}
+
+
+/** == BD card == */
+
+function generateCard(albumsKey) {
+    //clear box
+    // BDCardWrapper.innerHTML = "";
+
+    //Init
+    let cardItem = assembleItem(albumsKey);
+
+    //fill box
+
+    let patern = document.createElement('div');
+    patern.classList.add("card", "p-2", "rounded-0", "col-md-6");
+    patern.style = "width: 100%;";
+
+    let img = document.createElement('img');
+    img.classList.add("card-img-top", "p-2");
+    img.setAttribute('src', cardItem.img);
+    img.setAttribute('alt', cardItem.titre);
+
+    let cardBody = document.createElement('div');
+    continuerIci
+
+    patern.appendChild(img)
+
+    BDCardWrapper.appendChild(patern);
+}
+
+generateCard();
