@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/CSS/theme/sketchy/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/CSS/style.css">
+    <title>Mon compte Marmusots</title>
+</head>
+
+<body class="bg-primary ">
+    <div id="wrapper" class="container w-100 my-auto h-75 ">
+
+        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
+            <h2 class="text-uppercase text-center my-3 fs-3"> Bienvenue <span id="#">Jean-Denise</span> </h2>
+        </header>
+
+        <div id="wrapper" class="container w-85 my-auto h-75 ">
+
+            <!-- Informations utilisateur  -->
+             <div class="card card-body rounded-0 m-1">
+                    <h2>Informations utilisateur</h2>
+                    <table class="table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th id="#">ADH-667</th>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th id="#">Montechristo</th>
+                        </tr>
+                        <tr>
+                            <th>Prénom</th>
+                            <th id="#">Jean-Denise</th>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <p id="#"><span id="#" class="bg-success">Votre cotisation est à jour.</span> <br> <!-- to REMOVE if power ADH ** -->
+                    <em> (Sans une cotisation à jour, vous ne pourrez pas emprunter de BD !)</em></p>  <!-- ** -->
+                </div>
+
+            <br>
+
+            <!-- ===== powers buttons ===== powers buttons ===== powers buttons-->
+
+            <!-- ADH -->
+            <div id="#" class="card card-body rounded-0 m-1"><!-- Emprunts en cours  -->
+                    <h2>Emprunts en cours</h2>
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">
+                                    Ref.
+                                </th>
+                                <th scope="col">
+                                    Titre
+                                </th>
+                                <th scope="col">
+                                    Date de retour
+                                </th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr scope="row">
+                                <td id="#">439</td>
+                                <td>Montespa</td>
+                                <td>06/12/2021</td>
+                            </tr>
+                            <tr scope="row">
+                                <td id="#">439</td>
+                                <td>Montespa</td>
+                                <td>06/12/2021</td>
+                            </tr>
+                            <tr scope="row">
+                                <td id="#">439</td>
+                                <td>Montespa</td>
+                                <td>06/12/2021</td>
+                            </tr>
+                        </tbody>
+
+
+
+                    </table>
+            </div>
+            
+
+            <!-- BIB -->
+            <div class="card alert-success rounded-0 m-1" style="width: 100%;">
+                <div class="card-body">
+                    <h3>Bibliothécaire</h3>
+                    <button type="button" class="btn btn-success">Emprunt</button>
+                    <button type="button" class="btn btn-success">Retour</button>
+                    <button type="button" class="btn btn-success">Adhérents</button>
+                </div>
+            </div>
+            
+            <!-- GES -->
+            <div class="card alert-warning rounded-0 m-1" style="width: 100%;">
+                               <div class="card-body">
+                    <h3>Gestionnaire</h3>
+                    <button type="button" class="btn btn-warning">Ajout Série</button>
+                    <button type="button" class="btn btn-warning">Modifier Série</button>
+                    <button type="button" class="btn btn-warning">Supprimer Série</button>
+                    <button type="button" class="btn btn-warning">Ajout Série à Ref.</button>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-warning">Ajout Ref.</button>
+                    <button type="button" class="btn btn-warning">Modifier Ref.</button>
+                    <button type="button" class="btn btn-warning">Supprimer Ref.</button>
+                    <button type="button" class="btn btn-warning">Ajout Ref. à Série</button>
+                </div>
+            </div>
+
+            <!-- RES -->
+            <div class="card alert-danger rounded-0 m-1" style="width: 100%;">
+                <div class="card-body">
+                    <h3>Responsable</h3>
+                    <button type="button" class="btn btn-danger">Statistiques</button>
+                    <button type="button" class="btn btn-danger">Gestion des retards</button>
+                </div>
+            </div>
+
+            <!-- ADM -->
+            <div class="card alert-dark rounded-0 m-1" style="width: 100%;">
+                <div class="card-body">
+                    <h3>Admin</h3>
+                    <button type="button" class="btn btn-dark">Créer un compte</button>
+                    <button type="button" class="btn btn-dark">Modifier un compte</button>
+                    <button type="button" class="btn btn-dark">Supprimer un compte</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+
+<script src="../assets/JS/bootstrap.bundle.min.js"></script>
+<script src="../assets/JS/script.js"></script>
+
+</html>
