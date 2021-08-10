@@ -145,40 +145,42 @@ function displayTempResultsBox(match) {
  * @returns {Object} returns an object with all parameters, same parameter names as the database maps'
  */
 function assembleItem(albumsKey) {
-    if (albumsKey == undefined || albumsKey == null) {
-        return "item doesn't exist";
+    try {
+        //albums params
+        let titre = albums.get(albumsKey).titre;
+        let numero = albums.get(albumsKey).numero;
+        let prix = albums.get(albumsKey).prix; // remove ?
+
+        //auteurs params
+        let idAuteur = auteurs.get(albums.get(albumsKey.toString()).idAuteur).nom;
+
+        //series params
+        let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
+
+        //img source URL
+        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
+        //output
+        return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
+    } catch {
+        return { titre: "Cette Ref. n'existe pas", numero: "", prix: "", idAuteur: "", idSerie: "", img: "" };
     }
-
-    //albums params
-    let titre = albums.get(albumsKey).titre;
-    let numero = albums.get(albumsKey).numero;
-    let prix = albums.get(albumsKey).prix; // remove ?
-
-    //auteurs params
-    let idAuteur = auteurs.get(albums.get(albumsKey.toString()).idAuteur).nom;
-
-    //series params
-    let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
-
-    //img source URL
-    let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
-
-    //output
-    return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
 }
 
 
-/** == BD card == */
-
+/** == BD card ==
+ * Generates and displays a card in the DOM
+ * @param {String} albumsKey : String containing a number (!)implicite conversion doesn't work everytime
+ *                 key of an item from database map named albums
+ */
 function generateCard(albumsKey) {
     //clear box
     BDCardWrapper.innerHTML = "";
 
     //Init
+    var canBorrow = true; //A déclarer ailleurs, en global ou en param ici ?
     let cardItem = assembleItem(albumsKey);
 
     //fill box
-
     let patern = document.createElement('div');
     patern.classList.add("card", "p-2", "rounded-0", "col-md-6");
     patern.style = "width: 100%;";
@@ -223,11 +225,22 @@ function generateCard(albumsKey) {
     pNumero.classList.add("card-text");
     pNumero.innerHTML = "Numéro : " + cardItem.numero;
 
+    let aBtnEmprunt = document.createElement('a');
+    aBtnEmprunt.classList.add("btn", "btn-info", "float-end");
+    aBtnEmprunt.setAttribute('data-bs-toggle', "modal");
+    if (canBorrow) {
+        aBtnEmprunt.setAttribute('data-bs-target', "#confirmBorrow");
+    } else {
+        aBtnEmprunt.setAttribute('data-bs-target', "#cancelBorrow");
+    }
+    aBtnEmprunt.innerHTML = "Emprunter";
+
     cardBody.appendChild(h3Titre);
     cardBody.appendChild(pAuteurs);
     cardBody.appendChild(pRef);
     cardBody.appendChild(pSerie);
     cardBody.appendChild(pNumero);
+    cardBody.appendChild(aBtnEmprunt);
 
     patern.appendChild(img);
     patern.appendChild(cardBody);
