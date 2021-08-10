@@ -150,15 +150,15 @@ function assembleItem(albumsKey) {
     }
 
     //albums params
-    let titre = albumsKey.titre;
-    let numero = albumsKey.numero;
-    let prix = albumsKey.prix; // remove ?
+    let titre = albums.get(albumsKey).titre;
+    let numero = albums.get(albumsKey).numero;
+    let prix = albums.get(albumsKey).prix; // remove ?
 
     //auteurs params
-    let idAuteur = auteurs.get(albumsKey.idAuteur).nom;
+    let idAuteur = auteurs.get(albums.get(albumsKey.toString()).idAuteur).nom;
 
     //series params
-    let idSerie = series.get(albumsKey.idSerie).nom;
+    let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
     //img source URL
     let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
@@ -172,7 +172,7 @@ function assembleItem(albumsKey) {
 
 function generateCard(albumsKey) {
     //clear box
-    // BDCardWrapper.innerHTML = "";
+    BDCardWrapper.innerHTML = "";
 
     //Init
     let cardItem = assembleItem(albumsKey);
@@ -189,11 +189,50 @@ function generateCard(albumsKey) {
     img.setAttribute('alt', cardItem.titre);
 
     let cardBody = document.createElement('div');
-    continuerIci
+    cardBody.classList.add("card-body");
 
-    patern.appendChild(img)
+    let h3Titre = document.createElement('h3');
+    h3Titre.classList.add("card-title");
+    h3Titre.innerHTML = cardItem.titre;
+
+    let pAuteurs = document.createElement('p');
+    pAuteurs.classList.add("card-text");
+    pAuteurs.innerHTML = "Auteurs : ";
+    let aPAuteurs = document.createElement('a');
+    aPAuteurs.setAttribute('href', "");
+    aPAuteurs.innerHTML = cardItem.idAuteur;
+    pAuteurs.appendChild(aPAuteurs);
+
+    let pRef = document.createElement('p');
+    pRef.classList.add("card-text");
+    pRef.innerHTML = "Ref. : ";
+    let aPRef = document.createElement('a');
+    aPRef.setAttribute('href', "");
+    aPRef.innerHTML = albumsKey;
+    pRef.appendChild(aPRef);
+
+    let pSerie = document.createElement('p');
+    pSerie.classList.add("card-text");
+    pSerie.innerHTML = "Série : ";
+    let aPSerie = document.createElement('a');
+    aPSerie.setAttribute('href', "");
+    aPSerie.innerHTML = cardItem.idSerie;
+    pSerie.appendChild(aPSerie);
+
+    let pNumero = document.createElement('p');
+    pNumero.classList.add("card-text");
+    pNumero.innerHTML = "Numéro : " + cardItem.numero;
+
+    cardBody.appendChild(h3Titre);
+    cardBody.appendChild(pAuteurs);
+    cardBody.appendChild(pRef);
+    cardBody.appendChild(pSerie);
+    cardBody.appendChild(pNumero);
+
+    patern.appendChild(img);
+    patern.appendChild(cardBody);
 
     BDCardWrapper.appendChild(patern);
 }
 
-generateCard();
+generateCard("2");
