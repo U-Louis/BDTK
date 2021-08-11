@@ -19,30 +19,34 @@
         <!-- Le corp principale de la page  -->
         <main class="container d-flex flex-column col-12 col-sm-6 col-lg-4 mt-5 p-3 bg-light rounded-3 ">
             <div class="" id="divform" >
-                <form class="container d-flex flex-column needs-validation" method="GET"  action="accueil-page.html" novalidate>
+                <form class="container d-flex flex-column needs-validation" method="GET"  action="home.html" novalidate>
                     <input class="mt-2 form-control" id="inputname" type="text" placeholder="*Nom"  required>
-                    
+                    <div class="invalid-feedback">
+                        Champ obligatoire!
+                    </div>
                     <input class="mt-2 form-control" id="inputfirstname" type="text" placeholder="*Prénom" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
                       </div>
 
                     <input class="mt-2 form-control" id="inputbirth" type="text" placeholder="jj/mm/aaaa">
-                    <div class="invalid-date d-none text-danger">
+                    <div class=" d-none text-danger" id="invalid-date" >
                         La date doit être de la forme jj/mm/aaaa!
                       </div>
                     <input class="mt-2 form-control" id="inputadresse1" type="text" placeholder="*adresse"  required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
                       </div>
-                   
+                      <div class=" d-none text-danger" id="invalid-address" >
+                        L'adresse doit avoir au moins une lettre et un chiffre!
+                      </div>
                     <input class="mt-2" id="inputadresse2" type="text" placeholder="adresse 2" >
                     <input class="mt-2 form-control" id="inputpostale" type="text" placeholder="*Code postale" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
                     </div>
-                    <div class="invalid-date  d-none">
-                        <p class="text-danger">code postale doit être de la forme CC CCC!</p> 
+                    <div id="invalid-code" class=" d-none">
+                        <p class="text-danger">Le code postale doit comporter 5 chiffres!! Exemple:75000</p> 
                     </div>
 
                     <input class="mt-2 form-control" id="inputville" type="text" placeholder="*Ville" required>
@@ -50,21 +54,34 @@
                         Champ obligatoire!
                     </div>
 
-                    <input class="mt-2 form-control" id="inputemail" type="email" placeholder="*email : exemple@axy.com" required>
+                    <input class="mt-2 form-control" id="inputemail" type="text" placeholder="*email : exemple@axy.com" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
          
                     </div>
 
-                    <input class="mt-2" id="inputmobile" type="tel" placeholder="N° de téléphone mobile: 06 36 98 74 12">
-                   
-                    <input class="mt-2" id="inputfixe" type="tel" placeholder="N° de téléphone fixe: " >
-                  
-                    <div id="divlink" class="container mt-2 w-100" href="../landing-page">
-                        <input class="btn btn-danger" type="reset" value="Annuler">
-                        <input class="btn btn-success" id="btninscrire"type="submit" value="S'inscrire">
+                    <div class=" d-none text-danger" id="invalid-email" >
+                        Le format de l'adresse email est incorrect!
                     </div>
 
+                    <input class="mt-2 form-control" id="inputmobile" type="tel" placeholder="N° de tél mobile: 06 36 98 74 12">
+                    <div class=" d-none text-danger" id="invalid-mobile" >
+                        Le format du numéro de téléphone est incorrect!
+                    </div>
+
+                    <input class="mt-2 form-control" id="inputfixe" type="tel" placeholder="N° de tél fixe: 01 00 00 00 00" >
+                    <div class=" d-none text-danger" id="invalid-fixe" >
+                        Le format du numéro de téléphone est incorrect!
+                    </div>
+
+                    <p class="mt-3">*Champ obligatoire</p>
+                  
+                    <div id="divlink" class="container mt-2 w-100" >
+                        <a class="btn btn-danger" href="../landing page.html" role="button">Annuler</a>
+                        <!-- <input class="btn btn-danger" type="reset" value="Annuler"></input> -->
+                        <input class="btn btn-success" id="btninscrire"type="submit" value="S'inscrire">
+                    </div>
+                    
                 </form>
                 
             </div>
