@@ -36,6 +36,21 @@ makeMenu(); */
 
 /** === CATALOG === */
 //Init
+
+
+var user = {
+    firstName: 'Jenny',
+    lastName: 'Smith',
+    username: 'jenny32',
+    age: 45
+  };
+let userString = JSON.stringify(user);
+localStorage.setItem("user",userString);
+var userStringFromLocalStorage = localStorage.getItem('user');
+
+var userFromLocalStorage = JSON.parse(userStringFromLocalStorage);
+console.log(userStringFromLocalStorage);
+
 const LASTINDEXOFALBUMS = 629;
 const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
@@ -297,3 +312,4 @@ function redirectResearch(input, inputKey) {
     //launch search
     searchButton.click();
 }
+
