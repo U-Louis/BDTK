@@ -134,17 +134,16 @@ function selectInputKey(inputKey) {
  */
 searchBarInput.onkeyup = (e) => {
     searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-    autoCompletion(searchData, '5');
+    autoCompletion(searchData, selectedInputKey, '5');
 }
 
 /**Searches for close matches beetwin user input and database items
  * The data found is stored in the local {Array} tempResults
  * @param {String} data : updates everytime the user types
- * //param {String} inputKey : allows to change database tables and entry keys
+ * @param {String} inputKey : allows to change database tables and entry keys
  * @param {Number} numOfItemsReturned : number of items wanted for display
  */
-function autoCompletion(data, /*inputKey,*/ numOfItemsReturned) {
-
+function autoCompletion(data, inputKey, numOfItemsReturned) {
     let found = false; //flag
     let k = 0; //iterator for number of items to return
 
@@ -166,17 +165,55 @@ function autoCompletion(data, /*inputKey,*/ numOfItemsReturned) {
         let target;
 
         //Leap over empty refs and pass to next iteration
-        try {
-            target = albums.get(j).titre.toLowerCase();
-        } catch {
-            continue;
+        switch (inputKey) {
+            case "ref":
+                try {
+                    target = j;
+                } catch { continue; }
+                break;
+            case "titre":
+                try {
+                    target = albums.get(j).titre.toLowerCase();
+                } catch { continue; }
+                break;
+            case "auteur":
+                try {
+                    target = auteurs.get(j).nom.toLowerCase();
+                } catch { continue; }
+                break;
+            case "serie":
+                try {
+                    target = series.get(j).nom.toLowerCase();
+                } catch { continue; }
+                break;
+            default:
+                try {
+                    target = albums.get(j);
+                } catch { continue; }
         }
 
         //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
         if (target != undefined && target.indexOf(data) != -1) {
             found = true;
             k++;
-            tempResults.push(albums.get(j));
+            switch (inputKey) {
+                case "ref":
+                    target = j;
+                    break;
+                case "titre":
+                    target = albums.get(j).titre.toLowerCase();
+                    break;
+                case "auteur":
+                    target = auteurs.get(j).nom.toLowerCase();
+                    break;
+                case "serie":
+                    target = series.get(j).nom.toLowerCase();
+                    break;
+                default:
+                    target = albums.get(j);
+            }
+            let tempDisplay = assembleItem(j);
+            tempResults.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
             displayTempResultsBox(true);
         }
     }
@@ -205,7 +242,7 @@ function displayTempResultsBox(match) {
         for (let i = 0; i < tempResults.length; i++) {
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
-            tempResultItemPaternLi.innerHTML = tempResults[i].titre;
+            tempResultItemPaternLi.innerHTML = tempResults[i];
             tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
         }
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
