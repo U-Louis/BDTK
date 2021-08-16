@@ -59,14 +59,14 @@ generateCard("2"); //remove me
 var searchButton = document.getElementById("searchButton");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchBarInput = document.getElementById("refInputResearchBar");
-var searchData = titreInputResearchBar.value; //ajouter switch avec inputkey
+var searchData;
 var tempResults = [];
 
 //inputKeys init
 var refButton = document.getElementById("Ref-tab");
 var titreButton = document.getElementById("Titre-tab");
 var auteurButton = document.getElementById("Auteur-tab");
-var serieButton = document.getElementById("Auteur-tab");
+var serieButton = document.getElementById("Serie-tab");
 refButton.onclick = function() { selectInputKey("ref"); };
 titreButton.onclick = function() { selectInputKey("titre"); };
 auteurButton.onclick = function() { selectInputKey("auteur"); };
