@@ -1,30 +1,20 @@
-QUnit.module("Groupe Name");
-
-QUnit.test('test de la regex de nom', assert => {
-        assert.true(controlInputText("mp"));
-      });
-QUnit.test('test de la regex de nom', assert => {
-        assert.false(controlInputText("i"));
-});
-
-
 
 QUnit.module("Groupe Birth")
  
-        QUnit.test('Test true de la rgex input date of birth', asserts => {
-                asserts.true(controlInputBirth("28/10/1991"));
+        QUnit.test('Test true de la rgex input date of birth', assert => {
+                assert.true(controlInputBirth("28/10/1991"));
         })
 
-        QUnit.test('Test false du format  03/10/19991 de la rgex input date of birth', asserts => {
-                asserts.false(controlInputBirth("03/10/19991"));
+        QUnit.test('Test false du format  03/10/19991 de la rgex input date of birth', assert => {
+                assert.false(controlInputBirth("03/10/19991"));
         })
 
-        QUnit.test('Test false du format 2/10/1991 de la rgex input date of birth', asserts => {
-                asserts.false(controlInputBirth("2/10/1991"));
+        QUnit.test('Test false du format 2/10/1991 de la rgex input date of birth', assert => {
+                assert.false(controlInputBirth("2/10/1991"));
         })
 
-        QUnit.test('Test false du format 32/10/1991 de la rgex input date of birth', asserts => {
-                asserts.false(controlInputBirth("32/10/1991"));
+        QUnit.test('Test false du format 32/10/1991 de la rgex input date of birth', assert => {
+                assert.false(controlInputBirth("32/10/1991"));
         })
 
 
@@ -126,8 +116,8 @@ QUnit.module("Group Home Number")
 
 
 QUnit.module("Group Email")
-        QUnit.test('Test true de la rgex input email', asserts => {
-                asserts.true(controlInputEmail("exemple.50@test.gif"));
+        QUnit.test('Test true de la rgex input email', assert => {
+                assert.true(controlInputEmail("exemple.50@test.gif"));
         })
 
         QUnit.test('test false avec string i de la regex email', assert => {
@@ -146,4 +136,31 @@ QUnit.module("Group Email")
                 assert.false(controlInputEmail("153"));
         });
 
+QUnit.module("Groupe User")
 
+        QUnit.test('Test true de l\'input user', assert => {
+                assert.true(testUser("1" , "jean-denise.labibliothecaire"));
+        })
+
+        QUnit.test('test false de l\'input user', assert => {
+                assert.false(testUser("2" , "cedric"));
+        });
+
+QUnit.module("Groupe Password")
+        QUnit.test('Test true de l\'input password', assert => {
+                assert.true(testPassword("1" , "motdepasse1"));
+        })
+
+        QUnit.test('test false de l\'input password', assert => {
+                assert.false(testPassword("2" , "motdepasse1"));
+        });
+/*
+QUnit.test("Groupe Connection Control")
+        QUnit.test('Test true de la connexion', assert => {
+                assert.true(connectControl("jean-denise.labibliothecaire" , "motdepasse1"));
+        })
+
+        QUnit.test('test false de la connexion', assert => {
+                assert.false(connectControl("sedoriku.shiroimatsu" , "motdepasse1"));
+        });
+/** */
