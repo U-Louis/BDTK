@@ -55,6 +55,7 @@ var selectedInputKey = "ref";
 
 /**Init */
 var searchButton = document.getElementById("searchButton");
+var resultsBox = document.getElementById("resultsBox");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchData;
 var tempResults = [];
@@ -268,7 +269,49 @@ function displayTempResultsBox(match) {
     }
 }
 
-function displayHardResultsBox() {
+function displayResultsBox(match) {
+    //Clear box
+    resultsBox.innerHTML = "";
+
+    //Fill box
+    if (!match) {
+        resultsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
+    } else {
+        let resultItemPaternUl = document.createElement("thead");
+
+        let tr = document.createElement("tr");
+
+        let th1 = document.createElement("th");
+        th1.setAttribute("scope", "col");
+        th1.value = "Ref.";
+        let th2 = document.createElement("th");
+        th2.setAttribute("scope", "col");
+        th2.value = "Titre";
+        let th3 = document.createElement("th");
+        th3.setAttribute("scope", "col");
+        th3.value = "Auteur";
+        let th4 = document.createElement("th");
+        th4.setAttribute("scope", "col");
+        th4.value = "Série";
+
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        tr.appendChild(th4);
+
+        resultItemPaternUl.appendChild(tr);
+
+
+
+        for (let i = 0; i < tempResults.length; i++) {
+            let tempResultItemPaternLi = document.createElement("li");
+            tempResultItemPaternLi.style.listStyle = "none";
+            tempResultItemPaternLi.innerHTML = tempResults[i];
+            tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+        }
+
+        resultsBox.appendChild(tempResultItemPaternUl);
+    }
 
 }
 
