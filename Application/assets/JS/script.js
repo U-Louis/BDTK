@@ -32,6 +32,15 @@
 }
 makeMenu(); */
 
+/** === LOGIN === */
+//init
+//status
+var hasRightsAdherent = false;
+var hasRightsBibliothecaire = false;
+var hasRightsGestionnaire = false;
+var hasRightsResponsable = false;
+var hasRightsAdmin = false;
+
 
 
 /** === CATALOG === */
