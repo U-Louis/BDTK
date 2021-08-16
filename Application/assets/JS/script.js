@@ -49,21 +49,85 @@ const LASTINDEXOFALBUMS = 629;
 const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
+var selectedInputKey = "ref";
 generateCard("2"); //remove me
 
 
 /** == Search bars == */
-//inputKeys : ref, titre, auteur, serie
-
 
 /**Init */
-var searchBarSuggestionsBox = document.getElementById("searchBarSuggestionsBox");
-var searchBarInput = document.getElementById("titreInputResearchBar");
 var searchButton = document.getElementById("searchButton");
+var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
+var searchBarInput = document.getElementById("refInputResearchBar");
 var searchData = titreInputResearchBar.value; //ajouter switch avec inputkey
 var tempResults = [];
 
+//inputKeys init
+var refButton = document.getElementById("Ref-tab");
+var titreButton = document.getElementById("Titre-tab");
+var auteurButton = document.getElementById("Auteur-tab");
+var serieButton = document.getElementById("Auteur-tab");
+refButton.onclick = function() { selectInputKey("ref"); };
+titreButton.onclick = function() { selectInputKey("titre"); };
+auteurButton.onclick = function() { selectInputKey("auteur"); };
+serieButton.onclick = function() { selectInputKey("serie"); };
 
+/**sets the search bar and the suggestion box, accordingly to the inputKey
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
+ * return : change value of global vars searchBarSuggestionsBox and searchBarInput;
+ */
+function setSearchBarInputAndSuggestion(inputKey) {
+    switch (inputKey) {
+        case "ref":
+            searchBarInput = document.getElementById("refInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
+            break;
+        case "titre":
+            searchBarInput = document.getElementById("titreInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("titreSearchBarSuggestionsBox");
+            break;
+        case "auteur":
+            searchBarInput = document.getElementById("auteurInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("auteurSearchBarSuggestionsBox");
+            break;
+        case "serie":
+            searchBarInput = document.getElementById("serieInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("serieSearchBarSuggestionsBox");
+            break;
+        default:
+            searchBarInput = document.getElementById("refInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
+    }
+}
+
+/** selects an input key for setting the right tab and research
+ * sets up the research bar input box accordingly, by calling setSearchBarInputAndSuggestion()
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
+ * Output : changes the value of global var selectedInputKey
+ */
+function selectInputKey(inputKey) {
+    switch (inputKey) {
+        case "ref":
+            selectedInputKey = "ref";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        case "titre":
+            selectedInputKey = "titre";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        case "auteur":
+            selectedInputKey = "auteur";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        case "serie":
+            selectedInputKey = "serie";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        default:
+            selectedInputKey = "ref";
+            setSearchBarInputAndSuggestion("ref");
+    }
+}
 
 /**adding an event (e) to the onkeyup event
  * @param {String} letters typed in searchBarInput
@@ -267,7 +331,7 @@ function generateCard(albumsKey) {
 
 /** Selects a string with a click and throws a research with it as the research input
  * @param {String} input : a parameter from an item 
- * @param {String} inputKey : type of the parameter (ref, titre, auteur, série)
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
  */
 function redirectResearch(input, inputKey) {
     //Init
