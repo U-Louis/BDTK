@@ -203,7 +203,7 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                 break;
             case "serie":
                 try {
-                    target = series.get(j).nom.toLowerCase();
+                    target = series.get(albums.get(j).idSerie).nom.toLowerCase();
                 } catch { continue; }
                 break;
             default:
@@ -227,7 +227,7 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                     target = auteurs.get(albums.get(j).idAuteur).nom.toLowerCase();
                     break;
                 case "serie":
-                    target = series.get(j).nom.toLowerCase();
+                    target = series.get(albums.get(j).idSerie).nom.toLowerCase();
                     break;
                 default:
                     target = albums.get(j);
