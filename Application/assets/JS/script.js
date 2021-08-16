@@ -48,7 +48,8 @@ const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
 var selectedInputKey = "ref";
-generateCard("2"); //remove me
+/* generateCard("2"); //remove me
+ */
 
 /** == Search bars == */
 
@@ -135,27 +136,25 @@ function selectInputKey(inputKey) {
 (function() {
     refSearchBarInput.onkeyup = (e) => {
         refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(refSearchData, selectedInputKey, '500');
+        autoCompletion(refSearchData, selectedInputKey, '5');
         console.log("keyup");
     }
     titreSearchBarInput.onkeyup = (e) => {
         titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(titreSearchData, selectedInputKey, '500');
+        autoCompletion(titreSearchData, selectedInputKey, '5');
         console.log("keyup");
     }
     auteurSearchBarInput.onkeyup = (e) => {
         auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(auteurSearchData, selectedInputKey, '500');
+        autoCompletion(auteurSearchData, selectedInputKey, '5');
         console.log("keyup");
     }
     serieSearchBarInput.onkeyup = (e) => {
         serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(serieSearchData, selectedInputKey, '500');
+        autoCompletion(serieSearchData, selectedInputKey, '5');
         console.log("keyup");
     }
 }());
-
-
 
 /**Searches for close matches beetwin user input and database items
  * @param {String} data : updates everytime the user types
@@ -267,6 +266,10 @@ function displayTempResultsBox(match) {
         }
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
     }
+}
+
+function displayHardResultsBox() {
+
 }
 
 /** Item Assembler
