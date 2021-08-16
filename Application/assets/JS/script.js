@@ -41,46 +41,128 @@ var hasRightsGestionnaire = false;
 var hasRightsResponsable = false;
 var hasRightsAdmin = false;
 
-
-
 /** === CATALOG === */
 //Init
 const LASTINDEXOFALBUMS = 629;
 const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
-generateCard("2"); //remove me
-
+var selectedInputKey = "ref";
+/* generateCard("2"); //remove me
+ */
 
 /** == Search bars == */
-//inputKeys : ref, titre, auteur, serie
-
 
 /**Init */
-var searchBarSuggestionsBox = document.getElementById("searchBarSuggestionsBox");
-var searchBarInput = document.getElementById("titreInputResearchBar");
 var searchButton = document.getElementById("searchButton");
-var searchData = titreInputResearchBar.value; //ajouter switch avec inputkey
+var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
+var searchData;
 var tempResults = [];
 
+//inputKeys init
+var refButton = document.getElementById("Ref-tab");
+var titreButton = document.getElementById("Titre-tab");
+var auteurButton = document.getElementById("Auteur-tab");
+var serieButton = document.getElementById("Serie-tab");
+refButton.onclick = function() { selectInputKey("ref"); };
+titreButton.onclick = function() { selectInputKey("titre"); };
+auteurButton.onclick = function() { selectInputKey("auteur"); };
+serieButton.onclick = function() { selectInputKey("serie"); };
+var refSearchBarInput = document.getElementById("refInputResearchBar");
+var titreSearchBarInput = document.getElementById("titreInputResearchBar");
+var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
+var serieSearchBarInput = document.getElementById("serieInputResearchBar");
 
-
-/**adding an event (e) to the onkeyup event
- * @param {String} letters typed in searchBarInput
+/**sets the search bar and the suggestion box, accordingly to the inputKey
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
+ * return : change value of global vars searchBarSuggestionsBox and searchBarInput;
  */
-searchBarInput.onkeyup = (e) => {
-    searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-    autoCompletion(searchData, '5');
+function setSearchBarInputAndSuggestion(inputKey) {
+    switch (inputKey) {
+        case "ref":
+            searchBarInput = document.getElementById("refInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
+            break;
+        case "titre":
+            searchBarInput = document.getElementById("titreInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("titreSearchBarSuggestionsBox");
+            break;
+        case "auteur":
+            searchBarInput = document.getElementById("auteurInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("auteurSearchBarSuggestionsBox");
+            break;
+        case "serie":
+            searchBarInput = document.getElementById("serieInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("serieSearchBarSuggestionsBox");
+            break;
+        default:
+            searchBarInput = document.getElementById("refInputResearchBar");
+            searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
+    }
 }
 
-/**Searches for close matches beetwin user input and database items
- * The data found is stored in the local {Array} tempResults
- * @param {String} data : updates everytime the user types
- * //param {String} inputKey : allows to change database tables and entry keys
- * @param {Number} numOfItemsReturned : number of items wanted for display
+/** selects an input key for setting the right tab and research
+ * sets up the research bar input box accordingly, by calling setSearchBarInputAndSuggestion()
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
+ * Output : changes the value of global var selectedInputKey
  */
-function autoCompletion(data, /*inputKey,*/ numOfItemsReturned) {
+function selectInputKey(inputKey) {
+    switch (inputKey) {
+        case "ref":
+            selectedInputKey = "ref";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        case "titre":
+            selectedInputKey = "titre";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        case "auteur":
+            selectedInputKey = "auteur";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        case "serie":
+            selectedInputKey = "serie";
+            setSearchBarInputAndSuggestion(inputKey);
+            break;
+        default:
+            selectedInputKey = "ref";
+            setSearchBarInputAndSuggestion("ref");
+    }
+}
 
+/**binding search bar inputs by adding an event (e) to the onkeyup event
+ * @param {String} letters typed in search Bar Inputs
+ */
+(function() {
+    refSearchBarInput.onkeyup = (e) => {
+        refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(refSearchData, selectedInputKey, '5');
+        console.log("keyup");
+    }
+    titreSearchBarInput.onkeyup = (e) => {
+        titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(titreSearchData, selectedInputKey, '5');
+        console.log("keyup");
+    }
+    auteurSearchBarInput.onkeyup = (e) => {
+        auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(auteurSearchData, selectedInputKey, '5');
+        console.log("keyup");
+    }
+    serieSearchBarInput.onkeyup = (e) => {
+        serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(serieSearchData, selectedInputKey, '5');
+        console.log("keyup");
+    }
+}());
+
+/**Searches for close matches beetwin user input and database items
+ * @param {String} data : updates everytime the user types
+ * @param {String} inputKey : allows to change database tables and entry keys
+ * @param {Number} numOfItemsReturned : number of items wanted for display
+ * return : fills local {Array} tempResults
+ */
+function autoCompletion(data, inputKey, numOfItemsReturned) {
     let found = false; //flag
     let k = 0; //iterator for number of items to return
 
@@ -102,17 +184,55 @@ function autoCompletion(data, /*inputKey,*/ numOfItemsReturned) {
         let target;
 
         //Leap over empty refs and pass to next iteration
-        try {
-            target = albums.get(j).titre.toLowerCase();
-        } catch {
-            continue;
+        switch (inputKey) {
+            case "ref":
+                try {
+                    target = j;
+                } catch { continue; }
+                break;
+            case "titre":
+                try {
+                    target = albums.get(j).titre.toLowerCase();
+                } catch { continue; }
+                break;
+            case "auteur":
+                try {
+                    target = auteurs.get(albums.get(j).idAuteur).nom.toLowerCase();
+                } catch { continue; }
+                break;
+            case "serie":
+                try {
+                    target = series.get(albums.get(j).idSerie).nom.toLowerCase();
+                } catch { continue; }
+                break;
+            default:
+                try {
+                    target = albums.get(j);
+                } catch { continue; }
         }
 
         //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
         if (target != undefined && target.indexOf(data) != -1) {
             found = true;
             k++;
-            tempResults.push(albums.get(j));
+            switch (inputKey) {
+                case "ref":
+                    target = j;
+                    break;
+                case "titre":
+                    target = albums.get(j).titre.toLowerCase();
+                    break;
+                case "auteur":
+                    target = auteurs.get(albums.get(j).idAuteur).nom.toLowerCase();
+                    break;
+                case "serie":
+                    target = series.get(albums.get(j).idSerie).nom.toLowerCase();
+                    break;
+                default:
+                    target = albums.get(j);
+            }
+            let tempDisplay = assembleItem(j);
+            tempResults.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
             displayTempResultsBox(true);
         }
     }
@@ -141,11 +261,15 @@ function displayTempResultsBox(match) {
         for (let i = 0; i < tempResults.length; i++) {
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
-            tempResultItemPaternLi.innerHTML = tempResults[i].titre;
+            tempResultItemPaternLi.innerHTML = tempResults[i];
             tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
         }
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
     }
+}
+
+function displayHardResultsBox() {
+
 }
 
 /** Item Assembler
@@ -163,7 +287,6 @@ function assembleItem(albumsKey) {
 
         //auteurs params
         let idAuteur = auteurs.get(albums.get(albumsKey.toString()).idAuteur).nom;
-
         //series params
         let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
@@ -267,7 +390,7 @@ function generateCard(albumsKey) {
 
 /** Selects a string with a click and throws a research with it as the research input
  * @param {String} input : a parameter from an item 
- * @param {String} inputKey : type of the parameter (ref, titre, auteur, série)
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
  */
 function redirectResearch(input, inputKey) {
     //Init
