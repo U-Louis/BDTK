@@ -59,6 +59,7 @@ var resultsBox = document.getElementById("resultsBox");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchData;
 var tempResults = [];
+var results = [];
 
 //inputKeys init
 var refButton = document.getElementById("Ref-tab");
@@ -301,13 +302,30 @@ function displayResultsBox(match) {
 
         resultItemPaternUl.appendChild(tr);
 
+        let tbody = document.createElement("tbody");
 
+        for (let i = 0; i < results.length; i++) {
+            let th = document.createElement("th");
+            th.setAttribute("scope", "row");
 
-        for (let i = 0; i < tempResults.length; i++) {
-            let tempResultItemPaternLi = document.createElement("li");
-            tempResultItemPaternLi.style.listStyle = "none";
-            tempResultItemPaternLi.innerHTML = tempResults[i];
-            tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+            let thA = document.createElement("a");
+            thA.setAttribute("href", "");
+            thA.value = i;
+            th.appendChild(thA);
+
+            let td1 = document.createElement("td");
+            td1.value = i.titre;
+            let td2 = document.createElement("td");
+            td1.value = i.idAuteur;
+            let td3 = document.createElement("td");
+            td1.value = i.idSerie;
+
+            tr.appendChild(th);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+
+            tbody.appendChild(tr);
         }
 
         resultsBox.appendChild(tempResultItemPaternUl);
