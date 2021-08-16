@@ -13,6 +13,22 @@
 <body class="bg-primary ">
     <div id="wrapper" class="container w-100 my-auto h-75 ">
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start">
+            <div class="container-fluid flex-column">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ">
+                    <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
+                    <a class="nav-link" href="catalog.html">Catalogue</a>
+                    <a class="nav-link" href="account.html">Mon compte</a>
+                    
+                </div>
+                </div>
+            </div>
+        </nav>
         <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
             <h1 class="text-uppercase text-center my-3 fs-3">Catalogue</h1>
         </header>
@@ -45,7 +61,7 @@
 
                         <div class="input-group d-flex align-items-center">
                             <div class="form-outline col-8 m-0">
-                                <input type="search" id="searchBarInput" class="form-control" placeholder="Rechercher une Ref..." />
+                                <input type="search" id="refInputResearchBar" class="form-control" placeholder="Rechercher une Ref..." />
                             </div>
                             <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="searchButton">Rechercher</button>
                             <div class="form-outline col-8 m-0">
@@ -97,7 +113,7 @@
 
                         <div class="input-group">
                             <div class="form-outline col-8 m-1">
-                                <input type="search" id="form1" class="form-control" placeholder="Rechercher un titre..." />
+                                <input type="search" id="titreInputResearchBar" class="form-control" placeholder="Rechercher un titre..." />
                             </div>
                             <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
                         </div>
@@ -145,7 +161,7 @@
 
                         <div class="input-group">
                             <div class="form-outline col-8 m-1">
-                                <input type="search" id="form1" class="form-control" placeholder="Rechercher un auteur..." />
+                                <input type="search" id="auteurInputResearchBar" class="form-control" placeholder="Rechercher un auteur..." />
                             </div>
                             <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
                         </div>
@@ -193,7 +209,7 @@
 
                         <div class="input-group">
                             <div class="form-outline col-8 m-1">
-                                <input type="search" id="form1" class="form-control" placeholder="Rechercher une série..." />
+                                <input type="search" id="serieInputResearchBar" class="form-control" placeholder="Rechercher une série..." />
                             </div>
                             <button type="button" class="btn btn-info col-3 rounded-pill m-1">Rechercher</button>
                         </div>
@@ -263,8 +279,8 @@
                             <a href="#" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#confirmBorrow">Emprunter</a>
                     </div>
 
-                    <!-- confirmer emprunt modale -->
-                    <div class="modal fade" id="confirmBorrow" tabindex="-1" aria-labelledby="confirmBorrow" aria-hidden="true">
+                    <!-- Cancel emprunt modale -->
+                    <div class="modal fade" id="cancelBorrow" tabindex="-1" aria-labelledby="cancelBorrow" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
 
@@ -276,6 +292,24 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- confirmer emprunt modale -->
+                    <div class="modal fade" id="confirmBorrow" tabindex="-1" aria-labelledby="confirmBorrow" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+                                    Confirmer l'emprunt de <span id="">"#ID + TITRE"</span> ? </div>
+                                <div class="modal-footer">
+                                    <button id="" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>

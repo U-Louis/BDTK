@@ -32,6 +32,15 @@
 }
 makeMenu(); */
 
+/** === LOGIN === */
+//init
+//status
+var hasRightsAdherent = false;
+var hasRightsBibliothecaire = false;
+var hasRightsGestionnaire = false;
+var hasRightsResponsable = false;
+var hasRightsAdmin = false;
+
 
 
 /** === CATALOG === */
@@ -40,6 +49,7 @@ const LASTINDEXOFALBUMS = 629;
 const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
+generateCard("2"); //remove me
 
 
 /** == Search bars == */
@@ -48,9 +58,9 @@ var BDCardWrapper = document.getElementById("BDCardWrapper");
 
 /**Init */
 var searchBarSuggestionsBox = document.getElementById("searchBarSuggestionsBox");
-var searchBarInput = document.getElementById("searchBarInput");
+var searchBarInput = document.getElementById("titreInputResearchBar");
 var searchButton = document.getElementById("searchButton");
-var searchData = searchBarInput.value;
+var searchData = titreInputResearchBar.value; //ajouter switch avec inputkey
 var tempResults = [];
 
 
@@ -145,40 +155,43 @@ function displayTempResultsBox(match) {
  * @returns {Object} returns an object with all parameters, same parameter names as the database maps'
  */
 function assembleItem(albumsKey) {
-    if (albumsKey == undefined || albumsKey == null) {
-        return "item doesn't exist";
+    try {
+        //albums params
+        let titre = albums.get(albumsKey).titre;
+        let numero = albums.get(albumsKey).numero;
+        let prix = albums.get(albumsKey).prix; // remove ?
+
+        //auteurs params
+        let idAuteur = auteurs.get(albums.get(albumsKey.toString()).idAuteur).nom;
+
+        //series params
+        let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
+
+        //img source URL
+        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
+        //output
+        return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
+    } catch {
+        return { titre: "Cette Ref. n'existe pas", numero: "", prix: "", idAuteur: "", idSerie: "", img: "" };
     }
-
-    //albums params
-    let titre = albumsKey.titre;
-    let numero = albumsKey.numero;
-    let prix = albumsKey.prix; // remove ?
-
-    //auteurs params
-    let idAuteur = auteurs.get(albumsKey.idAuteur).nom;
-
-    //series params
-    let idSerie = series.get(albumsKey.idSerie).nom;
-
-    //img source URL
-    let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
-
-    //output
-    return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
 }
 
 
-/** == BD card == */
+// == BD card ==
 
+/** Generates and displays a card in the DOM
+ * @param {String} albumsKey : String containing a number (!)implicite conversion doesn't work everytime
+ *                 key of an item from database map named albums
+ */
 function generateCard(albumsKey) {
     //clear box
-    // BDCardWrapper.innerHTML = "";
+    BDCardWrapper.innerHTML = "";
 
     //Init
+    var canBorrow = true; //A déclarer ailleurs, en global ou en param ici ?
     let cardItem = assembleItem(albumsKey);
 
     //fill box
-
     let patern = document.createElement('div');
     patern.classList.add("card", "p-2", "rounded-0", "col-md-6");
     patern.style = "width: 100%;";
@@ -189,11 +202,107 @@ function generateCard(albumsKey) {
     img.setAttribute('alt', cardItem.titre);
 
     let cardBody = document.createElement('div');
-    continuerIci
+    cardBody.classList.add("card-body");
 
-    patern.appendChild(img)
+    let h3Titre = document.createElement('h3');
+    h3Titre.classList.add("card-title");
+    h3Titre.innerHTML = cardItem.titre;
+
+    let pRef = document.createElement('p');
+    pRef.classList.add("card-text");
+    pRef.innerHTML = "Ref. : ";
+    let aPRef = document.createElement('span');
+    aPRef.style.textDecoration = "underline";
+    aPRef.style.cursor = "pointer";
+    aPRef.onclick = function() { redirectResearch(albumsKey, "ref") };
+    aPRef.innerHTML = albumsKey;
+    pRef.appendChild(aPRef);
+
+    let pAuteurs = document.createElement('p');
+    pAuteurs.classList.add("card-text");
+    pAuteurs.innerHTML = "Auteurs : ";
+    let aPAuteurs = document.createElement('span');
+    aPAuteurs.style.textDecoration = "underline";
+    aPAuteurs.style.cursor = "pointer";
+    aPAuteurs.onclick = function() { redirectResearch(cardItem.idAuteur, "auteur") };
+    aPAuteurs.innerHTML = cardItem.idAuteur;
+    pAuteurs.appendChild(aPAuteurs);
+
+    let pSerie = document.createElement('p');
+    pSerie.classList.add("card-text");
+    pSerie.innerHTML = "Séries : ";
+    let aPSerie = document.createElement('span');
+    aPSerie.style.textDecoration = "underline";
+    aPSerie.style.cursor = "pointer";
+    aPSerie.onclick = function() { redirectResearch(cardItem.idSerie, "serie") };
+    aPSerie.innerHTML = cardItem.idSerie;
+    pSerie.appendChild(aPSerie);
+
+    let pNumero = document.createElement('p');
+    pNumero.classList.add("card-text");
+    pNumero.innerHTML = "Numéro : " + cardItem.numero;
+
+    let aBtnEmprunt = document.createElement('a');
+    aBtnEmprunt.classList.add("btn", "btn-info", "float-end");
+    aBtnEmprunt.setAttribute('data-bs-toggle', "modal");
+    if (canBorrow) {
+        aBtnEmprunt.setAttribute('data-bs-target', "#confirmBorrow");
+    } else {
+        aBtnEmprunt.setAttribute('data-bs-target', "#cancelBorrow");
+    }
+    aBtnEmprunt.innerHTML = "Emprunter";
+
+    cardBody.appendChild(h3Titre);
+    cardBody.appendChild(pAuteurs);
+    cardBody.appendChild(pRef);
+    cardBody.appendChild(pSerie);
+    cardBody.appendChild(pNumero);
+    cardBody.appendChild(aBtnEmprunt);
+
+    patern.appendChild(img);
+    patern.appendChild(cardBody);
 
     BDCardWrapper.appendChild(patern);
 }
 
-generateCard();
+/** Selects a string with a click and throws a research with it as the research input
+ * @param {String} input : a parameter from an item 
+ * @param {String} inputKey : type of the parameter (ref, titre, auteur, série)
+ */
+function redirectResearch(input, inputKey) {
+    //Init
+    let refTab = document.getElementById("Ref-tab");
+    let titreTab = document.getElementById("Titre-tab");
+    let auteurTab = document.getElementById("Auteur-tab");
+    let serieTab = document.getElementById("Serie-tab");
+    let refInputResearchBar = document.getElementById("refInputResearchBar");
+    let titreInputResearchBar = document.getElementById("titreInputResearchBar");
+    let auteurInputResearchBar = document.getElementById("auteurInputResearchBar");
+    let serieInputResearchBar = document.getElementById("serieInputResearchBar");
+
+    //select key and fill input
+    switch (inputKey) {
+        case "ref":
+            refTab.click();
+            serieInputResearchBar.value = input;
+            break;
+        case "titre":
+            titreTab.click();
+            refInputResearchBar.value = input;
+            break;
+        case "auteur":
+            auteurTab.click();
+            titreInputResearchBar.value = input;
+            break;
+        case "serie":
+            serieTab.click();
+            auteurInputResearchBar.value = input;
+            break;
+        default:
+            refTab.click();
+            serieInputResearchBar.value = input;
+    }
+
+    //launch search
+    searchButton.click();
+}
