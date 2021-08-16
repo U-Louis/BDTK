@@ -40,6 +40,7 @@ var hasRightsBibliothecaire = false;
 var hasRightsGestionnaire = false;
 var hasRightsResponsable = false;
 var hasRightsAdmin = false;
+var id = localStorage.getItem("id");
 
 /** === CATALOG === */
 //Init
