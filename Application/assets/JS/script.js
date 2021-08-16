@@ -41,8 +41,6 @@ var hasRightsGestionnaire = false;
 var hasRightsResponsable = false;
 var hasRightsAdmin = false;
 
-
-
 /** === CATALOG === */
 //Init
 const LASTINDEXOFALBUMS = 629;
@@ -52,13 +50,11 @@ var BDCardWrapper = document.getElementById("BDCardWrapper");
 var selectedInputKey = "ref";
 generateCard("2"); //remove me
 
-
 /** == Search bars == */
 
 /**Init */
 var searchButton = document.getElementById("searchButton");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
-var searchBarInput = document.getElementById("refInputResearchBar");
 var searchData;
 var tempResults = [];
 
@@ -71,6 +67,10 @@ refButton.onclick = function() { selectInputKey("ref"); };
 titreButton.onclick = function() { selectInputKey("titre"); };
 auteurButton.onclick = function() { selectInputKey("auteur"); };
 serieButton.onclick = function() { selectInputKey("serie"); };
+var refSearchBarInput = document.getElementById("refInputResearchBar");
+var titreSearchBarInput = document.getElementById("titreInputResearchBar");
+var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
+var serieSearchBarInput = document.getElementById("serieInputResearchBar");
 
 /**sets the search bar and the suggestion box, accordingly to the inputKey
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
@@ -129,19 +129,39 @@ function selectInputKey(inputKey) {
     }
 }
 
-/**adding an event (e) to the onkeyup event
- * @param {String} letters typed in searchBarInput
+/**binding search bar inputs by adding an event (e) to the onkeyup event
+ * @param {String} letters typed in search Bar Inputs
  */
-searchBarInput.onkeyup = (e) => {
-    searchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-    autoCompletion(searchData, selectedInputKey, '5');
-}
+(function() {
+    refSearchBarInput.onkeyup = (e) => {
+        refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(refSearchData, selectedInputKey, '500');
+        console.log("keyup");
+    }
+    titreSearchBarInput.onkeyup = (e) => {
+        titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(titreSearchData, selectedInputKey, '500');
+        console.log("keyup");
+    }
+    auteurSearchBarInput.onkeyup = (e) => {
+        auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(auteurSearchData, selectedInputKey, '500');
+        console.log("keyup");
+    }
+    serieSearchBarInput.onkeyup = (e) => {
+        serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+        autoCompletion(serieSearchData, selectedInputKey, '500');
+        console.log("keyup");
+    }
+}());
+
+
 
 /**Searches for close matches beetwin user input and database items
- * The data found is stored in the local {Array} tempResults
  * @param {String} data : updates everytime the user types
  * @param {String} inputKey : allows to change database tables and entry keys
  * @param {Number} numOfItemsReturned : number of items wanted for display
+ * return : fills local {Array} tempResults
  */
 function autoCompletion(data, inputKey, numOfItemsReturned) {
     let found = false; //flag
@@ -178,7 +198,7 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                 break;
             case "auteur":
                 try {
-                    target = auteurs.get(j).nom.toLowerCase();
+                    target = auteurs.get(albums.get(j).idAuteur).nom.toLowerCase();
                 } catch { continue; }
                 break;
             case "serie":
@@ -204,7 +224,7 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                     target = albums.get(j).titre.toLowerCase();
                     break;
                 case "auteur":
-                    target = auteurs.get(j).nom.toLowerCase();
+                    target = auteurs.get(albums.get(j).idAuteur).nom.toLowerCase();
                     break;
                 case "serie":
                     target = series.get(j).nom.toLowerCase();
@@ -264,7 +284,6 @@ function assembleItem(albumsKey) {
 
         //auteurs params
         let idAuteur = auteurs.get(albums.get(albumsKey.toString()).idAuteur).nom;
-
         //series params
         let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
