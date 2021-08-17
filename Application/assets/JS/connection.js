@@ -20,7 +20,12 @@ var password = document.querySelector("#inputpassword");
             event.preventDefault();
           }
           form.classList.add('was-validated')
+          document.cookie= "id="+idUser;
+          
+          
         }, false)
       })
+     
   })()
 
+  
