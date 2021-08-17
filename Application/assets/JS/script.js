@@ -411,9 +411,17 @@ function displayResultsBox(match) {
             td1.style.cursor = "pointer";
             let td2 = document.createElement("td");
             td2.innerHTML = results[i].idAuteur;
-            td2.onclick = function() { redirectResearch(results[i].idAuteur, "auteur") };
+            td2.onclick = function() {
+                redirectResearch(results[i].idAuteur, "auteur");
+                BDCardWrapper.innerHTML = "";
+            };
             let td3 = document.createElement("td");
             td3.innerHTML = results[i].idSerie;
+            td3.onclick = function() {
+                redirectResearch(results[i].idSerie, "serie");
+                BDCardWrapper.innerHTML = "";
+            };
+
 
             tr2.appendChild(th);
             tr2.appendChild(td1);
