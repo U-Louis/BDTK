@@ -306,10 +306,7 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
                     target = albums.get(j);
             }
             let tempDisplay = assembleItem(j);
-            if (output == tempResults) {
-                output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
-            }
-            if (output == results && tempDisplay.titre != "Cette Ref. n'existe pas") {
+            if (tempDisplay.titre != "Cette Ref. n'existe pas") {
                 output.push(tempDisplay);
             }
             displayTempResultsBox(true);
@@ -346,10 +343,17 @@ function displayTempResultsBox(match) {
     } else {
         let tempResultItemPaternUl = document.createElement("ul");
         for (let i = 0; i < tempResults.length; i++) {
+            let tempKey = tempResults[i].key;
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
-            tempResultItemPaternLi.innerHTML = tempResults[i];
+            tempResultItemPaternLi.innerHTML = tempResults[i].key + " - " + tempResults[i].titre + " - " + tempResults[i].idAuteur + " - " + tempResults[i].idSerie;
+            tempResultItemPaternLi.classList.add("innerLink");
+            tempResultItemPaternLi.style.cursor = "pointer";
+            tempResultItemPaternLi.onclick = function() {
+                redirectResearch(tempKey, selectedInputKey);
+            }
             tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+
         }
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
     }
@@ -577,7 +581,6 @@ function generateCard(albumsKey) {
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
  */
 function redirectResearch(input, inputKey) {
-
     //select key & fill input & launch search
     switch (inputKey) {
         case "ref":
