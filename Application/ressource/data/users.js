@@ -30,7 +30,7 @@ users.set("4",{name : "Adherentajour", firstname : "Alex", dateofbirth : "01/01/
 users.set("5",{name : "Legestionnaire", firstname : "Pierre-Claude", dateofbirth : "25/04/1974",
  address1 : "5 rue des Exemples", adress2 : "" ,postalcode : "75000", city : "Paris", 
  email : "pierre-claude@exemple.com", mobilenumber : "06 05 00 25 00", homenumber : "01 05 25 04 74", 
- username : "pierre-claude", password : "motdepasse5", status : new Map([ ["adherent","false"], 
+ username : "pierre.claude", password : "motdepasse5", status : new Map([ ["adherent","false"], 
  ["bibliothecaire" , "false"], ["gestionnaire" , "true"], ["responsable" , "false"], 
  ["admin" , "false"], ["abonnementajour" , "false"]]), listofbook : []});
 
