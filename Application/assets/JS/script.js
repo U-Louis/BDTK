@@ -54,11 +54,12 @@ var selectedInputKey = "ref";
 
 /** == Search bars == */
 
-/**Init */
-var searchButton = document.getElementById("searchButton");
+/** = Init = */
+var resultsBox = document.getElementById("resultsBox");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchData;
 var tempResults = [];
+var results = [];
 
 //inputKeys init
 var refButton = document.getElementById("Ref-tab");
@@ -73,6 +74,105 @@ var refSearchBarInput = document.getElementById("refInputResearchBar");
 var titreSearchBarInput = document.getElementById("titreInputResearchBar");
 var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
 var serieSearchBarInput = document.getElementById("serieInputResearchBar");
+
+//init input search bars
+refSearchBarInput.onkeyup = (e) => {
+    refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(refSearchData, selectedInputKey, '5', tempResults);
+}
+titreSearchBarInput.onkeyup = (e) => {
+    titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(titreSearchData, selectedInputKey, '5', tempResults);
+}
+auteurSearchBarInput.onkeyup = (e) => {
+    auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(auteurSearchData, selectedInputKey, '5', tempResults);
+}
+serieSearchBarInput.onkeyup = (e) => {
+    serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(serieSearchData, selectedInputKey, '5', tempResults);
+}
+
+//init input enter keyup
+refSearchBarInput.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        //clear temp search
+        searchBarSuggestionsBox.innerHTML = "";
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("refSearchButton").click();
+    }
+});
+titreSearchBarInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchBarSuggestionsBox.innerHTML = "";
+        event.preventDefault();
+        document.getElementById("titreSearchButton").click();
+    }
+});
+auteurSearchBarInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchBarSuggestionsBox.innerHTML = "";
+        event.preventDefault();
+        document.getElementById("auteurSearchButton").click();
+    }
+});
+serieSearchBarInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchBarSuggestionsBox.innerHTML = "";
+        event.preventDefault();
+        document.getElementById("serieSearchButton").click();
+    }
+});
+
+//init search buttons
+var refSearchButton = document.getElementById("refSearchButton");
+refSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(refSearchBarInput.value);
+    displayResultsBox(true);
+}
+var titreSearchButton = document.getElementById("titreSearchButton");
+titreSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(titreSearchBarInput.value);
+    displayResultsBox(true);
+}
+var auteurSearchButton = document.getElementById("auteurSearchButton");
+auteurSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(auteurSearchBarInput.value);
+    displayResultsBox(true);
+}
+var serieSearchButton = document.getElementById("serieSearchButton");
+serieSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(serieSearchBarInput.value);
+    displayResultsBox(true);
+}
+
+//init the auto closing of temp results
+document.onclick = function() {
+    searchBarSuggestionsBox.innerHTML = "";
+};
+
+
+
+/** = Process = */
 
 /**sets the search bar and the suggestion box, accordingly to the inputKey
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
@@ -131,39 +231,13 @@ function selectInputKey(inputKey) {
     }
 }
 
-/**binding search bar inputs by adding an event (e) to the onkeyup event
- * @param {String} letters typed in search Bar Inputs
- */
-(function() {
-    refSearchBarInput.onkeyup = (e) => {
-        refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(refSearchData, selectedInputKey, '5');
-        console.log("keyup");
-    }
-    titreSearchBarInput.onkeyup = (e) => {
-        titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(titreSearchData, selectedInputKey, '5');
-        console.log("keyup");
-    }
-    auteurSearchBarInput.onkeyup = (e) => {
-        auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(auteurSearchData, selectedInputKey, '5');
-        console.log("keyup");
-    }
-    serieSearchBarInput.onkeyup = (e) => {
-        serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(serieSearchData, selectedInputKey, '5');
-        console.log("keyup");
-    }
-}());
-
-/**Searches for close matches beetwin user input and database items
- * @param {String} data : updates everytime the user types
+/**Searches for matches beetwin input and database items
+ * @param {String} data : to be compared to the database items
  * @param {String} inputKey : allows to change database tables and entry keys
  * @param {Number} numOfItemsReturned : number of items wanted for display
- * return : fills local {Array} tempResults
+ * @param {Array} output : sets the array in which are stored the matching results
  */
-function autoCompletion(data, inputKey, numOfItemsReturned) {
+function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
     let found = false; //flag
     let k = 0; //iterator for number of items to return
 
@@ -211,7 +285,6 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                     target = albums.get(j);
                 } catch { continue; }
         }
-
         //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
         if (target != undefined && target.indexOf(data) != -1) {
             found = true;
@@ -233,21 +306,34 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                     target = albums.get(j);
             }
             let tempDisplay = assembleItem(j);
-            tempResults.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
+            if (output == tempResults) {
+                output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
+            }
+            if (output == results && tempDisplay.titre != "Cette Ref. n'existe pas") {
+                output.push(tempDisplay);
+            }
             displayTempResultsBox(true);
         }
     }
 
     //Notify if nothing is found
     if (!found) {
-        displayTempResultsBox(false);
+        if (output == tempResults) {
+            displayTempResultsBox(false);
+        }
+        if (output == results) {
+            displayResultsBox(false);
+        }
+
     }
 
     //clear the temporary results everytime to avoid multiplicating items
-    tempResults = [];
+    if (output == tempResults) {
+        output.length = 0;
+    }
 }
 
-/**Displays a list of the closest matches found by the function autoCompletion()
+/**Displays a list of the closest matches found by the function queryDatabaseBD()
  * @param {Boolean} match : false when no match is found  
  */
 function displayTempResultsBox(match) {
@@ -269,7 +355,76 @@ function displayTempResultsBox(match) {
     }
 }
 
-function displayHardResultsBox() {
+/**Pushes an array of results to be displayed consistently with displayResultsBox()
+ * @param {String} data : to be compared to the database items
+ */
+function pushResults(data) {
+    queryDatabaseBD(data, selectedInputKey, "20", results);
+}
+
+function displayResultsBox(match) {
+    //Clear box
+    resultsBox.innerHTML = "";
+
+    //Fill box
+    if (!match) {
+        resultsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
+    } else {
+        let thead = document.createElement("thead");
+
+        let tr = document.createElement("tr");
+
+        let th1 = document.createElement("th");
+        th1.setAttribute("scope", "col");
+        th1.innerHTML = "Ref.";
+        let th2 = document.createElement("th");
+        th2.setAttribute("scope", "col");
+        th2.innerHTML = "Titre";
+        let th3 = document.createElement("th");
+        th3.setAttribute("scope", "col");
+        th3.innerHTML = "Auteur";
+        let th4 = document.createElement("th");
+        th4.setAttribute("scope", "col");
+        th4.innerHTML = "Série";
+
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        tr.appendChild(th4);
+
+        thead.appendChild(tr);
+
+        let tbody = document.createElement("tbody");
+
+        for (let i = 0; i < results.length; i++) {
+            let tr2 = document.createElement("tr");
+
+            let th = document.createElement("th");
+            th.setAttribute("scope", "row");
+
+            let thA = document.createElement("a");
+            thA.setAttribute("href", "");
+            thA.innerHTML = results[i].key;
+            th.appendChild(thA);
+
+            let td1 = document.createElement("td");
+            td1.innerHTML = results[i].titre;
+            let td2 = document.createElement("td");
+            td2.innerHTML = results[i].idAuteur;
+            let td3 = document.createElement("td");
+            td3.innerHTML = results[i].idSerie;
+
+            tr2.appendChild(th);
+            tr2.appendChild(td1);
+            tr2.appendChild(td2);
+            tr2.appendChild(td3);
+
+            tbody.appendChild(tr2);
+        }
+
+        resultsBox.appendChild(thead);
+        resultsBox.appendChild(tbody);
+    }
 
 }
 
@@ -281,6 +436,9 @@ function displayHardResultsBox() {
  */
 function assembleItem(albumsKey) {
     try {
+        //key
+        let key = albumsKey.toString();
+
         //albums params
         let titre = albums.get(albumsKey).titre;
         let numero = albums.get(albumsKey).numero;
@@ -294,7 +452,7 @@ function assembleItem(albumsKey) {
         //img source URL
         let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
         //output
-        return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
+        return { key: key, titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
     } catch {
         return { titre: "Cette Ref. n'existe pas", numero: "", prix: "", idAuteur: "", idSerie: "", img: "" };
     }
