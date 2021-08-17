@@ -1,19 +1,23 @@
-.btn-link{
+.btn-link {
     color: #334b7c;
 }
-.btn-link:hover{
+
+.btn-link:hover {
     color: crimson;
 }
-nav{
+
+nav {
     float: left;
-    z-index:2;
+    z-index: 2;
 }
-#titre{
- z-index: 1;
+
+#titre {
+    z-index: 1;
 }
 
 * {
     box-sizing: border-box;
+
   }
   
   #dropdownMenuLink {
@@ -26,5 +30,8 @@ nav{
     text-align: center;
     line-height: 2em;
     margin: 20px 0;
-  }
+}
 
+.innerLink:hover {
+    color: blue;
+}
