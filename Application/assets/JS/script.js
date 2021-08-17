@@ -53,7 +53,7 @@ var selectedInputKey = "ref";
 
 /** == Search bars == */
 
-/**Init */
+/** = Init = */
 var resultsBox = document.getElementById("resultsBox");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchData;
@@ -74,9 +74,43 @@ var titreSearchBarInput = document.getElementById("titreInputResearchBar");
 var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
 var serieSearchBarInput = document.getElementById("serieInputResearchBar");
 
-//searchbuttons init
-var searchButton = document.getElementById("searchButton");
-searchButton.onclick = function() {
+//init input enter keyup
+refSearchBarInput.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        //clear temp search
+        searchBarSuggestionsBox.innerHTML = "";
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("refSearchButton").click();
+    }
+});
+titreSearchBarInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchBarSuggestionsBox.innerHTML = "";
+        event.preventDefault();
+        document.getElementById("titreSearchButton").click();
+    }
+});
+auteurSearchBarInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchBarSuggestionsBox.innerHTML = "";
+        event.preventDefault();
+        document.getElementById("auteurSearchButton").click();
+    }
+});
+serieSearchBarInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchBarSuggestionsBox.innerHTML = "";
+        event.preventDefault();
+        document.getElementById("serieSearchButton").click();
+    }
+});
+
+//init search buttons
+var refSearchButton = document.getElementById("refSearchButton");
+refSearchButton.onclick = function() {
     //reset
     resultsBox.innerHTML = "";
     results.length = 0;
@@ -84,11 +118,42 @@ searchButton.onclick = function() {
     pushResults(refSearchBarInput.value);
     displayResultsBox(true);
 }
+var titreSearchButton = document.getElementById("titreSearchButton");
+titreSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(titreSearchBarInput.value);
+    displayResultsBox(true);
+}
+var auteurSearchButton = document.getElementById("auteurSearchButton");
+auteurSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(auteurSearchBarInput.value);
+    displayResultsBox(true);
+}
+var serieSearchButton = document.getElementById("serieSearchButton");
+serieSearchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(serieSearchBarInput.value);
+    displayResultsBox(true);
+}
 
 //init the auto closing of temp results
-document.body.onclick = function() {
+document.onclick = function() {
     searchBarSuggestionsBox.innerHTML = "";
 };
+
+
+
+/** = Process = */
 
 /**sets the search bar and the suggestion box, accordingly to the inputKey
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
@@ -247,7 +312,7 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
             if (output == tempResults) {
                 output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
             }
-            if (output == results) {
+            if (output == results && tempDisplay.titre != "Cette Ref. n'existe pas") {
                 output.push(tempDisplay);
             }
             displayTempResultsBox(true);
@@ -353,9 +418,9 @@ function displayResultsBox(match) {
             td3.innerHTML = results[i].idSerie;
 
             tr2.appendChild(th);
-            tr2.appendChild(td3);
-            tr2.appendChild(td2);
             tr2.appendChild(td1);
+            tr2.appendChild(td2);
+            tr2.appendChild(td3);
 
             tbody.appendChild(tr2);
         }
