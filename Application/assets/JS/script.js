@@ -54,12 +54,6 @@ var selectedInputKey = "ref";
 /** == Search bars == */
 
 /**Init */
-var searchButton = document.getElementById("searchButton");
-searchButton.onclick = function() {
-    pushResults(refSearchBarInput.value);
-    console.log("value: " + refSearchBarInput.value);
-    displayResultsBox(true);
-}
 var resultsBox = document.getElementById("resultsBox");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchData;
@@ -79,6 +73,17 @@ var refSearchBarInput = document.getElementById("refInputResearchBar");
 var titreSearchBarInput = document.getElementById("titreInputResearchBar");
 var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
 var serieSearchBarInput = document.getElementById("serieInputResearchBar");
+
+//searchbuttons init
+var searchButton = document.getElementById("searchButton");
+searchButton.onclick = function() {
+    //reset
+    resultsBox.innerHTML = "";
+    results.length = 0;
+    //push & display
+    pushResults(refSearchBarInput.value);
+    displayResultsBox(true);
+}
 
 //init the auto closing of temp results
 document.body.onclick = function() {
@@ -239,7 +244,12 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
                     target = albums.get(j);
             }
             let tempDisplay = assembleItem(j);
-            output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
+            if (output == tempResults) {
+                output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
+            }
+            if (output == results) {
+                output.push(tempDisplay);
+            }
             displayTempResultsBox(true);
         }
     }
@@ -256,7 +266,9 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
     }
 
     //clear the temporary results everytime to avoid multiplicating items
-    output.length = 0;
+    if (output == tempResults) {
+        output.length = 0;
+    }
 }
 
 /**Displays a list of the closest matches found by the function queryDatabaseBD()
@@ -286,7 +298,6 @@ function displayTempResultsBox(match) {
  */
 function pushResults(data) {
     queryDatabaseBD(data, selectedInputKey, "20", results);
-    console.log(results);
 }
 
 function displayResultsBox(match) {
@@ -324,27 +335,29 @@ function displayResultsBox(match) {
         let tbody = document.createElement("tbody");
 
         for (let i = 0; i < results.length; i++) {
+            let tr2 = document.createElement("tr");
+
             let th = document.createElement("th");
             th.setAttribute("scope", "row");
 
             let thA = document.createElement("a");
             thA.setAttribute("href", "");
-            thA.value = i;
+            thA.innerHTML = i;
             th.appendChild(thA);
 
             let td1 = document.createElement("td");
-            td1.innerHTML = i.titre;
+            td1.innerHTML = results[i].titre;
             let td2 = document.createElement("td");
-            td1.innerHTML = i.idAuteur;
+            td1.innerHTML = results[i].idAuteur;
             let td3 = document.createElement("td");
-            td1.innerHTML = i.idSerie;
+            td1.innerHTML = results[i].idSerie;
 
-            tr.appendChild(th);
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
+            tr2.appendChild(th);
+            tr2.appendChild(td3);
+            tr2.appendChild(td2);
+            tr2.appendChild(td1);
 
-            tbody.appendChild(tr);
+            tbody.appendChild(tr2);
         }
 
         resultsBox.appendChild(thead);
