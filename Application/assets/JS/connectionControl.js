@@ -12,6 +12,9 @@ function connectControl(inputuser , password) {
     for(const key of users.keys()){
         if (testUser(key , inputuser) && testPassword(key , password)){
             idUser = key;
+            document.cookie= "id="+idUser+" ; samesite=lax";
+            localStorage.setItem("id",idUser);
+            localStorage.setItem("connected","true");
             return true;
         }
     }
