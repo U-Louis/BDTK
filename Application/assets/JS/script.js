@@ -56,7 +56,8 @@ var selectedInputKey = "ref";
 /**Init */
 var searchButton = document.getElementById("searchButton");
 searchButton.onclick = function() {
-    pushResults(this.value);
+    pushResults(refSearchBarInput.value);
+    console.log("value: " + refSearchBarInput.value);
     displayResultsBox(true);
 }
 var resultsBox = document.getElementById("resultsBox");
@@ -78,6 +79,11 @@ var refSearchBarInput = document.getElementById("refInputResearchBar");
 var titreSearchBarInput = document.getElementById("titreInputResearchBar");
 var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
 var serieSearchBarInput = document.getElementById("serieInputResearchBar");
+
+//init the auto closing of temp results
+document.body.onclick = function() {
+    searchBarSuggestionsBox.innerHTML = "";
+};
 
 /**sets the search bar and the suggestion box, accordingly to the inputKey
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
@@ -212,7 +218,6 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
                     target = albums.get(j);
                 } catch { continue; }
         }
-
         //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
         if (target != undefined && target.indexOf(data) != -1) {
             found = true;
@@ -241,7 +246,13 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
 
     //Notify if nothing is found
     if (!found) {
-        displayTempResultsBox(false);
+        if (output == tempResults) {
+            displayTempResultsBox(false);
+        }
+        if (output == results) {
+            displayResultsBox(false);
+        }
+
     }
 
     //clear the temporary results everytime to avoid multiplicating items
@@ -274,7 +285,7 @@ function displayTempResultsBox(match) {
  * @param {String} data : to be compared to the database items
  */
 function pushResults(data) {
-    queryDatabaseBD(data, selectedInputKey, '20', results);
+    queryDatabaseBD(data, selectedInputKey, "20", results);
     console.log(results);
 }
 
