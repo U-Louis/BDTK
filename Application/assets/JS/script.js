@@ -481,8 +481,12 @@ function assembleItem(albumsKey) {
         //clean params for img
         titreClean = titre.replace("'", "");
         titreClean = titreClean.replace("!", "");
+        titreClean = titreClean.replace("?", "");
+
         idSerieClean = idSerie.replace("'", "");
         idSerieClean = idSerieClean.replace("!", "");
+        idSerieClean = idSerieClean.replace("?", "");
+
 
 
         //img source URL
