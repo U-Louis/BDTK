@@ -74,6 +74,24 @@ var titreSearchBarInput = document.getElementById("titreInputResearchBar");
 var auteurSearchBarInput = document.getElementById("auteurInputResearchBar");
 var serieSearchBarInput = document.getElementById("serieInputResearchBar");
 
+//init input search bars
+refSearchBarInput.onkeyup = (e) => {
+    refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(refSearchData, selectedInputKey, '5', tempResults);
+}
+titreSearchBarInput.onkeyup = (e) => {
+    titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(titreSearchData, selectedInputKey, '5', tempResults);
+}
+auteurSearchBarInput.onkeyup = (e) => {
+    auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(auteurSearchData, selectedInputKey, '5', tempResults);
+}
+serieSearchBarInput.onkeyup = (e) => {
+    serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
+    queryDatabaseBD(serieSearchData, selectedInputKey, '5', tempResults);
+}
+
 //init input enter keyup
 refSearchBarInput.addEventListener("keyup", function(event) {
     // Number 13 is the "Enter" key on the keyboard
@@ -211,28 +229,6 @@ function selectInputKey(inputKey) {
             setSearchBarInputAndSuggestion("ref");
     }
 }
-
-/**binding search bar inputs by adding an event (e) to the onkeyup event
- * @param {String} letters typed in search Bar Inputs
- */
-(function() {
-    refSearchBarInput.onkeyup = (e) => {
-        refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        queryDatabaseBD(refSearchData, selectedInputKey, '5', tempResults);
-    }
-    titreSearchBarInput.onkeyup = (e) => {
-        titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        queryDatabaseBD(titreSearchData, selectedInputKey, '5', tempResults);
-    }
-    auteurSearchBarInput.onkeyup = (e) => {
-        auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        queryDatabaseBD(auteurSearchData, selectedInputKey, '5', tempResults);
-    }
-    serieSearchBarInput.onkeyup = (e) => {
-        serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        queryDatabaseBD(serieSearchData, selectedInputKey, '5', tempResults);
-    }
-}());
 
 /**Searches for matches beetwin input and database items
  * @param {String} data : to be compared to the database items
