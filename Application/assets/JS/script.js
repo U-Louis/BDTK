@@ -515,7 +515,7 @@ function generateCard(albumsKey) {
     patern.style = "width: 100%;";
 
     let img = document.createElement('img');
-    img.classList.add("card-img-top", "p-2");
+    img.classList.add("card-img", "p-2");
     img.setAttribute('src', cardItem.img);
     img.setAttribute('alt', cardItem.titre);
 
