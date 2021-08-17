@@ -409,13 +409,19 @@ function displayResultsBox(match) {
             let th = document.createElement("th");
             th.setAttribute("scope", "row");
             th.innerHTML = results[i].key;
-            th.onclick = function() { generateCard(results[i].key) };
+            th.onclick = function() {
+                generateCard(results[i].key);
+                resultsBox.innerHTML = "";
+            };
             th.style.cursor = "pointer";
             th.classList.add("innerLink");
 
             let td1 = document.createElement("td");
             td1.innerHTML = results[i].titre;
-            td1.onclick = function() { generateCard(results[i].key) };
+            td1.onclick = function() {
+                generateCard(results[i].key);
+                resultsBox.innerHTML = "";
+            };
             td1.style.cursor = "pointer";
             td1.classList.add("innerLink");
 
