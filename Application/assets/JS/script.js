@@ -359,7 +359,7 @@ function displayTempResultsBox(match) {
  * @param {String} data : to be compared to the database items
  */
 function pushResults(data) {
-    queryDatabaseBD(data, selectedInputKey, "20", results);
+    queryDatabaseBD(data.toLowerCase(), selectedInputKey, "20", results);
 }
 
 function displayResultsBox(match) {
@@ -401,16 +401,17 @@ function displayResultsBox(match) {
 
             let th = document.createElement("th");
             th.setAttribute("scope", "row");
-
-            let thA = document.createElement("a");
-            thA.setAttribute("href", "");
-            thA.innerHTML = results[i].key;
-            th.appendChild(thA);
+            th.innerHTML = results[i].key;
+            th.onclick = function() { generateCard(results[i].key) };
+            th.style.cursor = "pointer";
 
             let td1 = document.createElement("td");
             td1.innerHTML = results[i].titre;
+            td1.onclick = function() { generateCard(results[i].key) };
+            td1.style.cursor = "pointer";
             let td2 = document.createElement("td");
             td2.innerHTML = results[i].idAuteur;
+            td2.onclick = function() { redirectResearch(results[i].idAuteur, "auteur") };
             let td3 = document.createElement("td");
             td3.innerHTML = results[i].idSerie;
 
@@ -555,39 +556,32 @@ function generateCard(albumsKey) {
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
  */
 function redirectResearch(input, inputKey) {
-    //Init
-    let refTab = document.getElementById("Ref-tab");
-    let titreTab = document.getElementById("Titre-tab");
-    let auteurTab = document.getElementById("Auteur-tab");
-    let serieTab = document.getElementById("Serie-tab");
-    let refInputResearchBar = document.getElementById("refInputResearchBar");
-    let titreInputResearchBar = document.getElementById("titreInputResearchBar");
-    let auteurInputResearchBar = document.getElementById("auteurInputResearchBar");
-    let serieInputResearchBar = document.getElementById("serieInputResearchBar");
 
-    //select key and fill input
+    //select key & fill input & launch search
     switch (inputKey) {
         case "ref":
-            refTab.click();
-            serieInputResearchBar.value = input;
+            refButton.click();
+            refInputResearchBar.value = input;
+            refSearchButton.click();
             break;
         case "titre":
-            titreTab.click();
-            refInputResearchBar.value = input;
+            titreButton.click();
+            titreInputResearchBar.value = input;
+            titreSearchButton.click();
             break;
         case "auteur":
-            auteurTab.click();
-            titreInputResearchBar.value = input;
+            auteurButton.click();
+            auteurInputResearchBar.value = input;
+            auteurSearchButton.click();
             break;
         case "serie":
-            serieTab.click();
-            auteurInputResearchBar.value = input;
+            serieButton.click();
+            serieInputResearchBar.value = input;
+            serieSearchButton.click();
             break;
         default:
-            refTab.click();
-            serieInputResearchBar.value = input;
+            refButton.click();
+            refInputResearchBar.value = input;
+            refSearchButton.click();
     }
-
-    //launch search
-    searchButton.click();
 }
