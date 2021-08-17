@@ -449,8 +449,11 @@ function assembleItem(albumsKey) {
         //series params
         let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
+        //clean title for img
+        titreClean = titre.replace("'", "");
+
         //img source URL
-        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
+        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titreClean + ".jpg";
         //output
         return { key: key, titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
     } catch {
@@ -512,7 +515,7 @@ function generateCard(albumsKey) {
 
     let pSerie = document.createElement('p');
     pSerie.classList.add("card-text");
-    pSerie.innerHTML = "Séries : ";
+    pSerie.innerHTML = "Série : ";
     let aPSerie = document.createElement('span');
     aPSerie.style.textDecoration = "underline";
     aPSerie.style.cursor = "pointer";
