@@ -12,4 +12,19 @@ nav{
  z-index: 1;
 }
 
+* {
+    box-sizing: border-box;
+  }
+  
+  h2 {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    /* background: #512DA8; */
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    line-height: 2em;
+    margin: 20px 0;
+  }
 
