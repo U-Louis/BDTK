@@ -55,6 +55,10 @@ var selectedInputKey = "ref";
 
 /**Init */
 var searchButton = document.getElementById("searchButton");
+searchButton.onclick = function() {
+    pushResults(this.value);
+    displayResultsBox(true);
+}
 var resultsBox = document.getElementById("resultsBox");
 var searchBarSuggestionsBox = document.getElementById("refSearchBarSuggestionsBox");
 var searchData;
@@ -139,22 +143,18 @@ function selectInputKey(inputKey) {
     refSearchBarInput.onkeyup = (e) => {
         refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
         queryDatabaseBD(refSearchData, selectedInputKey, '5', tempResults);
-        console.log("keyup");
     }
     titreSearchBarInput.onkeyup = (e) => {
         titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
         queryDatabaseBD(titreSearchData, selectedInputKey, '5', tempResults);
-        console.log("keyup");
     }
     auteurSearchBarInput.onkeyup = (e) => {
         auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
         queryDatabaseBD(auteurSearchData, selectedInputKey, '5', tempResults);
-        console.log("keyup");
     }
     serieSearchBarInput.onkeyup = (e) => {
         serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
         queryDatabaseBD(serieSearchData, selectedInputKey, '5', tempResults);
-        console.log("keyup");
     }
 }());
 
@@ -270,6 +270,14 @@ function displayTempResultsBox(match) {
     }
 }
 
+/**Pushes an array of results to be displayed consistently with displayResultsBox()
+ * @param {String} data : to be compared to the database items
+ */
+function pushResults(data) {
+    queryDatabaseBD(data, selectedInputKey, '20', results);
+    console.log(results);
+}
+
 function displayResultsBox(match) {
     //Clear box
     resultsBox.innerHTML = "";
@@ -278,29 +286,29 @@ function displayResultsBox(match) {
     if (!match) {
         resultsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
     } else {
-        let resultItemPaternUl = document.createElement("thead");
+        let thead = document.createElement("thead");
 
         let tr = document.createElement("tr");
 
         let th1 = document.createElement("th");
         th1.setAttribute("scope", "col");
-        th1.value = "Ref.";
+        th1.innerHTML = "Ref.";
         let th2 = document.createElement("th");
         th2.setAttribute("scope", "col");
-        th2.value = "Titre";
+        th2.innerHTML = "Titre";
         let th3 = document.createElement("th");
         th3.setAttribute("scope", "col");
-        th3.value = "Auteur";
+        th3.innerHTML = "Auteur";
         let th4 = document.createElement("th");
         th4.setAttribute("scope", "col");
-        th4.value = "Série";
+        th4.innerHTML = "Série";
 
         tr.appendChild(th1);
         tr.appendChild(th2);
         tr.appendChild(th3);
         tr.appendChild(th4);
 
-        resultItemPaternUl.appendChild(tr);
+        thead.appendChild(tr);
 
         let tbody = document.createElement("tbody");
 
@@ -314,11 +322,11 @@ function displayResultsBox(match) {
             th.appendChild(thA);
 
             let td1 = document.createElement("td");
-            td1.value = i.titre;
+            td1.innerHTML = i.titre;
             let td2 = document.createElement("td");
-            td1.value = i.idAuteur;
+            td1.innerHTML = i.idAuteur;
             let td3 = document.createElement("td");
-            td1.value = i.idSerie;
+            td1.innerHTML = i.idSerie;
 
             tr.appendChild(th);
             tr.appendChild(td1);
@@ -328,7 +336,8 @@ function displayResultsBox(match) {
             tbody.appendChild(tr);
         }
 
-        resultsBox.appendChild(tempResultItemPaternUl);
+        resultsBox.appendChild(thead);
+        resultsBox.appendChild(tbody);
     }
 
 }
