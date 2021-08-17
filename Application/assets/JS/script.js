@@ -138,33 +138,33 @@ function selectInputKey(inputKey) {
 (function() {
     refSearchBarInput.onkeyup = (e) => {
         refSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(refSearchData, selectedInputKey, '5');
+        queryDatabaseBD(refSearchData, selectedInputKey, '5', tempResults);
         console.log("keyup");
     }
     titreSearchBarInput.onkeyup = (e) => {
         titreSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(titreSearchData, selectedInputKey, '5');
+        queryDatabaseBD(titreSearchData, selectedInputKey, '5', tempResults);
         console.log("keyup");
     }
     auteurSearchBarInput.onkeyup = (e) => {
         auteurSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(auteurSearchData, selectedInputKey, '5');
+        queryDatabaseBD(auteurSearchData, selectedInputKey, '5', tempResults);
         console.log("keyup");
     }
     serieSearchBarInput.onkeyup = (e) => {
         serieSearchData = e.target.value.toLowerCase(); //filling this var with all letters typed
-        autoCompletion(serieSearchData, selectedInputKey, '5');
+        queryDatabaseBD(serieSearchData, selectedInputKey, '5', tempResults);
         console.log("keyup");
     }
 }());
 
-/**Searches for close matches beetwin user input and database items
- * @param {String} data : updates everytime the user types
+/**Searches for matches beetwin input and database items
+ * @param {String} data : to be compared to the database items
  * @param {String} inputKey : allows to change database tables and entry keys
  * @param {Number} numOfItemsReturned : number of items wanted for display
- * return : fills local {Array} tempResults
+ * @param {Array} output : sets the array in which are stored the matching results
  */
-function autoCompletion(data, inputKey, numOfItemsReturned) {
+function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
     let found = false; //flag
     let k = 0; //iterator for number of items to return
 
@@ -234,7 +234,7 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
                     target = albums.get(j);
             }
             let tempDisplay = assembleItem(j);
-            tempResults.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
+            output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
             displayTempResultsBox(true);
         }
     }
@@ -245,10 +245,10 @@ function autoCompletion(data, inputKey, numOfItemsReturned) {
     }
 
     //clear the temporary results everytime to avoid multiplicating items
-    tempResults = [];
+    output.length = 0;
 }
 
-/**Displays a list of the closest matches found by the function autoCompletion()
+/**Displays a list of the closest matches found by the function queryDatabaseBD()
  * @param {Boolean} match : false when no match is found  
  */
 function displayTempResultsBox(match) {
