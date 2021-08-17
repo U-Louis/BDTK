@@ -342,15 +342,15 @@ function displayResultsBox(match) {
 
             let thA = document.createElement("a");
             thA.setAttribute("href", "");
-            thA.innerHTML = i;
+            thA.innerHTML = results[i].key;
             th.appendChild(thA);
 
             let td1 = document.createElement("td");
             td1.innerHTML = results[i].titre;
             let td2 = document.createElement("td");
-            td1.innerHTML = results[i].idAuteur;
+            td2.innerHTML = results[i].idAuteur;
             let td3 = document.createElement("td");
-            td1.innerHTML = results[i].idSerie;
+            td3.innerHTML = results[i].idSerie;
 
             tr2.appendChild(th);
             tr2.appendChild(td3);
@@ -374,6 +374,9 @@ function displayResultsBox(match) {
  */
 function assembleItem(albumsKey) {
     try {
+        //key
+        let key = albumsKey.toString();
+
         //albums params
         let titre = albums.get(albumsKey).titre;
         let numero = albums.get(albumsKey).numero;
@@ -387,7 +390,7 @@ function assembleItem(albumsKey) {
         //img source URL
         let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
         //output
-        return { titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
+        return { key: key, titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
     } catch {
         return { titre: "Cette Ref. n'existe pas", numero: "", prix: "", idAuteur: "", idSerie: "", img: "" };
     }
