@@ -472,11 +472,15 @@ function assembleItem(albumsKey) {
         //series params
         let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
-        //clean title for img
+        //clean params for img
         titreClean = titre.replace("'", "");
+        titreClean = titreClean.replace("!", "");
+        idSerieClean = idSerie.replace("'", "");
+        idSerieClean = idSerieClean.replace("!", "");
+
 
         //img source URL
-        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titreClean + ".jpg";
+        let img = "../ressource/albums/" + idSerieClean + "-" + numero + "-" + titreClean + ".jpg";
         //output
         return { key: key, titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
     } catch {
