@@ -41,6 +41,7 @@ var hasRightsGestionnaire = false;
 var hasRightsResponsable = false;
 var hasRightsAdmin = false;
 
+
 /** === CATALOG === */
 //Init
 const LASTINDEXOFALBUMS = 629;
@@ -305,10 +306,7 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
                     target = albums.get(j);
             }
             let tempDisplay = assembleItem(j);
-            if (output == tempResults) {
-                output.push(j + " - " + tempDisplay.titre + " - " + tempDisplay.idAuteur + " - " + tempDisplay.idSerie);
-            }
-            if (output == results && tempDisplay.titre != "Cette Ref. n'existe pas") {
+            if (tempDisplay.titre != "Cette Ref. n'existe pas") {
                 output.push(tempDisplay);
             }
             displayTempResultsBox(true);
@@ -345,10 +343,17 @@ function displayTempResultsBox(match) {
     } else {
         let tempResultItemPaternUl = document.createElement("ul");
         for (let i = 0; i < tempResults.length; i++) {
+            let tempKey = tempResults[i].key;
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
-            tempResultItemPaternLi.innerHTML = tempResults[i];
+            tempResultItemPaternLi.innerHTML = tempResults[i].key + " - " + tempResults[i].titre + " - " + tempResults[i].idAuteur + " - " + tempResults[i].idSerie;
+            tempResultItemPaternLi.classList.add("innerLink");
+            tempResultItemPaternLi.style.cursor = "pointer";
+            tempResultItemPaternLi.onclick = function() {
+                redirectResearch(tempKey, selectedInputKey);
+            }
             tempResultItemPaternUl.appendChild(tempResultItemPaternLi);
+
         }
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
     }
@@ -358,9 +363,12 @@ function displayTempResultsBox(match) {
  * @param {String} data : to be compared to the database items
  */
 function pushResults(data) {
-    queryDatabaseBD(data, selectedInputKey, "20", results);
+    queryDatabaseBD(data.toLowerCase(), selectedInputKey, "20", results);
 }
 
+/**displays a list that remains, of 20max matches. Params displayed of each row is clickable
+ * @param {Boolean} match : false when no match is found  
+ */
 function displayResultsBox(match) {
     //Clear box
     resultsBox.innerHTML = "";
@@ -400,18 +408,34 @@ function displayResultsBox(match) {
 
             let th = document.createElement("th");
             th.setAttribute("scope", "row");
-
-            let thA = document.createElement("a");
-            thA.setAttribute("href", "");
-            thA.innerHTML = results[i].key;
-            th.appendChild(thA);
+            th.innerHTML = results[i].key;
+            th.onclick = function() { generateCard(results[i].key) };
+            th.style.cursor = "pointer";
+            th.classList.add("innerLink");
 
             let td1 = document.createElement("td");
             td1.innerHTML = results[i].titre;
+            td1.onclick = function() { generateCard(results[i].key) };
+            td1.style.cursor = "pointer";
+            td1.classList.add("innerLink");
+
             let td2 = document.createElement("td");
             td2.innerHTML = results[i].idAuteur;
+            td2.onclick = function() {
+                redirectResearch(results[i].idAuteur, "auteur");
+                BDCardWrapper.innerHTML = "";
+            };
+            td2.style.cursor = "pointer";
+            td2.classList.add("innerLink");
+
             let td3 = document.createElement("td");
             td3.innerHTML = results[i].idSerie;
+            td3.onclick = function() {
+                redirectResearch(results[i].idSerie, "serie");
+                BDCardWrapper.innerHTML = "";
+            };
+            td3.style.cursor = "pointer";
+            td3.classList.add("innerLink");
 
             tr2.appendChild(th);
             tr2.appendChild(td1);
@@ -448,8 +472,11 @@ function assembleItem(albumsKey) {
         //series params
         let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
+        //clean title for img
+        titreClean = titre.replace("'", "");
+
         //img source URL
-        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titre + ".jpg";
+        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titreClean + ".jpg";
         //output
         return { key: key, titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
     } catch {
@@ -492,30 +519,33 @@ function generateCard(albumsKey) {
     let pRef = document.createElement('p');
     pRef.classList.add("card-text");
     pRef.innerHTML = "Ref. : ";
-    let aPRef = document.createElement('span');
-    aPRef.style.textDecoration = "underline";
-    aPRef.style.cursor = "pointer";
-    aPRef.onclick = function() { redirectResearch(albumsKey, "ref") };
-    aPRef.innerHTML = albumsKey;
-    pRef.appendChild(aPRef);
+    let sPRef = document.createElement('span');
+    sPRef.innerHTML = albumsKey;
+    pRef.appendChild(sPRef);
 
     let pAuteurs = document.createElement('p');
     pAuteurs.classList.add("card-text");
     pAuteurs.innerHTML = "Auteurs : ";
     let aPAuteurs = document.createElement('span');
-    aPAuteurs.style.textDecoration = "underline";
+    aPAuteurs.classList.add("innerLink");
     aPAuteurs.style.cursor = "pointer";
-    aPAuteurs.onclick = function() { redirectResearch(cardItem.idAuteur, "auteur") };
+    aPAuteurs.onclick = function() {
+        redirectResearch(cardItem.idAuteur, "auteur");
+        BDCardWrapper.innerHTML = "";
+    };
     aPAuteurs.innerHTML = cardItem.idAuteur;
     pAuteurs.appendChild(aPAuteurs);
 
     let pSerie = document.createElement('p');
     pSerie.classList.add("card-text");
-    pSerie.innerHTML = "Séries : ";
+    pSerie.innerHTML = "Série : ";
     let aPSerie = document.createElement('span');
-    aPSerie.style.textDecoration = "underline";
+    aPSerie.classList.add("innerLink");
     aPSerie.style.cursor = "pointer";
-    aPSerie.onclick = function() { redirectResearch(cardItem.idSerie, "serie") };
+    aPSerie.onclick = function() {
+        redirectResearch(cardItem.idSerie, "serie");
+        BDCardWrapper.innerHTML = "";
+    };
     aPSerie.innerHTML = cardItem.idSerie;
     pSerie.appendChild(aPSerie);
 
@@ -551,39 +581,31 @@ function generateCard(albumsKey) {
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
  */
 function redirectResearch(input, inputKey) {
-    //Init
-    let refTab = document.getElementById("Ref-tab");
-    let titreTab = document.getElementById("Titre-tab");
-    let auteurTab = document.getElementById("Auteur-tab");
-    let serieTab = document.getElementById("Serie-tab");
-    let refInputResearchBar = document.getElementById("refInputResearchBar");
-    let titreInputResearchBar = document.getElementById("titreInputResearchBar");
-    let auteurInputResearchBar = document.getElementById("auteurInputResearchBar");
-    let serieInputResearchBar = document.getElementById("serieInputResearchBar");
-
-    //select key and fill input
+    //select key & fill input & launch search
     switch (inputKey) {
         case "ref":
-            refTab.click();
-            serieInputResearchBar.value = input;
+            refButton.click();
+            refInputResearchBar.value = input;
+            refSearchButton.click();
             break;
         case "titre":
-            titreTab.click();
-            refInputResearchBar.value = input;
+            titreButton.click();
+            titreInputResearchBar.value = input;
+            titreSearchButton.click();
             break;
         case "auteur":
-            auteurTab.click();
-            titreInputResearchBar.value = input;
+            auteurButton.click();
+            auteurInputResearchBar.value = input;
+            auteurSearchButton.click();
             break;
         case "serie":
-            serieTab.click();
-            auteurInputResearchBar.value = input;
+            serieButton.click();
+            serieInputResearchBar.value = input;
+            serieSearchButton.click();
             break;
         default:
-            refTab.click();
-            serieInputResearchBar.value = input;
+            refButton.click();
+            refInputResearchBar.value = input;
+            refSearchButton.click();
     }
-
-    //launch search
-    searchButton.click();
 }

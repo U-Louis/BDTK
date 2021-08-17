@@ -1,3 +1,5 @@
+var username = document.querySelector("#inputuser");
+var password = document.querySelector("#inputpassword");
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict'
@@ -13,8 +15,17 @@
             event.preventDefault()
             event.stopPropagation()
           }
-  
+          if(!connectControl(username.value , password.value)){
+            document.querySelector("#connectionerror").classList.replace("d-none" , "d-block");
+            event.preventDefault();
+          }
           form.classList.add('was-validated')
+          document.cookie= "id="+idUser;
+          
+          
         }, false)
       })
+     
   })()
+
+  

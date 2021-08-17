@@ -17,7 +17,9 @@
         <main id="connection" class="d-flex flex-column mt-5 bg-light rounded-3 ">
             
                 <form class="d-flex flex-column align-items-center justify-content-around needs-validation" method="get" action="../HTML/home.html" novalidate>
-                    
+                    <div class="d-none" id="connectionerror">
+                        <p class="text-danger">Identifiant ou mot de passe incorrect</p>
+                    </div>
                     <div id="user" class="my-1">
                         <label class="form-label text-center fs-3" for="inputuser" >Nom d'utilisateur</label><br/>
                         <input class="form-control" type="text" name="inputuser"  id="inputuser" required/>
@@ -26,15 +28,15 @@
                         </div>
                     </div>
                     <div id="password" class="my-1">
-                        <label  class="form-label text-center fs-3" for="inputpasswword">Mot de passe</label><br/>
-                        <input class="form-control" type="password" name="inputpasswword" id="inputpasswword" required/><br/>
+                        <label  class="form-label text-center fs-3" for="inputpassword">Mot de passe</label><br/>
+                        <input class="form-control" type="password" name="inputpassword" id="inputpassword" required/><br/>
                         <div class="invalid-feedback">
                             Veuillez entrer un mot de passe!!!
                         </div>
                         <button class="btn btn-link mt-2" type="button" >Mot de passe oublié </button>
 
                     </div><br/>
-                    <input class="btn btn-success my-1 btn-lg" type="submit" value="Se connecter">
+                    <input class="btn btn-success my-1 btn-lg" type="submit" value="Se connecter" id="btnconnect">
                     <a class="btn btn-danger btn-lg" href="../landing page.html" role="button">Annuler</a>
                     
                 </form>
@@ -42,6 +44,8 @@
     </div>
     </body>
     <script src="../assets/JS/bootstrap.bundle.min.js"></script>
+    <script src="../ressource/data/users.js"></script>
     <script src="../assets/JS/script.js"></script>
+    <script src="../assets/JS/connectionControl.js"></script>
     <script src="../assets/JS/connection.js"></script>
 </html>
