@@ -16,7 +16,7 @@ nav{
     box-sizing: border-box;
   }
   
-  h2 {
+  #dropdownMenuLink {
     width: 2em;
     height: 2em;
     border-radius: 50%;
