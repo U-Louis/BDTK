@@ -19,12 +19,12 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav flex-column">
-                    <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
-                    <a class="nav-link" href="catalog.html">Catalogue</a>
-                    <a class="nav-link" href="account.html">Mon compte</a>
-                    
-                </div>
+                    <div class="navbar-nav flex-column">
+                        <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
+                        <a class="nav-link" href="catalog.html">Catalogue</a>
+                        <a class="nav-link" href="account.html">Mon compte</a>
+
+                    </div>
                 </div>
             </div>
         </nav>
@@ -32,98 +32,104 @@
             <h2 class="text-uppercase text-center my-3 fs-3"> Bienvenue <span id="titlename"></span> </h2>
         </header>
 
-        <div id="wrapper" class="container w-85 my-auto h-75 ">
+        <div id="wrapper" class="container  w-85 my-auto h-75 d-flex flex-column flex-md-row flex-wrap">
 
             <!-- Informations utilisateur  -->
-             <div class="card card-body rounded-0 m-1">
-                    <h2>Informations utilisateur</h2>
-                    <table class="table-hover">
-                        <tr>
-                            <th>ID</th>
-                            <th id="thid"></th>
-                        </tr>
-                        <tr>
-                            <th>Nom</th>
-                            <th id="thname"></th>
-                        </tr>
-                        <tr>
-                            <th>Prénom</th>
-                            <th id="thfirstname"></th>
-                        </tr>
-                        <tr>
-                            <th>Date de naissance</th>
-                            <th id="thdateofbirth"></th>
-                        </tr>
-                        <tr>
-                            <th>adresse 1</th>
-                            <th id="thaddress1"></th>
-                        </tr>
-                        <tr>
-                            <th>adresse 2 </th>
-                            <th id="thaddress2"></th>
-                        </tr>
-                        <tr>
-                            <th>Code postal </th>
-                            <th id="thpostalcode"></th>
-                        </tr>
-                        <tr>
-                            <th>Ville</th>
-                            <th id="thcity"></th>
-                        </tr><tr>
-                            <th>email</th>
-                            <th id="themail"></th>
-                        </tr><tr>
-                            <th>N° mobile</th>
-                            <th id="thmobilenumber"></th>
-                        </tr><tr>
-                            <th>N° Fixe</th>
-                            <th id="thhomenumber"></th>
-                        </tr>
+            <div class="card card-body rounded-0 m-1 ">
+                <h2>Informations utilisateur</h2>
+                <table class="table-hover">
+                    <tr>
+                        <th>ID</th>
+                        <th id="thid"></th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th id="thname"></th>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <th id="thfirstname"></th>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <th id="thdateofbirth"></th>
+                    </tr>
+                    <tr>
+                        <th>adresse 1</th>
+                        <th id="thaddress1"></th>
+                    </tr>
+                    <tr>
+                        <th>adresse 2 </th>
+                        <th id="thaddress2"></th>
+                    </tr>
+                    <tr>
+                        <th>Code postal </th>
+                        <th id="thpostalcode"></th>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <th id="thcity"></th>
+                    </tr>
+                    <tr>
+                        <th>email</th>
+                        <th id="themail"></th>
+                    </tr>
+                    <tr>
+                        <th>N° mobile</th>
+                        <th id="thmobilenumber"></th>
+                    </tr>
+                    <tr>
+                        <th>N° Fixe</th>
+                        <th id="thhomenumber"></th>
+                    </tr>
 
-                    </table>
-                    <p></p>
-                    <div class="d-none" id="divcontribution">
-                        <p><span id="spancontribution" class=""></span> <br> <!-- to REMOVE if power ADH ** -->
-                        <em> (Sans une cotisation à jour, vous ne pourrez pas emprunter de BD !)</em></p>  <!-- ** -->
-                    </div>
-                  
+                </table>
+                <p></p>
+                <div class="d-none" id="divcontribution">
+                    <p><span id="spancontribution" class=""></span> <br>
+                        <!-- to REMOVE if power ADH ** -->
+                        <em> (Sans une cotisation à jour, vous ne pourrez pas emprunter de BD !)</em></p>
+                    <!-- ** -->
                 </div>
+
+            </div>
 
             <br>
 
             <!-- ===== powers buttons ===== powers buttons ===== powers buttons-->
 
             <!-- ADH -->
-            <div id="idemprunt" class="card card-body rounded-0 m-1"><!-- Emprunts en cours  -->
-                    <h2>Emprunts en cours</h2>
-                    <table class="table">
-                        <thead>
-                            <tr class="table-primary">
-                                <th scope="col">
-                                    Ref.
-                                </th>
-                                <th scope="col">
-                                    Titre
-                                </th>
-                                <th scope="col">
-                                    Date de retour
-                                </th>
-                            </tr>
+            <div id="idemprunt" class="card card-body rounded-0 m-1 d-none">
+                <!-- Emprunts en cours  -->
+                <h2>Emprunts en cours</h2>
+                <table class="table">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">
+                                Ref.
+                            </th>
+                            <th scope="col">
+                                Titre
+                            </th>
+                            <th scope="col">
+                                Date de retour
+                            </th>
+                        </tr>
 
-                        </thead>
+                    </thead>
 
-                        <tbody>
-                            
-                        </tbody>
+                    <tbody>
+
+                    </tbody>
 
 
 
-                    </table>
+                </table>
             </div>
-            
+
 
             <!-- BIB -->
-            <div class="card alert-success rounded-0 m-1" style="width: 100%;">
+            <div class="card alert-success rounded-0 m-1 col-lg-3 " style="width: 100%;" id="divbibliothecaire">
                 <div class="card-body">
                     <h3>Bibliothécaire</h3>
                     <button type="button" class="btn btn-success">Emprunt</button>
@@ -131,10 +137,10 @@
                     <button type="button" class="btn btn-success">Adhérents</button>
                 </div>
             </div>
-            
+
             <!-- GES -->
-            <div class="card alert-warning rounded-0 m-1" style="width: 100%;">
-                               <div class="card-body">
+            <div class="card alert-warning rounded-0 m-1 col-lg-3" style="width: 100%;" id="divgestionnaire">
+                <div class="card-body">
                     <h3>Gestionnaire</h3>
                     <button type="button" class="btn btn-warning">Ajout Série</button>
                     <button type="button" class="btn btn-warning">Modifier Série</button>
@@ -150,7 +156,7 @@
             </div>
 
             <!-- RES -->
-            <div class="card alert-danger rounded-0 m-1" style="width: 100%;">
+            <div class="card alert-danger rounded-0 m-1 col-lg-3" style="width: 100%;" id="divresponsable">
                 <div class="card-body">
                     <h3>Responsable</h3>
                     <button type="button" class="btn btn-danger">Statistiques</button>
@@ -159,7 +165,7 @@
             </div>
 
             <!-- ADM -->
-            <div class="card alert-dark rounded-0 m-1" style="width: 100%;">
+            <div class="card alert-dark rounded-0 m-1 col-lg-3" style="width: 100%;" id="divadmin">
                 <div class="card-body">
                     <h3>Admin</h3>
                     <button type="button" class="btn btn-dark">Créer un compte</button>
@@ -173,11 +179,11 @@
 </body>
 
 
-    <script src="../assets/JS/bootstrap.bundle.min.js"></script>
-    <script src="../ressource/data/users.js" ></script>
-    <script src="../ressource/data/albums.js" ></script>
-    <script src="../assets/JS/script.js"></script>
-    <script src="../assets/JS/account.js" ></script>
+<script src="../assets/JS/bootstrap.bundle.min.js"></script>
+<script src="../ressource/data/users.js"></script>
+<script src="../ressource/data/albums.js"></script>
+<script src="../assets/JS/script.js"></script>
+<script src="../assets/JS/account.js"></script>
 
 
 </html>

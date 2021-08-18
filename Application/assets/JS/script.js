@@ -64,7 +64,7 @@ function fullDate(){
 }
 
 /**
- * 
+ *Make a cell and write date inner it. 
  * @param {HTMLElement} node 
  * @param {Any} data 
  */
