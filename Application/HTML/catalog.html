@@ -31,7 +31,7 @@
                         </li>
                     </ul>
 
-                    <div class="d-flex flex-column">
+                    <div id="userIcon" class="d-flex flex-column">
                         <a id="#" class="btn btn-info" style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
                           J-D
                         </a>
@@ -47,93 +47,89 @@
             </div>
         </nav>
 
-
-
-
-
         <!-- Informations utilisateur Collapse -->
-        <p>
-            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#infoUtilisateurCollapse" role="button" aria-expanded="false" aria-controls="infoUtilisateurCollapse">
-Informations utilisateur </a>
-        </p>
-        <div class="collapse" id="infoUtilisateurCollapse">
-            <!-- User Search bar -->
-            <form class="d-flex">
-                <input class="form-control me-sm-2" type="text" placeholder="Rechercher un adhérent...">
-            </form>
-            <!-- Informations utilisateur card -->
-            <div class="card card-body">
-                <table class="table-hover">
-                    <tr>
-                        <th>ID</th>
-                        <th id="#">any ID...</th>
-                    </tr>
-                    <tr>
-                        <th>Nom</th>
-                        <th id="#">any nom...</th>
-                    </tr>
-                    <tr>
-                        <th>Prénom</th>
-                        <th id="#">any prénom...</th>
-                    </tr>
-
-                </table>
-            </div>
-
-
-            <!-- Emprunts en cours Collapse -->
+        <div id="userInfoCollapse">
             <p>
-                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#empruntCollapse" role="button" aria-expanded="false" aria-controls="empruntCollapse">
-Emprunts en cours </a>
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#infoUtilisateurCollapse" role="button" aria-expanded="false" aria-controls="infoUtilisateurCollapse">
+Informations utilisateur </a>
             </p>
-            <div class="collapse" id="empruntCollapse">
+            <div class="collapse" id="infoUtilisateurCollapse">
+                <!-- User Search bar -->
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="text" placeholder="Rechercher un adhérent...">
+                </form>
+                <!-- Informations utilisateur card -->
                 <div class="card card-body">
-                    <table class="table">
-                        <thead>
-                            <tr class="table-primary">
-                                <th scope="col"></th>
-                                <th scope="col">
-                                    Ref.
-                                </th>
-                                <th scope="col">
-                                    Titre
-                                </th>
-                                <th scope="col">
-                                    Date de retour
-                                </th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-                            <tr scope="row">
-                                <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn1">RETOUR</button></td>
-                                <td id="#">439</td>
-                                <td>Montespa</td>
-                                <td>06/12/2021</td>
-                            </tr>
-                            <tr scope="row">
-                                <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn2">RETOUR</button></td>
-                                <td id="#">439</td>
-                                <td>Montespa</td>
-                                <td>06/12/2021</td>
-                            </tr>
-                            <tr scope="row">
-                                <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn3">RETOUR</button></td>
-                                <td id="#">439</td>
-                                <td>Montespa</td>
-                                <td>06/12/2021</td>
-                            </tr>
-                        </tbody>
-
-
+                    <table class="table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th id="#">any ID...</th>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th id="#">any nom...</th>
+                        </tr>
+                        <tr>
+                            <th>Prénom</th>
+                            <th id="#">any prénom...</th>
+                        </tr>
 
                     </table>
                 </div>
+
+
+                <!-- Emprunts en cours Collapse -->
+                <p>
+                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#empruntCollapse" role="button" aria-expanded="false" aria-controls="empruntCollapse">
+Emprunts en cours </a>
+                </p>
+                <div class="collapse" id="empruntCollapse">
+                    <div class="card card-body">
+                        <table class="table">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th scope="col"></th>
+                                    <th scope="col">
+                                        Ref.
+                                    </th>
+                                    <th scope="col">
+                                        Titre
+                                    </th>
+                                    <th scope="col">
+                                        Date de retour
+                                    </th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr scope="row">
+                                    <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn1">RETOUR</button></td>
+                                    <td id="#">439</td>
+                                    <td>Montespa</td>
+                                    <td>06/12/2021</td>
+                                </tr>
+                                <tr scope="row">
+                                    <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn2">RETOUR</button></td>
+                                    <td id="#">439</td>
+                                    <td>Montespa</td>
+                                    <td>06/12/2021</td>
+                                </tr>
+                                <tr scope="row">
+                                    <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn3">RETOUR</button></td>
+                                    <td id="#">439</td>
+                                    <td>Montespa</td>
+                                    <td>06/12/2021</td>
+                                </tr>
+                            </tbody>
+
+
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-
 
 
         <!-- Confirmer RETOUR modal -->
@@ -152,7 +148,7 @@ Emprunts en cours </a>
         </div>
 
         <!-- catalog collapse -->
-        <p>
+        <p id="catalogButtonCollapser">
             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#catalogCollapse" role="button" aria-expanded="false" aria-controls="catalogCollapse">
 Catalogue </a>
         </p>
@@ -279,7 +275,8 @@ Catalogue </a>
 <script src="../ressource/data/albums.js"></script>
 <script src="../ressource/data/auteurs.js"></script>
 <script src="../ressource/data/series.js"></script>
-<script src="../assets/JS/catalog.js"></script>
+<script src="../ressource/data/users.js"></script>
 <script src="../assets/JS/script.js"></script>
+<script src="../assets/JS/catalog.js"></script>
 
 </html>

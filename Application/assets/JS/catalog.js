@@ -17,6 +17,24 @@ var searchData;
 var tempResults = [];
 var results = [];
 
+//remove restricted elements
+let userIcon = document.getElementById("userIcon");
+userIcon.onload = (function() {
+    authorizeElement("2", userIcon);
+}());
+
+/* let catalogButtonCollapser = document.getElementById("catalogButtonCollapser");
+catalogButtonCollapser.onload = (function() {
+    catalogCollapse.classList.add("show");
+    authorizeElement("2", catalogButtonCollapser);
+}()); */
+
+let userInfoCollapse = document.getElementById("userInfoCollapse");
+userInfoCollapse.onload = (function() {
+    authorizeElement("000000", userInfoCollapse);
+}())
+
+
 //inputKeys init
 var refButton = document.getElementById("Ref-tab");
 var titreButton = document.getElementById("Titre-tab");
