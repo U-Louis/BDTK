@@ -14,35 +14,34 @@
 <body class="bg-primary">
     <div id="wrapper" class="bg-primary d-flex flex-column container-sm">
         <header class="container-md d-flex justify-content-around mt-3">
-
-            <!-- <ul class="d-none d-md "></ul>
+            
+                <!-- <ul class="d-none d-md "></ul>
                 <button type="button" class="btn btn-info d-md-none"><i class="fas fa-bars"></i></button> -->
-
-
+        
+            
             <div id="titre" class=" container-fluid border bg-light text-center mx-2 col-9 col-sm-7 h-50">
 
                 <h1>Accueil</h1>
                 <img src="https://i.servimg.com/u/f71/13/11/33/61/kaam_b10.jpg" alt="Une image de présentation" class="w-75">
             </div>
-
-            <div class="d-flex flex-column justify-content-start dropdown col-2">
-
+            
+            <div  class="d-flex flex-column justify-content-start dropdown col-2">
+                
                 <a class="btn btn-light dropdown-toggle align-self-center" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     <h2 class="text-dark mx-auto " id="idutilisateur"></h2>
                 </a>
+                
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="../landing_page.html" id="iddeco">Deconnexion</a></li>
+                     
+                    </ul>
+                  </div>
+            
 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="../index.html" id="iddeco">Deconnexion</a></li>
-
-                </ul>
-            </div>
-
-
-
+            
         </header>
         <main class="container d-flex flex-column  align-items-center mt-5 bg-light border rounded-3 w-75">
-            <a class="btn btn-success btn-lg my-5  w-50 mx-auto fs-3" href="borrow_return.html" role="button">Catalogue</a>
-            <!-- if !logged => href="./catalog.html" -->
+            <a class="btn btn-success btn-lg my-5  w-50 mx-auto fs-3" href="borrow_return.html" role="button">Catalogue</a>  <!-- if !logged => href="./catalog.html" -->
             <a class="btn btn-warning btn-lg mb-5  w-50 mx-auto fs-3" href="account.html" role="button">Mon compte</a>
 
         </main>
@@ -50,7 +49,7 @@
 
 </body>
 <script src="../assets/JS/bootstrap.bundle.min.js"></script>
-<script src="../ressource/data/users.js"></script>
+<script src="../ressource/data/users.js" ></script>
 <script src="../assets/JS/script.js"></script>
 <script src="../assets/JS/home.js"></script>
 
