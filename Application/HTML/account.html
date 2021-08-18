@@ -29,7 +29,7 @@
             </div>
         </nav>
         <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
-            <h2 class="text-uppercase text-center my-3 fs-3"> Bienvenue <span id="#">Jean-Denise</span> </h2>
+            <h2 class="text-uppercase text-center my-3 fs-3"> Bienvenue <span id="titlename"></span> </h2>
         </header>
 
         <div id="wrapper" class="container w-85 my-auto h-75 ">
@@ -40,16 +40,46 @@
                     <table class="table-hover">
                         <tr>
                             <th>ID</th>
-                            <th id="#">ADH-667</th>
+                            <th id="thid"></th>
                         </tr>
                         <tr>
                             <th>Nom</th>
-                            <th id="#">Montechristo</th>
+                            <th id="thname"></th>
                         </tr>
                         <tr>
                             <th>Prénom</th>
-                            <th id="#">Jean-Denise</th>
+                            <th id="thfirstname"></th>
                         </tr>
+                        <tr>
+                            <th>Date de naissance</th>
+                            <th id="thdateofbirth"></th>
+                        </tr>
+                        <tr>
+                            <th>adresse 1</th>
+                            <th id="thaddress1"></th>
+                        </tr>
+                        <tr>
+                            <th>adresse 2 </th>
+                            <th id="thaddress2"></th>
+                        </tr>
+                        <tr>
+                            <th>Code postal </th>
+                            <th id="thpostalcode"></th>
+                        </tr>
+                        <tr>
+                            <th>Ville</th>
+                            <th id="thcity"></th>
+                        </tr><tr>
+                            <th>email</th>
+                            <th id="themail"></th>
+                        </tr><tr>
+                            <th>N° mobile</th>
+                            <th id="thmobilenumber"></th>
+                        </tr><tr>
+                            <th>N° Fixe</th>
+                            <th id="thhomenumber"></th>
+                        </tr>
+
                     </table>
                     <p></p>
                     <p id="#"><span id="#" class="bg-success">Votre cotisation est à jour.</span> <br> <!-- to REMOVE if power ADH ** -->
@@ -154,7 +184,10 @@
 </body>
 
 
-<script src="../assets/JS/bootstrap.bundle.min.js"></script>
-<script src="../assets/JS/script.js"></script>
+    <script src="../assets/JS/bootstrap.bundle.min.js"></script>
+    <script src="../ressource/data/users.js" ></script>
+    <script src="../assets/JS/script.js"></script>
+    <script src="../assets/JS/account.js" ></script>
+
 
 </html>
