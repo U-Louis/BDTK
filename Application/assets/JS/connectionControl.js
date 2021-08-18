@@ -13,6 +13,7 @@ function connectControl(inputuser , password) {
         if (testUser(key , inputuser) && testPassword(key , password)){
             idUser = key;
             document.cookie= "id="+idUser+" ; samesite=lax";
+            document.cookie= "connected=true ; samesite=lax";
             localStorage.setItem("id",idUser);
             localStorage.setItem("connected","true");
             return true;
