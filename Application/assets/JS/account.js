@@ -1,3 +1,4 @@
+/*----------------------------Main Function------------------------------- */
 (function() {
     // Initialisation
     var id = getCookie("id");
@@ -21,28 +22,33 @@
     // Display the list of book borrowed if the user is an Adherent
     if (isAdherent) {
         document.querySelector("#idemprunt").classList.replace("d-none", "d-block");
-        listOfBook(tbody, arrListofBook);
+        listOfBook(tbody, arrListofBook); // function in srcipt.js
     }
+    // Display the list of book borrowed if the user is not a librarian
     if (!isBibliothecaire) {
         document.querySelector("#divbibliothecaire").classList.add("d-none");
 
     }
+    // Display the list of book borrowed if the user is not a gestionnaire
     if (!isGestionnaire) {
         document.querySelector("#divgestionnaire").classList.add("d-none");
 
     }
+    // Display the list of book borrowed if the user is not a manager
     if (!isResponsable) {
         document.querySelector("#divresponsable").classList.add("d-none");
 
+
     }
+    // Display the list of book borrowed if the user is not an Admin
     if (!isAdmin) {
         document.querySelector("#divadmin").classList.add("d-none");
 
     }
-
-
-
 }());
+
+
+/*-------------------------------------Function------------------------------------ */
 
 /**Write the name of user in the header
  * @function welcomeMsg
