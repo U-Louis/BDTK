@@ -1,7 +1,7 @@
 var users = new Map();
 users.set("1",{name : "La Bibliothécaire", firstname : "Jean-Denise", dateofbirth : "22/03/1975",
- address1 : "1 rue des Exemples", adress2 : "" ,postalcode : "75000", city : "Paris", 
- email : "jeandenise-labibibliothécaire@exemple.com", mobilenumber : "", homenumber : "01 00 00 00 00", 
+ address1 : "1 rue des Exemples", address2 : " " ,postalcode : "75000", city : "Paris", 
+ email : "jeandenise-labibibliothécaire@exemple.com", mobilenumber : " ", homenumber : "01 00 00 00 00", 
  username : "jean-denise.labibliothecaire", password : "motdepasse1", status : new Map([ ["adherent","false"], 
  ["bibliothecaire" , "true"], ["gestionnaire" , "false"], ["responsable" , "false"], 
  ["admin" , "false"], ["abonnementajour" , "false"]]), listofbook : []});
