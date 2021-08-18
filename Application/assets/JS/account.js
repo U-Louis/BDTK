@@ -1,9 +1,10 @@
 (function(){
     var id = getCookie("id");
-    var arrListofBook = users.get("id")[listofbook]
+    var arrListofBook = users.get(id)["listofbook"]
     welcomeMsg(id);
     showInfo(id);
     contributionMsg(id);
+    showListOfBook(arrListofBook);
 }());
 
 function welcomeMsg(id){
@@ -29,14 +30,34 @@ function showInfo(id){
 
 function contributionMsg(id){
     var isUpdate = users.get(id)["status"].get("isUpdated");
-    var contribution =  document.querySelector("#idcontribution");
-    if (isUpdate == "true"){
-        contribution.innerHTML = "Votre cotisation est à jour.";
-        contribution.classList.add("bg-success");
-    }else{
-        contribution.innerHTML = "Votre cotisation n'est pas à jour.";
-        contribution.classList.add("bg-danger");
+    var isAdherent = users.get(id)["status"].get("hasRightAdherent")
+    var spanContribution =  document.querySelector("#spancontribution");
+    var divContribution = document.querySelector("#divcontribution")
+    if (isUpdate == "true" && isAdherent == "true"){
+        spanContribution.innerHTML = "Votre cotisation est à jour.";
+        spanContribution.classList.add("bg-success");
+        divContribution.classList.replace("d-none","d-block")
+    }else if (isUpdate == "false" && isAdherent == "true"){
+        spanContribution.innerHTML = "Votre cotisation n'est pas à jour.";
+        spanContribution.classList.add("bg-danger");
+        divContribution.classList.replace("d-none","d-block")
     }
 }
 
-func
+function showListOfBook(list){
+    var tbody = document.querySelector("#idemprunt table tbody")
+    for(index in list){
+        var tr = document.createElement("tr");
+        tr.innerHTML = "test";
+        tbody.appendChild(tr);
+    }
+    
+}
+
+/* <tbody>
+<tr scope="row">
+<td id="#">439</td>
+<td>Montespa</td>
+<td>06/12/2021</td>
+</tr>
+</tbody> */
