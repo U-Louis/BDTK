@@ -13,25 +13,42 @@
 <body class="bg-primary ">
     <div id="wrapper" class="container w-100 my-auto h-75 ">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start">
-            <div class="container-fluid flex-column">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav ">
-                        <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
-                        <a class="nav-link" href="catalog.html">Catalogue</a>
-                        <a class="nav-link" href="account.html">Mon compte</a>
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+            <div class="container-fluid ">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#burgerMenu" aria-controls="burgerMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <a class="navbar-brand col-9 text-center" href="#">Catalogue</a>
+
+                <div class="collapse navbar-collapse " id="burgerMenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Catalogue</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex flex-column">
+                        <a id="#" class="btn btn-info" style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
+                          J-D
+                        </a>
+                        <div class="collapse position-relative" style="transition: none !important;-webkit-transition: none !important;" id="userIdBox">
+                            <div class="card card-body position-absolute">
+                                <a href="">Mon compte</a>
+                                <a href="">Déconnexion</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </nav>
-        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
-            <h1 class="text-uppercase text-center my-3 fs-3">Catalogue</h1>
-        </header>
+
+
+
 
 
         <!-- Informations utilisateur Collapse -->
@@ -254,6 +271,8 @@ Catalogue </a>
             </div>
 
         </div>
+
+    </div>
 </body>
 
 <script src="../assets/JS/bootstrap.bundle.min.js"></script>
