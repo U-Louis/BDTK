@@ -409,13 +409,19 @@ function displayResultsBox(match) {
             let th = document.createElement("th");
             th.setAttribute("scope", "row");
             th.innerHTML = results[i].key;
-            th.onclick = function() { generateCard(results[i].key) };
+            th.onclick = function() {
+                generateCard(results[i].key);
+                resultsBox.innerHTML = "";
+            };
             th.style.cursor = "pointer";
             th.classList.add("innerLink");
 
             let td1 = document.createElement("td");
             td1.innerHTML = results[i].titre;
-            td1.onclick = function() { generateCard(results[i].key) };
+            td1.onclick = function() {
+                generateCard(results[i].key);
+                resultsBox.innerHTML = "";
+            };
             td1.style.cursor = "pointer";
             td1.classList.add("innerLink");
 
@@ -472,11 +478,19 @@ function assembleItem(albumsKey) {
         //series params
         let idSerie = series.get(albums.get(albumsKey.toString()).idSerie).nom;
 
-        //clean title for img
+        //clean params for img
         titreClean = titre.replace("'", "");
+        titreClean = titreClean.replace("!", "");
+        titreClean = titreClean.replace("?", "");
+
+        idSerieClean = idSerie.replace("'", "");
+        idSerieClean = idSerieClean.replace("!", "");
+        idSerieClean = idSerieClean.replace("?", "");
+
+
 
         //img source URL
-        let img = "../ressource/albums/" + idSerie + "-" + numero + "-" + titreClean + ".jpg";
+        let img = "../ressource/albums/" + idSerieClean + "-" + numero + "-" + titreClean + ".jpg";
         //output
         return { key: key, titre: titre, numero: numero, prix: prix, idAuteur: idAuteur, idSerie: idSerie, img: img };
     } catch {
@@ -505,7 +519,7 @@ function generateCard(albumsKey) {
     patern.style = "width: 100%;";
 
     let img = document.createElement('img');
-    img.classList.add("card-img-top", "p-2");
+    img.classList.add("card-img", "p-2");
     img.setAttribute('src', cardItem.img);
     img.setAttribute('alt', cardItem.titre);
 
