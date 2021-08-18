@@ -13,126 +13,273 @@
 <body class="bg-primary ">
     <div id="wrapper" class="container w-100 my-auto h-75 ">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start">
-            <div class="container-fluid flex-column">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav ">
-                        <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
-                        <a class="nav-link" href="catalog.html">Catalogue</a>
-                        <a class="nav-link" href="account.html">Mon compte</a>
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+            <div class="container-fluid ">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#burgerMenu" aria-controls="burgerMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <a class="navbar-brand col-9 text-center" href="#">Catalogue</a>
+
+                <div class="collapse navbar-collapse " id="burgerMenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Catalogue</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex flex-column">
+                        <a id="#" class="btn btn-info" style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
+                          J-D
+                        </a>
+                        <div class="collapse position-relative" style="transition: none !important;-webkit-transition: none !important;" id="userIdBox">
+                            <div class="card card-body position-absolute">
+                                <a href="">Mon compte</a>
+                                <a href="">Déconnexion</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </nav>
-        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
-            <h1 class="text-uppercase text-center my-3 fs-3">Catalogue</h1>
-        </header>
 
-        <!-- ========== Element catalog ========== Element catalog ========== Element catalog ========== Element catalog ==========-->
-        <div id="catalogWrapper" class="container w-85 my-auto h-75 ">
 
-            <!-- catalog navbar -->
-            <ul class="nav nav-tabs bg-light " id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="Ref-tab" data-bs-toggle="tab" data-bs-target="#Ref" type="button" role="tab" aria-controls="Ref" aria-selected="true">Ref.</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="Titre-tab" data-bs-toggle="tab" data-bs-target="#Titre" type="button" role="tab" aria-controls="Titre" aria-selected="false">Titre</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="Auteur-tab" data-bs-toggle="tab" data-bs-target="#Auteur" type="button" role="tab" aria-controls="contact" aria-selected="false">Auteur</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="Serie-tab" data-bs-toggle="tab" data-bs-target="#Serie" type="button" role="tab" aria-controls="Serie" aria-selected="false">Série</button>
-                </li>
-            </ul>
 
-            <!-- catalog tab s content -->
-            <div class="tab-content" id="myTabContent">
 
-                <!-- tab Ref -->
-                <div class="tab-pane fade show active" id="Ref" role="tabpanel" aria-labelledby="Ref-tab">
-                    <div class="input-group d-flex align-items-center">
-                        <div class="form-outline col-8 m-0">
-                            <input type="search" id="refInputResearchBar" class="form-control" placeholder="Rechercher une Ref..." />
-                        </div>
-                        <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="refSearchButton">Rechercher</button>
-                        <div class="form-outline col-8 m-0">
-                            <div class="form-control p-0 border-0 position-absolute" id="refSearchBarSuggestionsBox">
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- tab titre -->
-                <div class="tab-pane fade" id="Titre" role="tabpanel" aria-labelledby="Titre-tab">
-                    <div class="input-group">
-                        <div class="form-outline col-8 m-1">
-                            <input type="search" id="titreInputResearchBar" class="form-control" placeholder="Rechercher un titre..." />
-                        </div>
-                        <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="titreSearchButton">Rechercher</button>
-                        <div class="form-outline col-8 m-0">
-                            <div class="form-control p-0 border-0 position-absolute" id="titreSearchBarSuggestionsBox">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Informations utilisateur Collapse -->
+        <p>
+            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#infoUtilisateurCollapse" role="button" aria-expanded="false" aria-controls="infoUtilisateurCollapse">
+Informations utilisateur </a>
+        </p>
+        <div class="collapse" id="infoUtilisateurCollapse">
+            <!-- User Search bar -->
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" placeholder="Rechercher un adhérent...">
+            </form>
+            <!-- Informations utilisateur card -->
+            <div class="card card-body">
+                <table class="table-hover">
+                    <tr>
+                        <th>ID</th>
+                        <th id="#">any ID...</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th id="#">any nom...</th>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <th id="#">any prénom...</th>
+                    </tr>
 
-                <!-- tab auteur -->
-                <div class="tab-pane fade" id="Auteur" role="tabpanel" aria-labelledby="Auteur-tab">
-
-                    <div class="input-group">
-                        <div class="form-outline col-8 m-1">
-                            <input type="search" id="auteurInputResearchBar" class="form-control" placeholder="Rechercher un auteur..." />
-                        </div>
-                        <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="auteurSearchButton">Rechercher</button>
-                        <div class="form-outline col-8 m-0">
-                            <div class="form-control p-0 border-0 position-absolute" id="auteurSearchBarSuggestionsBox">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- tab serie -->
-                <div class="tab-pane fade" id="Serie" role="tabpanel" aria-labelledby="Serie-tab">
-
-                    <div class="input-group">
-                        <div class="form-outline col-8 m-1">
-                            <input type="search" id="serieInputResearchBar" class="form-control" placeholder="Rechercher une série..." />
-                        </div>
-                        <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="serieSearchButton">Rechercher</button>
-                        <div class="form-outline col-8 m-0">
-                            <div class="form-control p-0 border-0 position-absolute" id="serieSearchBarSuggestionsBox">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                </table>
             </div>
 
-            <!-- Results box -->
-            <table id="resultsBox" class="table m-0">
-            </table>
 
-            <!-- selected BD card (placeholder)-->
-            <div id="BDCardWrapper">
+            <!-- Emprunts en cours Collapse -->
+            <p>
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#empruntCollapse" role="button" aria-expanded="false" aria-controls="empruntCollapse">
+Emprunts en cours </a>
+            </p>
+            <div class="collapse" id="empruntCollapse">
+                <div class="card card-body">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col"></th>
+                                <th scope="col">
+                                    Ref.
+                                </th>
+                                <th scope="col">
+                                    Titre
+                                </th>
+                                <th scope="col">
+                                    Date de retour
+                                </th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr scope="row">
+                                <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn1">RETOUR</button></td>
+                                <td id="#">439</td>
+                                <td>Montespa</td>
+                                <td>06/12/2021</td>
+                            </tr>
+                            <tr scope="row">
+                                <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn2">RETOUR</button></td>
+                                <td id="#">439</td>
+                                <td>Montespa</td>
+                                <td>06/12/2021</td>
+                            </tr>
+                            <tr scope="row">
+                                <td><button type="button" class="btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmReturn3">RETOUR</button></td>
+                                <td id="#">439</td>
+                                <td>Montespa</td>
+                                <td>06/12/2021</td>
+                            </tr>
+                        </tbody>
+
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Confirmer RETOUR modal -->
+        <div class="modal fade" id="confirmReturn1" tabindex="-1" aria-labelledby="confirmReturn1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        Confirmer le retour de <span id="">"#ID + TITRE"</span> ? </div>
+                    <div class="modal-footer">
+                        <button id="" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                        <button type="button" class="btn btn-danger">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- catalog collapse -->
+        <p>
+            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#catalogCollapse" role="button" aria-expanded="false" aria-controls="catalogCollapse">
+Catalogue </a>
+        </p>
+
+        <div class="collapse" id="catalogCollapse">
+
+            <!-- ========== Element catalog ========== Element catalog ========== Element catalog ========== Element catalog ==========-->
+            <div id="catalogWrapper" class="container w-85 my-auto h-75 ">
+
+                <!-- catalog navbar -->
+                <ul class="nav nav-tabs bg-light " id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="Ref-tab" data-bs-toggle="tab" data-bs-target="#Ref" type="button" role="tab" aria-controls="Ref" aria-selected="true">Ref.</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Titre-tab" data-bs-toggle="tab" data-bs-target="#Titre" type="button" role="tab" aria-controls="Titre" aria-selected="false">Titre</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Auteur-tab" data-bs-toggle="tab" data-bs-target="#Auteur" type="button" role="tab" aria-controls="contact" aria-selected="false">Auteur</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Serie-tab" data-bs-toggle="tab" data-bs-target="#Serie" type="button" role="tab" aria-controls="Serie" aria-selected="false">Série</button>
+                    </li>
+                </ul>
+
+                <!-- catalog tab s content -->
+                <div class="tab-content" id="myTabContent">
+
+                    <!-- tab Ref -->
+                    <div class="tab-pane fade show active" id="Ref" role="tabpanel" aria-labelledby="Ref-tab">
+                        <div class="input-group d-flex align-items-center">
+                            <div class="form-outline col-8 m-0">
+                                <input type="search" id="refInputResearchBar" class="form-control" placeholder="Rechercher une Ref..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="refSearchButton">Rechercher</button>
+                            <div class="form-outline col-8 m-0">
+                                <div class="form-control p-0 border-0 position-absolute" id="refSearchBarSuggestionsBox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- tab titre -->
+                    <div class="tab-pane fade" id="Titre" role="tabpanel" aria-labelledby="Titre-tab">
+                        <div class="input-group">
+                            <div class="form-outline col-8 m-1">
+                                <input type="search" id="titreInputResearchBar" class="form-control" placeholder="Rechercher un titre..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="titreSearchButton">Rechercher</button>
+                            <div class="form-outline col-8 m-0">
+                                <div class="form-control p-0 border-0 position-absolute" id="titreSearchBarSuggestionsBox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- tab auteur -->
+                    <div class="tab-pane fade" id="Auteur" role="tabpanel" aria-labelledby="Auteur-tab">
+
+                        <div class="input-group">
+                            <div class="form-outline col-8 m-1">
+                                <input type="search" id="auteurInputResearchBar" class="form-control" placeholder="Rechercher un auteur..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="auteurSearchButton">Rechercher</button>
+                            <div class="form-outline col-8 m-0">
+                                <div class="form-control p-0 border-0 position-absolute" id="auteurSearchBarSuggestionsBox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- tab serie -->
+                    <div class="tab-pane fade" id="Serie" role="tabpanel" aria-labelledby="Serie-tab">
+
+                        <div class="input-group">
+                            <div class="form-outline col-8 m-1">
+                                <input type="search" id="serieInputResearchBar" class="form-control" placeholder="Rechercher une série..." />
+                            </div>
+                            <button type="button" class="btn btn-info col-3 rounded-pill m-1" id="serieSearchButton">Rechercher</button>
+                            <div class="form-outline col-8 m-0">
+                                <div class="form-control p-0 border-0 position-absolute" id="serieSearchBarSuggestionsBox">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Results box -->
+                <table id="resultsBox" class="table m-0">
+                </table>
+
+                <!-- selected BD card -->
+                <div id="BDCardWrapper">
+
+                </div>
+
+                <!-- confirmer emprunt modale -->
+                <div class="modal fade" id="confirmBorrow" tabindex="-1" aria-labelledby="confirmBorrow" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                Confirmer l'emprunt ? </div>
+                            <div class="modal-footer">
+                                <button id="" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
-
 
         </div>
 
     </div>
 </body>
+
 <script src="../assets/JS/bootstrap.bundle.min.js"></script>
 <script src="../ressource/data/albums.js"></script>
 <script src="../ressource/data/auteurs.js"></script>
 <script src="../ressource/data/series.js"></script>
+<script src="../assets/JS/catalog.js"></script>
 <script src="../assets/JS/script.js"></script>
 
 </html>

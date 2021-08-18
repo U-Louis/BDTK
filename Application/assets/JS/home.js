@@ -4,24 +4,7 @@
     // var intials = $('#firstName').text().charAt(0) + $('#lastName').text().charAt(0);
     // var profileImage = $('#profileImage').text(intials);
 
-/**Get the storage in a cookie and return the value of the id.
- * @function id
- * @returns Array
- */
-var id = function(){
-    var cookiePair = document.cookie.split("=") ;
-    return cookiePair[1];
-}
 
-function getCookie(name){
-    var arrCookie = document.cookie.split("; ");
-    for (var i = 0; i<arrCookie.length; i++){
-        var cookiePair = arrCookie[i].split("=");
-        if (name == cookiePair[0]){
-            return decodeURIComponent(cookiePair[1]);
-        }
-    }
-}
 
 /**
  * @function firstLetter
@@ -41,8 +24,8 @@ function firstLetter(){
 firstLetter();
 
 document.querySelector("#iddeco").addEventListener("click",function(){
-    document.cookie = "id=-100";
-    document.cookie = "conected=false";
+    document.cookie = "id=-100 ; samesite=lax";
+    document.cookie = "connected=false";
     localStorage.setItem("connected","false")
 })
 
