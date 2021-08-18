@@ -82,8 +82,11 @@
 
                     </table>
                     <p></p>
-                    <p id="#"><span id="idcontribution" class=""></span> <br> <!-- to REMOVE if power ADH ** -->
-                    <em> (Sans une cotisation à jour, vous ne pourrez pas emprunter de BD !)</em></p>  <!-- ** -->
+                    <div class="d-none" id="divcontribution">
+                        <p><span id="spancontribution" class=""></span> <br> <!-- to REMOVE if power ADH ** -->
+                        <em> (Sans une cotisation à jour, vous ne pourrez pas emprunter de BD !)</em></p>  <!-- ** -->
+                    </div>
+                  
                 </div>
 
             <br>
@@ -91,7 +94,7 @@
             <!-- ===== powers buttons ===== powers buttons ===== powers buttons-->
 
             <!-- ADH -->
-            <div id="#" class="card card-body rounded-0 m-1"><!-- Emprunts en cours  -->
+            <div id="idemprunt" class="card card-body rounded-0 m-1"><!-- Emprunts en cours  -->
                     <h2>Emprunts en cours</h2>
                     <table class="table">
                         <thead>
@@ -110,21 +113,7 @@
                         </thead>
 
                         <tbody>
-                            <tr scope="row">
-                                <td id="#">439</td>
-                                <td>Montespa</td>
-                                <td>06/12/2021</td>
-                            </tr>
-                            <tr scope="row">
-                                <td id="#">439</td>
-                                <td>Montespa</td>
-                                <td>06/12/2021</td>
-                            </tr>
-                            <tr scope="row">
-                                <td id="#">439</td>
-                                <td>Montespa</td>
-                                <td>06/12/2021</td>
-                            </tr>
+                            
                         </tbody>
 
 
@@ -186,6 +175,7 @@
 
     <script src="../assets/JS/bootstrap.bundle.min.js"></script>
     <script src="../ressource/data/users.js" ></script>
+    <script src="../ressource/data/albums.js" ></script>
     <script src="../assets/JS/script.js"></script>
     <script src="../assets/JS/account.js" ></script>
 
