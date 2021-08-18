@@ -1,7 +1,9 @@
 (function(){
     var id = getCookie("id");
+    var arrListofBook = users.get("id")[listofbook]
     welcomeMsg(id);
     showInfo(id);
+    contributionMsg(id);
 }());
 
 function welcomeMsg(id){
@@ -24,3 +26,17 @@ function showInfo(id){
         
     }
 }
+
+function contributionMsg(id){
+    var isUpdate = users.get(id)["status"].get("isUpdated");
+    var contribution =  document.querySelector("#idcontribution");
+    if (isUpdate == "true"){
+        contribution.innerHTML = "Votre cotisation est à jour.";
+        contribution.classList.add("bg-success");
+    }else{
+        contribution.innerHTML = "Votre cotisation n'est pas à jour.";
+        contribution.classList.add("bg-danger");
+    }
+}
+
+func
