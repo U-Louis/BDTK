@@ -1,9 +1,16 @@
-(function(){
+(function() {
     // Initialisation
     var id = getCookie("id");
-    var arrListofBook = users.get(id)["listofbook"]
-    var tbody = document.querySelector("#idemprunt table tbody")
-  
+    var arrListofBook = users.get(id)["listofbook"];
+    var tbody = document.querySelector("#idemprunt table tbody");
+    //We get the satus of adherent in order to control if the user is an adherent
+    var isAdherent = users.get(id)["status"].get("hasRightAdherent");
+    var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
+    var isGestionnaire = users.get(id)["status"].get("hasRightGestionnaire");
+    var isResponsable = users.get(id)["status"].get("hasRightResponsable");
+    var isAdmin = users.get(id)["status"].get("hasRightAdmin");
+
+
     //Traitment
     //Display a personalize welcoming message
     welcomeMsg(id);
@@ -11,15 +18,37 @@
     showInfo(id);
     // Write a msg if the user is an Adherent
     contributionMsg(id);
-    // Display the list of book borrowed if the user is an Adherent 
-    listOfBook(tbody,arrListofBook);
+    // Display the list of book borrowed if the user is an Adherent
+    if (isAdherent) {
+        document.querySelector("#idemprunt").classList.replace("d-none", "d-block");
+        listOfBook(tbody, arrListofBook);
+    }
+    if (!isBibliothecaire) {
+        document.querySelector("#divbibliothecaire").classList.add("d-none");
+
+    }
+    if (!isGestionnaire) {
+        document.querySelector("#divgestionnaire").classList.add("d-none");
+
+    }
+    if (!isResponsable) {
+        document.querySelector("#divresponsable").classList.add("d-none");
+
+    }
+    if (!isAdmin) {
+        document.querySelector("#divadmin").classList.add("d-none");
+
+    }
+
+
+
 }());
 
 /**Write the name of user in the header
  * @function welcomeMsg
  * @param {String} id 
  */
-function welcomeMsg(id){
+function welcomeMsg(id) {
     document.querySelector("#titlename").innerHTML = users.get(id)["firstname"];
 }
 
@@ -27,19 +56,20 @@ function welcomeMsg(id){
  * @function showInfo
  * @param {String} id 
  */
-function showInfo(id){
-    var arrInfo = ["name", "firstname" , "dateofbirth" ,
-    "address1" , "address2"  ,"postalcode" , "city" , 
-    "email" , "mobilenumber" , "homenumber"];
-    document.querySelector("#thid").innerHTML =  id;
-    for(index in arrInfo){
+function showInfo(id) {
+    var arrInfo = ["name", "firstname", "dateofbirth",
+        "address1", "address2", "postalcode", "city",
+        "email", "mobilenumber", "homenumber"
+    ];
+    document.querySelector("#thid").innerHTML = id;
+    for (index in arrInfo) {
         // We get the id of each row we need
         let thAct = "th" + arrInfo[index];
         // We get the key of info we need
         let info = arrInfo[index]
-        // We write the value of info we got in the cell
-        document.querySelector("#"+thAct).innerHTML =  users.get(id)[info];
-        
+            // We write the value of info we got in the cell
+        document.querySelector("#" + thAct).innerHTML = users.get(id)[info];
+
     }
 }
 
@@ -47,22 +77,22 @@ function showInfo(id){
  * @function contributionMsg
  * @param {String} id 
  */
-function contributionMsg(id){
+function contributionMsg(id) {
     //We get the status of his contribution
-    var isUpdate = users.get(id)["status"].get("isUpdated");
+    var isUpdate = users.get(id)["status"].get("isUpTodate");
     //We get the satus of adherent in order to control if the user is an adherent
     var isAdherent = users.get(id)["status"].get("hasRightAdherent")
-    var spanContribution =  document.querySelector("#spancontribution");//span where the message will be written
-    var divContribution = document.querySelector("#divcontribution");//di where is the span of message
+    var spanContribution = document.querySelector("#spancontribution"); //span where the message will be written
+    var divContribution = document.querySelector("#divcontribution"); //di where is the span of message
     //We control the status of user
-    if (isUpdate == "true" && isAdherent == "true"){
-        writeMsgWithBg(spanContribution,"Votre cotisation est à jour.","bg-success");
-        divContribution.classList.replace("d-none","d-block")
-    }else if (isUpdate == "false" && isAdherent == "true"){
-        writeMsgWithBg(spanContribution,"Votre cotisation n'est pas à jour.","bg-danger");
-        divContribution.classList.replace("d-none","d-block")
+    if (isUpdate && isAdherent) {
+        writeMsgWithBg(spanContribution, "Votre cotisation est à jour.", "bg-success");
+        divContribution.classList.replace("d-none", "d-block")
+    } else if (!isUpdate && isAdherent) {
+        writeMsgWithBg(spanContribution, "Votre cotisation n'est pas à jour.", "bg-danger");
+        divContribution.classList.replace("d-none", "d-block")
     }
-    
+
 }
 /**
  * 
@@ -70,10 +100,8 @@ function contributionMsg(id){
  * @param {String} msg 
  * @param {String} bootstrapcolor The bootstrap class background color of the HTMLElement
  */
-function writeMsgWithBg(selector, msg, bootstrapcolor){
-        selector.innerHTML = msg;
-        selector.classList.add(bootstrapcolor);
-        
+function writeMsgWithBg(selector, msg, bootstrapcolor) {
+    selector.innerHTML = msg;
+    selector.classList.add(bootstrapcolor);
+
 }
-
-
