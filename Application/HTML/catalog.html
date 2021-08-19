@@ -19,26 +19,26 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#burgerMenu" aria-controls="burgerMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-                <div class="navbar-brand col-9 text-center">Catalogue</div>
+                <a class="navbar-brand col-9 text-center">Catalogue</a>
 
                 <div class="collapse navbar-collapse " id="burgerMenu">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./home.html">Accueil</a>
+                            <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./catalog.html">Catalogue</a>
+                            <a class="nav-link" href="catalog.html">Catalogue</a>
                         </li>
                     </ul>
 
                     <div class="d-flex flex-column">
-                        <a id="idutilisateur" class="btn btn-info" style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
-                          J-D
+                        <a id="fstlettercatalog" class="btn btn-info" style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
+                          Name
                         </a>
                         <div class="collapse position-relative" style="transition: none !important;-webkit-transition: none !important;" id="userIdBox">
                             <div class="card card-body position-absolute">
-                                <a href="./account.html">Mon compte</a>
-                                <a id="iddeco" href="../index.html">Déconnexion</a>
+                                <a href="account.html">Mon compte</a>
+                                <a href="../index.html">Déconnexion</a>
                             </div>
                         </div>
                     </div>
@@ -52,9 +52,9 @@
 
 
         <!-- Informations utilisateur Collapse -->
-        <p>
+        <p id="btninfouser" class="">
             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#infoUtilisateurCollapse" role="button" aria-expanded="false" aria-controls="infoUtilisateurCollapse">
-Informations utilisateur </a>
+Informations adhérent </a>
         </p>
         <div class="collapse" id="infoUtilisateurCollapse">
             <!-- User Search bar -->
@@ -279,7 +279,9 @@ Catalogue </a>
 <script src="../ressource/data/albums.js"></script>
 <script src="../ressource/data/auteurs.js"></script>
 <script src="../ressource/data/series.js"></script>
-<script src="../assets/JS/catalog.js"></script>
+<script src="../ressource/data/users.js"></script>
 <script src="../assets/JS/script.js"></script>
+<script src="../assets/JS/catalog.js"></script>
+
 
 </html>

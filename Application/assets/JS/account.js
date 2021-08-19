@@ -2,19 +2,16 @@
 (function() {
     // Initialisation
     var id = getCookie("id");
+    var isAdherent = users.get(id)["status"].get("hasRightAdherent");
     var arrListofBook = users.get(id)["listofbook"];
     var tbody = document.querySelector("#idemprunt table tbody");
     //We get the satus of adherent in order to control if the user is an adherent
-    var isAdherent = users.get(id)["status"].get("hasRightAdherent");
-    var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
-    var isGestionnaire = users.get(id)["status"].get("hasRightGestionnaire");
-    var isResponsable = users.get(id)["status"].get("hasRightResponsable");
-    var isAdmin = users.get(id)["status"].get("hasRightAdmin");
+
 
 
     //Traitment
     //Display a personalize welcoming message
-    welcomeMsg(id);
+    personalizeTitle(id, document.querySelector(".titlename"));
     // Write informations of the user
     showInfo(id);
     // Write a msg if the user is an Adherent
@@ -24,27 +21,9 @@
         document.querySelector("#idemprunt").classList.replace("d-none", "d-block");
         listOfBook(tbody, arrListofBook); // function in srcipt.js
     }
-    // Display the list of book borrowed if the user is not a librarian
-    if (!isBibliothecaire) {
-        document.querySelector("#divbibliothecaire").classList.add("d-none");
 
-    }
-    // Display the list of book borrowed if the user is not a gestionnaire
-    if (!isGestionnaire) {
-        document.querySelector("#divgestionnaire").classList.add("d-none");
+    firstLetter(id, document.querySelector("#inituser"))
 
-    }
-    // Display the list of book borrowed if the user is not a manager
-    if (!isResponsable) {
-        document.querySelector("#divresponsable").classList.add("d-none");
-
-
-    }
-    // Display the list of book borrowed if the user is not an Admin
-    if (!isAdmin) {
-        document.querySelector("#divadmin").classList.add("d-none");
-
-    }
 }());
 
 
@@ -54,9 +33,6 @@
  * @function welcomeMsg
  * @param {String} id 
  */
-function welcomeMsg(id) {
-    document.querySelector("#titlename").innerHTML = users.get(id)["firstname"];
-}
 
 /**Write information  in a table
  * @function showInfo

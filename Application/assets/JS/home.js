@@ -1,31 +1,49 @@
+// var firstName = $('#firstName').text();
+// var lastName = $('#lastName').text();
+// var intials = $('#firstName').text().charAt(0) + $('#lastName').text().charAt(0);
+// var profileImage = $('#profileImage').text(intials);
 
-    // var firstName = $('#firstName').text();
-    // var lastName = $('#lastName').text();
-    // var intials = $('#firstName').text().charAt(0) + $('#lastName').text().charAt(0);
-    // var profileImage = $('#profileImage').text(intials);
+(function() {
+    var id = getCookie("id");
+
+    var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
+    var isGestionnaire = users.get(id)["status"].get("hasRightGestionnaire");
+    var isResponsable = users.get(id)["status"].get("hasRightResponsable");
+    var isAdmin = users.get(id)["status"].get("hasRightAdmin");
 
 
+    personalizeTitle(getCookie("id"), document.querySelector(".titlename"));
 
-/**
- * @function firstLetter
- */
-function firstLetter(){
-    //Get the first name of the ID
-    var nameOfUser = users.get(getCookie("id")).firstname;
-    // Search first letter of the first name
-    var matches = nameOfUser.match(/\b(\w)/g);
-    //Join the letter
-    var acronym = matches.join("");
-    //Write letter in a HTML balise
-   
-    document.querySelector("#idutilisateur").innerHTML = acronym;
-}
+    firstLetter(id, document.querySelector("#idutilisateur"));
 
-firstLetter();
+    // Hide buttons of librarian if the user is not a librarian
+    if (!isBibliothecaire) {
+        document.querySelector("#divbibliothecaire").classList.add("d-none");
 
-document.querySelector("#iddeco").addEventListener("click",function(){
-    document.cookie = "id=-100 ; samesite=lax";
-    document.cookie = "connected=false";
-    localStorage.setItem("connected","false")
-})
+    }
+    // Hide buttons of gestionnaire if the user is not a gestionnaire
+    if (!isGestionnaire) {
+        document.querySelector("#divgestionnaire").classList.add("d-none");
 
+    }
+    // Hide buttons of manager if the user is not a manager
+    if (!isResponsable) {
+        document.querySelector("#divresponsable").classList.add("d-none");
+
+
+    }
+    // Hide buttons of admininistrator if the user is not an Admin
+    if (!isAdmin) {
+        document.querySelector("#divadmin").classList.add("d-none");
+
+    }
+    document.querySelector("#iddeco").addEventListener("click", function() {
+        document.cookie = "id=-100 ; samesite=lax";
+        document.cookie = "connected=false";
+        localStorage.setItem("connected", "false")
+
+    })
+}())
+
+
+//This function is in script.js file
