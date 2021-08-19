@@ -5,6 +5,10 @@
     var isAdherent = users.get(id)["status"].get("hasRightAdherent");
     var arrListofBook = users.get(id)["listofbook"];
     var tbody = document.querySelector("#idemprunt table tbody");
+    var arrInfo = ["name", "firstname", "dateofbirth",
+        "address1", "address2", "postalcode", "city",
+        "email", "mobilenumber", "homenumber"
+    ];
     //We get the satus of adherent in order to control if the user is an adherent
 
 
@@ -13,7 +17,7 @@
     //Display a personalize welcoming message
     personalizeTitle(id, document.querySelector(".titlename"));
     // Write informations of the user
-    showInfo(id);
+    showInfo(id, arrInfo);
     // Write a msg if the user is an Adherent
     contributionMsg(id);
     // Display the list of book borrowed if the user is an Adherent
@@ -38,17 +42,14 @@
  * @function showInfo
  * @param {String} id 
  */
-function showInfo(id) {
-    var arrInfo = ["name", "firstname", "dateofbirth",
-        "address1", "address2", "postalcode", "city",
-        "email", "mobilenumber", "homenumber"
-    ];
+function showInfo(id, array) {
+
     document.querySelector("#thid").innerHTML = id;
-    for (index in arrInfo) {
+    for (index in array) {
         // We get the id of each row we need
-        let thAct = "th" + arrInfo[index];
+        let thAct = "th" + array[index];
         // We get the key of info we need
-        let info = arrInfo[index]
+        let info = array[index]
             // We write the value of info we got in the cell
         document.querySelector("#" + thAct).innerHTML = users.get(id)[info];
 
