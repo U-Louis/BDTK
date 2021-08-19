@@ -13,8 +13,8 @@ users.set("1", {
     username: "jean-denise.labibliothecaire",
     password: "motdepasse1",
     status: new Map([
-        ["hasRightAdherent", true],
-        ["hasRightBibliothecaire", false],
+        ["hasRightAdherent", false],
+        ["hasRightBibliothecaire", true],
         ["hasRightGestionnaire", false],
         ["hasRightResponsable", false],
         ["hasRightAdmin", false],
