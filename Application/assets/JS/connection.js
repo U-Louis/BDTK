@@ -1,7 +1,12 @@
 var idUser = ""
 var username = document.querySelector("#inputuser");
 var password = document.querySelector("#inputpassword");
-
+/**
+ * Test in the map users if the username in the map is the same in the input inputuser
+ * @param {String} key The key of the map
+ * @param {String} inputuser The username you want to test
+ * @returns {Boolean} return the result of the test
+ */
 function testUser(key, inputuser) {
     return users.get(key).username == inputuser;
 
