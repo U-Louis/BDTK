@@ -1,5 +1,5 @@
 /*----------------------------Main Function------------------------------- */
-if ((!getCookie("connected") == "false") && (!getCookie("connected") == undefined)) {
+if (getCookie("connected") == "true") {
 
 
     (function() {
