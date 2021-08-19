@@ -313,6 +313,7 @@ function displayTempResultsBox(match) {
         searchBarSuggestionsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
     } else {
         let tempResultItemPaternUl = document.createElement("ul");
+        tempResultItemPaternUl.style.zIndex = "1";
         for (let i = 0; i < tempResults.length; i++) {
             let tempKey = tempResults[i];
             let tempResultItemPaternLi = document.createElement("li");
@@ -488,6 +489,7 @@ function generateCard(albumsKey) {
     let patern = document.createElement('div');
     patern.classList.add("card", "p-2", "rounded-0", "col-md-6");
     patern.style = "width: 100%;";
+    patern.style.zIndex = "-1";
 
     let img = document.createElement('img');
     img.classList.add("card-img", "p-2");
