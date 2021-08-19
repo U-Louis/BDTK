@@ -108,7 +108,7 @@ users.set("5", {
     email: "pierre-claude@exemple.com",
     mobilenumber: "06 05 00 25 00",
     homenumber: "01 05 25 04 74",
-    username: "pierre.claude",
+    username: "pierre.claude.legestionnaire",
     password: "motdepasse5",
     status: new Map([
         ["hasRightAdherent", false],
