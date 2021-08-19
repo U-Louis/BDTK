@@ -595,7 +595,7 @@ function redirectResearch(input, inputKey) {
     }
 }
 /*---------------Hide User's Info-----------------*/
-/**If id in cookie
+/**If cookie connected is false or undefined
  * @function hideInfoUser
  * 
  */
