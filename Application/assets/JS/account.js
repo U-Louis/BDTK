@@ -14,7 +14,10 @@
 
 
     //Traitment
-    //Display a personalize welcoming message
+    document.querySelector("#logoutaccount").addEventListener("click", function() {
+            logOut();
+        })
+        //Display a personalize welcoming message
     personalizeTitle(id, document.querySelector(".titlename"));
     // Write informations of the user
     showInfo(id, arrInfo);

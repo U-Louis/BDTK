@@ -93,3 +93,8 @@ function firstLetter(id, selector) {
 function personalizeTitle(id, selector) {
     selector.innerHTML = users.get(id)["firstname"];
 }
+
+function logOut() {
+    document.cookie = "id=-100 ; samesite=lax";
+    document.cookie = "connected=false";
+}

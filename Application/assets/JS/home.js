@@ -38,10 +38,7 @@
 
     }
     document.querySelector("#iddeco").addEventListener("click", function() {
-        document.cookie = "id=-100 ; samesite=lax";
-        document.cookie = "connected=false";
-        localStorage.setItem("connected", "false")
-
+        logOut();
     })
 }())
 

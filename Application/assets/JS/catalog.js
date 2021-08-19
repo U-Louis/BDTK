@@ -8,8 +8,17 @@ var selectedInputKey = "ref";
 var id = getCookie("id");
 /* generateCard("2"); //remove me
  */
-firstLetter(id, document.querySelector("#fstlettercatalog"))
+if (getCookie("connected") == "true") {
+    firstLetter(id, document.querySelector("#fstlettercatalog"))
+    document.querySelector("#logoutcatalog").addEventListener("click", function() {
+        logOut();
+    })
+} else {
+    document.querySelector("#fstlettercatalog").classList.add("d-none")
+    document.querySelector("#accueilcatalogue").setAttribute("href", "../index.html");
+}
 hideInfoUser();
+
 /** == Search bars == */
 
 /** = Init = */
@@ -127,6 +136,10 @@ serieSearchButton.onclick = function() {
 document.onclick = function() {
     searchBarSuggestionsBox.innerHTML = "";
 };
+
+
+
+
 
 
 
@@ -584,11 +597,16 @@ function redirectResearch(input, inputKey) {
 
 function hideInfoUser() {
     var id = getCookie("id");
-    var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
-    var isAdherent = users.get(id)["status"].get("hasRightAdherent");
-    if (!isBibliothecaire) {
-        document.querySelector("#btninfouser").classList.add("d-none");
+    if (parseInt(id) < 0) {
+        document.querySelector("#btninfouser").classList.add("d-none")
+    } else {
+        var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
+        var isAdherent = users.get(id)["status"].get("hasRightAdherent");
+        if (!isBibliothecaire) {
+            document.querySelector("#btninfouser").classList.add("d-none");
+        }
     }
+
 
 
 }
