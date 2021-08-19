@@ -314,7 +314,7 @@ function displayTempResultsBox(match) {
     } else {
         let tempResultItemPaternUl = document.createElement("ul");
         for (let i = 0; i < tempResults.length; i++) {
-            let tempKey = tempResults[i].key;
+            let tempKey = tempResults[i];
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
             tempResultItemPaternLi.innerHTML = tempResults[i].key + " - " + tempResults[i].titre + " - " + tempResults[i].idAuteur + " - " + tempResults[i].idSerie;
@@ -570,22 +570,22 @@ function redirectResearch(input, inputKey) {
     switch (inputKey) {
         case "ref":
             refButton.click();
-            refInputResearchBar.value = input;
+            refInputResearchBar.value = input.key;
             refSearchButton.click();
             break;
         case "titre":
             titreButton.click();
-            titreInputResearchBar.value = input;
+            titreInputResearchBar.value = input.titre;
             titreSearchButton.click();
             break;
         case "auteur":
             auteurButton.click();
-            auteurInputResearchBar.value = input;
+            auteurInputResearchBar.value = input.idAuteur;
             auteurSearchButton.click();
             break;
         case "serie":
             serieButton.click();
-            serieInputResearchBar.value = input;
+            serieInputResearchBar.value = input.idSerie;
             serieSearchButton.click();
             break;
         default:
