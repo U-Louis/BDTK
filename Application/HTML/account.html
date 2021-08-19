@@ -12,7 +12,7 @@
 
 <body class="bg-primary ">
     <div id="wrapper" class="container w-100 my-auto h-75 ">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start">
             <div class="container-fluid flex-column">
                 <a class="navbar-brand" href="#"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,11 +27,56 @@
                     </div>
                 </div>
             </div>
-        </nav>
-        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
-            <h2 class="text-uppercase text-center my-3 fs-3"> Bienvenue <span id="titlename"></span> </h2>
-        </header>
+        </nav> -->
+        <!-- <header class="border border-secondary border-4 my-3 bg-light mx-lg-3 ">
+            <h2 class="text-uppercase text-center my-3 fs-3"> Compte de <span class="titlename"></span> </h2>
+        </header> -->
+        <header class="container-md d-flex justify-content-around mt-3">
 
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+                <div class="container-fluid ">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#burgerMenu" aria-controls="burgerMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                    <a class="navbar-brand col-9 text-center">Compte de <span class="titlename"></span></a>
+
+                    <div class="collapse navbar-collapse " id="burgerMenu">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="catalog.html">Catalogue</a>
+                            </li>
+                        </ul>
+
+                        <div class="d-flex flex-column">
+                            <a id="inituser" class="btn btn-info " style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
+
+                            </a>
+                            <div class="collapse position-relative" style="transition: none !important;-webkit-transition: none !important;" id="userIdBox">
+                                <div class="card card-body position-absolute">
+                                    <a href="" id="iddeco">Déconnexion</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </nav>
+
+
+
+
+
+
+
+
+
+
+        </header>
         <div id="wrapper" class="container  w-85 my-auto h-75 d-flex flex-column flex-md-row flex-wrap">
 
             <!-- Informations utilisateur  -->
@@ -129,17 +174,17 @@
 
 
             <!-- BIB -->
-            <div class="card alert-success rounded-0 m-1 col-lg-3 " style="width: 100%;" id="divbibliothecaire">
+            <!-- <div class="card alert-success rounded-0 m-1 col-lg-3 " id="divbibliothecaire">
                 <div class="card-body">
                     <h3>Bibliothécaire</h3>
                     <button type="button" class="btn btn-success">Emprunt</button>
                     <button type="button" class="btn btn-success">Retour</button>
                     <button type="button" class="btn btn-success">Adhérents</button>
                 </div>
-            </div>
+            </div> -->
 
             <!-- GES -->
-            <div class="card alert-warning rounded-0 m-1 col-lg-3" style="width: 100%;" id="divgestionnaire">
+            <!-- <div class="card alert-warning rounded-0 m-1 col-lg-3" id="divgestionnaire">
                 <div class="card-body">
                     <h3>Gestionnaire</h3>
                     <button type="button" class="btn btn-warning">Ajout Série</button>
@@ -153,26 +198,26 @@
                     <button type="button" class="btn btn-warning">Supprimer Ref.</button>
                     <button type="button" class="btn btn-warning">Ajout Ref. à Série</button>
                 </div>
-            </div>
+            </div> -->
 
             <!-- RES -->
-            <div class="card alert-danger rounded-0 m-1 col-lg-3" style="width: 100%;" id="divresponsable">
+            <!-- <div class="card alert-danger rounded-0 m-1 col-lg-3" id="divresponsable">
                 <div class="card-body">
                     <h3>Responsable</h3>
                     <button type="button" class="btn btn-danger">Statistiques</button>
                     <button type="button" class="btn btn-danger">Gestion des retards</button>
                 </div>
-            </div>
+            </div> -->
 
             <!-- ADM -->
-            <div class="card alert-dark rounded-0 m-1 col-lg-3" style="width: 100%;" id="divadmin">
+            <!-- <div class="card alert-dark rounded-0 m-1 col-lg-3" id="divadmin">
                 <div class="card-body">
                     <h3>Admin</h3>
                     <button type="button" class="btn btn-dark">Créer un compte</button>
                     <button type="button" class="btn btn-dark">Modifier un compte</button>
                     <button type="button" class="btn btn-dark">Supprimer un compte</button>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>

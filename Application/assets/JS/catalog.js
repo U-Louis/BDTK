@@ -5,9 +5,11 @@ const LASTINDEXOFAUTEURS = 159;
 const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
 var selectedInputKey = "ref";
+var id = getCookie("id");
 /* generateCard("2"); //remove me
  */
-
+firstLetter(id, document.querySelector("#fstlettercatalog"))
+hideInfoUser();
 /** == Search bars == */
 
 /** = Init = */
@@ -578,4 +580,15 @@ function redirectResearch(input, inputKey) {
             refInputResearchBar.value = input;
             refSearchButton.click();
     }
+}
+
+function hideInfoUser() {
+    var id = getCookie("id");
+    var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
+    var isAdherent = users.get(id)["status"].get("hasRightAdherent");
+    if (!isBibliothecaire) {
+        document.querySelector("#btninfouser").classList.add("d-none");
+    }
+
+
 }
