@@ -586,8 +586,9 @@ function hideInfoUser() {
     var id = getCookie("id");
     var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
     var isAdherent = users.get(id)["status"].get("hasRightAdherent");
-    if (!isAdherent && !isBibliothecaire) {
+    if (!isBibliothecaire) {
         document.querySelector("#btninfouser").classList.add("d-none");
     }
+
 
 }
