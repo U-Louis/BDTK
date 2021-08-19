@@ -98,3 +98,12 @@ function logOut() {
     document.cookie = "id=-100 ; samesite=lax";
     document.cookie = "connected=false";
 }
+
+function controlConnected() {
+    document.querySelector("#wrapper").classList.add("d-none")
+    var a = document.createElement("a")
+    a.innerHTML = "Retour à la page d'accueil"
+    a.setAttribute("class", "text-light");
+    a.setAttribute("href", "../index.html")
+    document.body.appendChild(a);
+}

@@ -594,10 +594,14 @@ function redirectResearch(input, inputKey) {
             refSearchButton.click();
     }
 }
-
+/*---------------Hide User's Info-----------------*/
+/**If cookie connected is false or undefined
+ * @function hideInfoUser
+ * 
+ */
 function hideInfoUser() {
     var id = getCookie("id");
-    if (parseInt(id) < 0) {
+    if ((getCookie("connected") == "false") || (getCookie("connected") == undefined)) {
         document.querySelector("#btninfouser").classList.add("d-none")
     } else {
         var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
