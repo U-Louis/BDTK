@@ -587,7 +587,7 @@ function redirectResearch(input, inputKey) {
     switch (inputKey) {
         case "ref":
             refButton.click();
-            refInputResearchBar.value = input.key;
+            refInputResearchBar.value = input;
             refSearchButton.click();
             break;
         case "titre":
