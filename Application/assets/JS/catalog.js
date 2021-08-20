@@ -315,6 +315,22 @@ function displayTempResultsBox(match) {
         let tempResultItemPaternUl = document.createElement("ul");
         for (let i = 0; i < tempResults.length; i++) {
             let tempKey = tempResults[i];
+            switch (selectedInputKey) {
+                case "ref":
+                    tempKey = tempResults[i].key;
+                    break;
+                case "titre":
+                    tempKey = tempResults[i].titre;
+                    break;
+                case "auteur":
+                    tempKey = tempResults[i].idAuteur;
+                    break;
+                case "serie":
+                    tempKey = tempResults[i].idSerie;
+                    break;
+                default:
+                    tempKey = tempResults[i].key;
+            }
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
             tempResultItemPaternLi.innerHTML = tempResults[i].key + " - " + tempResults[i].titre + " - " + tempResults[i].idAuteur + " - " + tempResults[i].idSerie;
