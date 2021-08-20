@@ -1,4 +1,32 @@
-/** === CATALOG === */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: catalog.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: catalog.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** === CATALOG === */
 //Init
 const LASTINDEXOFALBUMS = 629;
 const LASTINDEXOFAUTEURS = 159;
@@ -105,7 +133,7 @@ refSearchButton.onclick = function() {
     //reset
     resultsBox.innerHTML = "";
     results.length = 0;
-    //push & display
+    //push &amp; display
     pushResults(refSearchBarInput.value);
     displayResultsBox(true);
 }
@@ -114,7 +142,7 @@ titreSearchButton.onclick = function() {
     //reset
     resultsBox.innerHTML = "";
     results.length = 0;
-    //push & display
+    //push &amp; display
     pushResults(titreSearchBarInput.value);
     displayResultsBox(true);
 }
@@ -123,7 +151,7 @@ auteurSearchButton.onclick = function() {
     //reset
     resultsBox.innerHTML = "";
     results.length = 0;
-    //push & display
+    //push &amp; display
     pushResults(auteurSearchBarInput.value);
     displayResultsBox(true);
 }
@@ -132,7 +160,7 @@ serieSearchButton.onclick = function() {
     //reset
     resultsBox.innerHTML = "";
     results.length = 0;
-    //push & display
+    //push &amp; display
     pushResults(serieSearchBarInput.value);
     displayResultsBox(true);
 }
@@ -224,7 +252,7 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
     }
 
     //Run iterator trough database
-    for (let i = 1; k < numOfItemsReturned; i++) {
+    for (let i = 1; k &lt; numOfItemsReturned; i++) {
         //End of iteration if no result
         if (i == LASTINDEXOFALBUMS + 1) {
             break;
@@ -262,7 +290,7 @@ function queryDatabaseBD(data, inputKey, numOfItemsReturned, output) {
                 } catch { continue; }
         }
         //Compare targeted item of database with data from input passed as parameter, both data and target toLowerCased
-        if (target != undefined && target.indexOf(data) != -1) {
+        if (target != undefined &amp;&amp; target.indexOf(data) != -1) {
             found = true;
             k++;
             switch (inputKey) {
@@ -315,11 +343,11 @@ function displayTempResultsBox(match) {
 
     //Fill box
     if (!match) {
-        searchBarSuggestionsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
+        searchBarSuggestionsBox.innerHTML = '&lt;em>Pas de correspondance ;-(&lt;/em>';
     } else {
         let tempResultItemPaternUl = document.createElement("ul");
         tempResultItemPaternUl.style.zIndex = "1";
-        for (let i = 0; i < tempResults.length; i++) {
+        for (let i = 0; i &lt; tempResults.length; i++) {
             let tempKey = tempResults[i];
             let tempResultItemPaternLi = document.createElement("li");
             tempResultItemPaternLi.style.listStyle = "none";
@@ -352,7 +380,7 @@ function displayResultsBox(match) {
 
     //Fill box
     if (!match) {
-        resultsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
+        resultsBox.innerHTML = '&lt;em>Pas de correspondance ;-(&lt;/em>';
     } else {
         let thead = document.createElement("thead");
 
@@ -380,7 +408,7 @@ function displayResultsBox(match) {
 
         let tbody = document.createElement("tbody");
 
-        for (let i = 0; i < results.length; i++) {
+        for (let i = 0; i &lt; results.length; i++) {
             let tr2 = document.createElement("tr");
 
             let th = document.createElement("th");
@@ -573,7 +601,7 @@ function generateCard(albumsKey) {
  * @param {String} inputKey : type of the parameter (ref, titre, auteur, serie)
  */
 function redirectResearch(input, inputKey) {
-    //select key & fill input & launch search
+    //select key &amp; fill input &amp; launch search
     switch (inputKey) {
         case "ref":
             refButton.click();
@@ -620,4 +648,26 @@ function hideInfoUser() {
 
 
 
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="MyNamespace.html">MyNamespace</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assembleItem">assembleItem</a></li><li><a href="global.html#displayResultsBox">displayResultsBox</a></li><li><a href="global.html#displayTempResultsBox">displayTempResultsBox</a></li><li><a href="global.html#generateCard">generateCard</a></li><li><a href="global.html#hideInfoUser">hideInfoUser</a></li><li><a href="global.html#pushResults">pushResults</a></li><li><a href="global.html#queryDatabaseBD">queryDatabaseBD</a></li><li><a href="global.html#redirectResearch">redirectResearch</a></li><li><a href="global.html#resultsBox">resultsBox</a></li><li><a href="global.html#selectInputKey">selectInputKey</a></li><li><a href="global.html#setSearchBarInputAndSuggestion">setSearchBarInputAndSuggestion</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Aug 20 2021 08:37:04 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
