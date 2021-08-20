@@ -1,5 +1,10 @@
+// Test if the user is connected
 if (getCookie("connected") == "true") {
+    /**Test the different rights of an user
+     * @function anonymous
+     *  */
     (function() {
+        /* Initialisatation*/
         var id = getCookie("id");
 
         var isBibliothecaire = users.get(id)["status"].get("hasRightBibliothecaire");
@@ -7,9 +12,9 @@ if (getCookie("connected") == "true") {
         var isResponsable = users.get(id)["status"].get("hasRightResponsable");
         var isAdmin = users.get(id)["status"].get("hasRightAdmin");
 
-
+        /* Write the firstname of the user connected*/
         personalizeTitle(getCookie("id"), document.querySelector(".titlename"));
-
+        /*write first letters*/
         firstLetter(id, document.querySelector("#idutilisateur"));
 
         // Hide buttons of librarian if the user is not a librarian
