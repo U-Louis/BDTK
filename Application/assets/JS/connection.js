@@ -1,19 +1,36 @@
 var idUser = ""
 var username = document.querySelector("#inputuser");
 var password = document.querySelector("#inputpassword");
-
+/**
+ * Test in the map users if the username in the map is the same in the input inputuser
+ * @param {String} key The key of the map
+ * @param {String} inputuser The username you want to test
+ * @returns {Boolean} return the result of the test
+ */
 function testUser(key, inputuser) {
     return users.get(key).username == inputuser;
 
 }
-
+/**Test the password of an key given
+ * @function testPassword
+ * @param {String} key Key of the map users 
+ * @param {String} inputpassword The string you want to test
+ * @returns {Boolean}
+ */
 function testPassword(key, inputpassword) {
     return users.get(key).password == inputpassword;
 }
 
-function connectControl(inputuser, password) {
+/**
+ * Test the couple of value username and the password
+ * @function connectControl
+ * @param {String} inputuser 
+ * @param {String} inputpassword 
+ * @returns {Boolean}
+ */
+function connectControl(inputuser, inpupassword) {
     for (const key of users.keys()) {
-        if (testUser(key, inputuser) && testPassword(key, password)) {
+        if (testUser(key, inputuser) && testPassword(key, inpupassword)) {
             idUser = key;
             document.cookie = "id=" + idUser + " ; samesite=lax";
             document.cookie = "connected=true ; samesite=lax";

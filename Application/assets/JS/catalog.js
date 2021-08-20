@@ -6,15 +6,21 @@ const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
 var selectedInputKey = "ref";
 var id = getCookie("id");
-/* generateCard("2"); //remove me
- */
+/* Test if the user is log in 
+
+*
+*/
 if (getCookie("connected") == "true") {
+    //add first letter on the button with the id fstlettercatalog
     firstLetter(id, document.querySelector("#fstlettercatalog"))
+        //Add the event to the link deconnexion
     document.querySelector("#logoutcatalog").addEventListener("click", function() {
         logOut();
     })
 } else {
+    // hide the button where are first letters  
     document.querySelector("#fstlettercatalog").classList.add("d-none")
+        // the link of accueil is redirect to index.html
     document.querySelector("#accueilcatalogue").setAttribute("href", "../index.html");
 }
 hideInfoUser();

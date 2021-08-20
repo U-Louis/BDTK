@@ -1,23 +1,24 @@
 /**Get the storage in a cookie and return the value of the id.
  * @function getCookie
- * @returns Array
+ * @param {String} key // The key of cookie you want
+ * @returns {Array}
  */
 
-function getCookie(name) {
+function getCookie(key) {
     var arrCookie = document.cookie.split("; ");
     for (var i = 0; i < arrCookie.length; i++) {
         var cookiePair = arrCookie[i].split("=");
-        if (name == cookiePair[0]) {
+        if (key == cookiePair[0]) {
             return decodeURIComponent(cookiePair[1]);
         }
     }
 
 }
 /*-------------------List of Book-------------------------- */
-/**
+/**Write in table HTMLElement value of an array given
  * @function listOfBook
- * @param {Balise} tbody 
- * @param {Array} array 
+ * @param {Balise} tbody The table where you want to write
+ * @param {Array} array The array where are values you want to write 
  * 
  */
 function listOfBook(tbody, array) {
@@ -74,7 +75,7 @@ function makeTdCell(node, data) {
     node.appendChild(td);
 }
 /**-------------------------First letter display------------------------- */
-/**
+/**Write first letters of a user's firstname on a button
  * @function firstLetter
  * @param {HTMLElement} selector
  */
@@ -90,16 +91,30 @@ function firstLetter(id, selector) {
     selector.innerHTML = acronym;
 }
 /*-------------------------------Display the first name of user.---------------------------------- */
+
+/**Write in a HTMLElement the firstname of id given
+ * @function personalizeTitle
+ * @param {String} id Id of user who want the firstname
+ * @param {HTMLElement} selector HTMLElement where you want to write the firstname
+ */
 function personalizeTitle(id, selector) {
     selector.innerHTML = users.get(id)["firstname"];
 }
-
+/**
+ * Change the value of the cookie with the key id to -100 and 
+ * change the value of the cookie with the key connected to false
+ *  
+ */
 function logOut() {
     document.cookie = "id=-100 ; samesite=lax";
     document.cookie = "connected=false";
 }
 
-function controlConnected() {
+/**
+ * Hide the div wrapper of the current HTML page and create a an <a> element
+ * and write in it a link which point to index.html.
+ */
+function controlConnected(selector) {
     document.querySelector("#wrapper").classList.add("d-none")
     var a = document.createElement("a")
     a.innerHTML = "Retour à la page d'accueil"
