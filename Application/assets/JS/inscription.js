@@ -130,3 +130,12 @@ varElement["address1"].addEventListener("keyup", function(event) {
         })
 
 })()
+
+function addAdherent() {
+    var id = users.size + 1;
+    var arrinfo = {};
+    for (key in varElement) {
+        arrinfo[key] = varElement[key].value;
+
+    }
+}
