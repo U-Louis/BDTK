@@ -1,23 +1,24 @@
 /**Get the storage in a cookie and return the value of the id.
  * @function getCookie
- * @returns Array
+ * @param {String} key // The key of cookie you want
+ * @returns {Array}
  */
 
-function getCookie(name) {
+function getCookie(key) {
     var arrCookie = document.cookie.split("; ");
     for (var i = 0; i < arrCookie.length; i++) {
         var cookiePair = arrCookie[i].split("=");
-        if (name == cookiePair[0]) {
+        if (key == cookiePair[0]) {
             return decodeURIComponent(cookiePair[1]);
         }
     }
 
 }
 /*-------------------List of Book-------------------------- */
-/**
+/**Write in table HTMLElement value of an array given
  * @function listOfBook
- * @param {Balise} tbody 
- * @param {Array} array 
+ * @param {Balise} tbody The table where you want to write
+ * @param {Array} array The array where are values you want to write 
  * 
  */
 function listOfBook(tbody, array) {
@@ -74,7 +75,7 @@ function makeTdCell(node, data) {
     node.appendChild(td);
 }
 /**-------------------------First letter display------------------------- */
-/**
+/**Write first letters of a user's firstname on a button
  * @function firstLetter
  * @param {HTMLElement} selector
  */
