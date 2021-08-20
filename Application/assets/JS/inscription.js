@@ -70,8 +70,7 @@ varElement["address1"].addEventListener("keyup", function(event) {
 // -----------------------------Function--------------------------------------
 
 
-// JavaScript for disabling form submissions if there are invalid fields or in the good format
-/**
+/**JavaScript for disabling form submissions if there are invalid fields or in the good format
  * @function anonymous
  * @param {None}
  */
