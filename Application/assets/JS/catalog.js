@@ -576,17 +576,17 @@ function redirectResearch(input, inputKey) {
             break;
         case "titre":
             titreButton.click();
-            titreInputResearchBar.value = input.titre;
+            titreInputResearchBar.value = input;
             titreSearchButton.click();
             break;
         case "auteur":
             auteurButton.click();
-            auteurInputResearchBar.value = input.idAuteur;
+            auteurInputResearchBar.value = input;
             auteurSearchButton.click();
             break;
         case "serie":
             serieButton.click();
-            serieInputResearchBar.value = input.idSerie;
+            serieInputResearchBar.value = input;
             serieSearchButton.click();
             break;
         default:
