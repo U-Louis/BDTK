@@ -15,10 +15,10 @@ function getCookie(key) {
 
 }
 /*-------------------List of Book-------------------------- */
-/**
+/**Write in table HTMLElement value of an array given
  * @function listOfBook
- * @param {Balise} tbody 
- * @param {Array} array 
+ * @param {Balise} tbody The table where you want to write
+ * @param {Array} array The array where are values you want to write 
  * 
  */
 function listOfBook(tbody, array) {
@@ -75,7 +75,7 @@ function makeTdCell(node, data) {
     node.appendChild(td);
 }
 /**-------------------------First letter display------------------------- */
-/**
+/**Write first letters of a user's firstname on a button
  * @function firstLetter
  * @param {HTMLElement} selector
  */
