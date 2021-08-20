@@ -6,31 +6,20 @@ const LASTINDEXOFSERIES = 114;
 var BDCardWrapper = document.getElementById("BDCardWrapper");
 var selectedInputKey = "ref";
 var id = getCookie("id");
-/* Test if the user is log in 
-
-*
-*/
+/* generateCard("2"); //remove me
+ */
 if (getCookie("connected") == "true") {
-    //add first letter on the button with the id fstlettercatalog
     firstLetter(id, document.querySelector("#fstlettercatalog"))
-        //Add the event to the link deconnexion
     document.querySelector("#logoutcatalog").addEventListener("click", function() {
         logOut();
     })
 } else {
-    // hide the button where are first letters  
     document.querySelector("#fstlettercatalog").classList.add("d-none")
-        // the link of accueil is redirect to index.html
     document.querySelector("#accueilcatalogue").setAttribute("href", "../index.html");
 }
 hideInfoUser();
 
 /** == Search bars == */
-
-/**
- * A namespace.
- * @namespace MyNamespace
- */
 
 /** = Init = */
 var resultsBox = document.getElementById("resultsBox");
@@ -324,7 +313,6 @@ function displayTempResultsBox(match) {
         searchBarSuggestionsBox.innerHTML = '<em>Pas de correspondance ;-(</em>';
     } else {
         let tempResultItemPaternUl = document.createElement("ul");
-        tempResultItemPaternUl.style.zIndex = "1";
         for (let i = 0; i < tempResults.length; i++) {
             let tempKey = tempResults[i];
             let tempResultItemPaternLi = document.createElement("li");
@@ -339,6 +327,7 @@ function displayTempResultsBox(match) {
 
         }
         searchBarSuggestionsBox.appendChild(tempResultItemPaternUl);
+        searchBarSuggestionsBox.style.zIndex = "1";
     }
 }
 
@@ -500,7 +489,6 @@ function generateCard(albumsKey) {
     let patern = document.createElement('div');
     patern.classList.add("card", "p-2", "rounded-0", "col-md-6");
     patern.style = "width: 100%;";
-    patern.style.zIndex = "-1";
 
     let img = document.createElement('img');
     img.classList.add("card-img", "p-2");
