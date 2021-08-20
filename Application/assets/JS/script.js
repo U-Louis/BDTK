@@ -90,16 +90,30 @@ function firstLetter(id, selector) {
     selector.innerHTML = acronym;
 }
 /*-------------------------------Display the first name of user.---------------------------------- */
+
+/**Write in a HTMLElement the firstname of id given
+ * @function personalizeTitle
+ * @param {String} id Id of user who want the firstname
+ * @param {HTMLElement} selector HTMLElement where you want to write the firstname
+ */
 function personalizeTitle(id, selector) {
     selector.innerHTML = users.get(id)["firstname"];
 }
-
+/**
+ * Change the value of the cookie with the key id to -100 and 
+ * change the value of the cookie with the key connected to false
+ *  
+ */
 function logOut() {
     document.cookie = "id=-100 ; samesite=lax";
     document.cookie = "connected=false";
 }
 
-function controlConnected() {
+/**
+ * Hide the div wrapper of the current HTML page and create a an <a> element
+ * and write in it a link which point to index.html.
+ */
+function controlConnected(selector) {
     document.querySelector("#wrapper").classList.add("d-none")
     var a = document.createElement("a")
     a.innerHTML = "Retour à la page d'accueil"
