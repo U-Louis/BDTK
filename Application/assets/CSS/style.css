@@ -1,15 +1,55 @@
-.btn-link{
+.btn-link {
     color: #334b7c;
 }
-.btn-link:hover{
+
+.btn-link:hover {
     color: crimson;
 }
-nav{
+
+nav {
     float: left;
-    z-index:2;
-}
-#titre{
- z-index: 1;
+    z-index: 2;
 }
 
+#titre {
+    z-index: 1;
+}
 
+* {
+    box-sizing: border-box;
+}
+
+#dropdownMenuLink {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    /* background: #512DA8; */
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    line-height: 2em;
+    margin: 20px 0;
+}
+
+.innerLink:hover {
+    color: blue;
+}
+
+@media (min-width:400px) and (min-height:800px) {
+    #BDCardWrapper div {
+        display: flex;
+        flex-direction: row;
+    }
+    #BDCardWrapper div div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    #BDCardWrapper div img {
+        max-width: 330px !important;
+    }
+    #BDCardWrapper div div a {
+        max-width: 100px !important;
+        align-self: flex-end !important;
+    }
+}

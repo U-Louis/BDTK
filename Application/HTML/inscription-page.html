@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,44 +10,45 @@
     <link rel="stylesheet" href="../assets/CSS/style.css">
     <title>Inscription</title>
 </head>
+
 <body class="bg-primary ">
     <!-- La div qui contient toute la page  -->
-    <div id="wrapper" class="d-flex  flex-column container-sm w-75"> 
+    <div id="wrapper" class="d-flex  flex-column container-sm w-75">
         <!-- L'entête de la page avec le titre de la page. -->
-        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3"> 
+        <header class="border border-secondary border-4 my-3 bg-light mx-lg-3">
             <h1 class="text-uppercase text-center my-3">inscription</h1>
         </header>
         <!-- Le corp principale de la page  -->
         <main class="container d-flex flex-column col-12 col-sm-6 col-lg-4 mt-5 p-3 bg-light rounded-3 ">
-            <div class="" id="divform" >
-                <form class="container d-flex flex-column needs-validation" method="GET"  action="home.html" novalidate>
-                    <input class="mt-2 form-control" id="inputname" type="text" placeholder="*Nom"  required>
+            <div class="" id="divform">
+                <form class="container d-flex flex-column needs-validation" method="GET" action="../index.html" novalidate>
+                    <input class="mt-2 form-control" id="inputname" type="text" placeholder="*Nom" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
                     </div>
                     <input class="mt-2 form-control" id="inputfirstname" type="text" placeholder="*Prénom" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
-                      </div>
+                    </div>
 
                     <input class="mt-2 form-control" id="inputbirth" type="text" placeholder="jj/mm/aaaa">
-                    <div class=" d-none text-danger" id="invalid-date" >
-                        La date doit être de la forme jj/mm/aaaa!
-                      </div>
-                    <input class="mt-2 form-control" id="inputadresse1" type="text" placeholder="*adresse"  required>
+                    <div class=" d-none text-danger" id="invalid-date">
+                        Le format de la date est jj/mm/aaaa !
+                    </div>
+                    <input class="mt-2 form-control" id="inputadresse1" type="text" placeholder="*adresse" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
-                      </div>
-                      <div class=" d-none text-danger" id="invalid-address1" >
+                    </div>
+                    <div class=" d-none text-danger" id="invalid-address1">
                         L'adresse doit avoir au moins une lettre et un chiffre!
-                      </div>
-                    <input class="mt-2" id="inputadresse2" type="text" placeholder="adresse 2" >
+                    </div>
+                    <input class="mt-2" id="inputadresse2" type="text" placeholder="adresse 2">
                     <input class="mt-2 form-control" id="inputpostale" type="text" placeholder="*Code postale" required>
                     <div class="invalid-feedback">
                         Champ obligatoire!
                     </div>
                     <div id="invalid-code" class=" d-none">
-                        <p class="text-danger">Le code postale doit comporter 5 chiffres!! Exemple:75000</p> 
+                        <p class="text-danger">Le code postale doit comporter 5 chiffres!! Exemple:75000</p>
                     </div>
 
                     <input class="mt-2 form-control" id="inputville" type="text" placeholder="*Ville" required>
@@ -54,46 +56,44 @@
                         Champ obligatoire!
                     </div>
 
-                    <input class="mt-2 form-control" id="inputemail" type="text" placeholder="*email : exemple@axy.com" required>
-                    <div class="invalid-feedback">
-                        Champ obligatoire!
-         
-                    </div>
+                    <input class="mt-2 form-control" id="inputemail" type="text" placeholder="*email : exemple@axy.com">
 
-                    <div class=" d-none text-danger" id="invalid-email" >
-                        Le format de l'adresse email est incorrect!
+
+                    <div class=" d-none text-danger" id="invalid-email">
+                        Le format de l' email est ex3mple@axy.com !
                     </div>
 
                     <input class="mt-2 form-control" id="inputmobile" type="tel" placeholder="N° de tél mobile: 06 36 98 74 12">
-                    <div class=" d-none text-danger" id="invalid-mobile" >
+                    <div class=" d-none text-danger" id="invalid-mobile">
                         Le format du numéro de téléphone est incorrect!
                     </div>
 
-                    <input class="mt-2 form-control" id="inputhome" type="tel" placeholder="N° de tél fixe: 01 00 00 00 00" >
-                    <div class=" d-none text-danger" id="invalid-home" >
+                    <input class="mt-2 form-control" id="inputhome" type="tel" placeholder="N° de tél fixe: 01 00 00 00 00">
+                    <div class=" d-none text-danger" id="invalid-home">
                         Le format du numéro de téléphone est incorrect!
                     </div>
 
                     <p class="mt-3">*Champ obligatoire</p>
-                  
-                    <div id="divlink" class="container mt-2 w-100" >
-                        <a class="btn btn-danger" href="../landing page.html" role="button">Annuler</a>
-                        <!-- <input class="btn btn-danger" type="reset" value="Annuler"></input> -->
-                        <input class="btn btn-success" id="btninscrire"type="submit" value="S'inscrire">
-                    </div>
-                    
-                </form>
-                
-            </div>
-            
-               
-        </main>
-    
-    </div>
 
+                    <div id="divlink" class="container mt-2 w-100 d-flex justify-content-between">
+                        <a class="btn btn-danger" href="../index.html" role="button">Annuler</a>
+                        <!-- <input class="btn btn-danger" type="reset" value="Annuler"></input> -->
+                        <input class="btn btn-success " id="btninscrire" type="submit" value="S'inscrire">
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </main>
+
+    </div>
+    <script src="../assets/JS/bootstrap.bundle.min.js"></script>
+    <script src="../assets/JS/inputcontrol.js"></script>
+    <script src="../assets/JS/inscription.js"></script>
 </body>
-<script src="../assets/JS/bootstrap.bundle.min.js"></script>
-<script src="../assets/JS/inscription.js"></script>
+
 
 
 </html>

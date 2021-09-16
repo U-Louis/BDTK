@@ -14,50 +14,117 @@
 <body class="bg-primary">
     <div id="wrapper" class="bg-primary d-flex flex-column container-sm">
         <header class="container-md d-flex justify-content-around mt-3">
-            
-                <!-- <ul class="d-none d-md "></ul>
-                <button type="button" class="btn btn-info d-md-none"><i class="fas fa-bars"></i></button> -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light align-self-start col-3 col-sm-2">
-                <div class="container-fluid flex-column">
-                    <a class="navbar-brand" href="#"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+                <div class="container-fluid ">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#burgerMenu" aria-controls="burgerMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav flex-column">
-                        <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
-                        <a class="nav-link" href="catalog.html">Catalogue</a>
-                        <a class="nav-link" href="account.html">Mon compte</a>
-                        
+                  </button>
+                    <a class="navbar-brand col-9 text-center" href="#">Bienvenue <span class="titlename"></span></a>
+
+                    <div class="collapse navbar-collapse " id="burgerMenu">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="home.html">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="catalog.html">Catalogue</a>
+                            </li>
+                        </ul>
+
+                        <div class="d-flex flex-column">
+                            <a id="idutilisateur" class="btn btn-info" style="max-width: 100px; max-height: 100px;" data-bs-toggle="collapse" href="#userIdBox" role="button" aria-expanded="false" aria-controls="userIdBox">
+
+                            </a>
+                            <div class="collapse position-relative" style="transition: none !important;-webkit-transition: none !important;" id="userIdBox">
+                                <div class="card card-body position-absolute">
+                                    <a href="account.html">Mon compte</a>
+                                    <a href="../index.html" id="iddeco">Déconnexion</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    </div>
+
                 </div>
             </nav>
-            
-            <div id="titre" class=" container-fluid border bg-light text-center mx-2 col-6 col-sm-7 h-50">
 
-                <h1>Accueil</h1>
-                <img src="https://i.servimg.com/u/f71/13/11/33/61/kaam_b10.jpg" alt="Une image de présentation" class="w-75">
-            </div>
-            
-            <div id="utilisateur " class=" fa-stack bg-light fa-1x h-33  w-25">
-                
 
-                <i class="fas fa-circle icon-cog  fa-stack-2x "></i>
-                <i class="fas fas fa-user icon-cog  fa-inverse fa-stack-1x "></i><br>
-                <p class="text-center fs-6 bg-light w-100 text-wrape">Jean-Denise</p>
 
-            </div>
+
+
+
+
+
+
+
         </header>
-        <main class="container d-flex flex-column  align-items-center mt-5 bg-light border rounded-3 w-75">
-            <a class="btn btn-success btn-lg my-5  w-50 mx-auto fs-3" href="./borrow_return.html" role="button">Catalogue</a>  <!-- if !logged => href="./catalog.html" -->
-            <a class="btn btn-warning btn-lg mb-5  w-50 mx-auto fs-3" href="./account.html" role="button">Mon compte</a>
+        <main>
+            <div class="container d-flex flex-column  align-items-center mt-5 bg-light border rounded-0 col-12">
+                <a class="btn btn-success btn-lg my-5  w-50 mx-2 fs-3" href="catalog.html" role="button">Catalogue</a>
+                <!-- if !logged => href="./catalog.html" -->
+                <a class="btn btn-warning btn-lg mb-5  w-50 mx-2 fs-3" href="account.html" role="button">Mon compte</a>
+            </div>
+
+
+            <!-- BIB -->
+            <div id="#" class="container-fluid col-12">
+                <div class="card alert-success rounded-0 m-1 " id="divbibliothecaire">
+                    <div class="card-body">
+                        <h3>Bibliothécaire</h3>
+                        <button type="button" class="btn btn-success">Emprunt</button>
+                        <button type="button" class="btn btn-success">Retour</button>
+                        <button type="button" class="btn btn-success">Adhérents</button>
+                    </div>
+                </div>
+
+                <!-- GES -->
+                <div class="card alert-warning rounded-0 m-1 " id="divgestionnaire">
+                    <div class="card-body">
+                        <h3>Gestionnaire</h3>
+                        <button type="button" class="btn btn-warning">Ajout Série</button>
+                        <button type="button" class="btn btn-warning">Modifier Série</button>
+                        <button type="button" class="btn btn-warning">Supprimer Série</button>
+                        <button type="button" class="btn btn-warning">Ajout Série à Ref.</button>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-warning">Ajout Ref.</button>
+                        <button type="button" class="btn btn-warning">Modifier Ref.</button>
+                        <button type="button" class="btn btn-warning">Supprimer Ref.</button>
+                        <button type="button" class="btn btn-warning">Ajout Ref. à Série</button>
+                    </div>
+                </div>
+
+                <!-- RES -->
+                <div class="card alert-danger rounded-0 m-1 " id="divresponsable">
+                    <div class="card-body">
+                        <h3>Responsable</h3>
+                        <button type="button" class="btn btn-danger">Statistiques</button>
+                        <button type="button" class="btn btn-danger">Gestion des retards</button>
+                    </div>
+                </div>
+
+                <!-- ADM -->
+                <div class="card alert-dark rounded-0 m-1 " id="divadmin">
+                    <div class="card-body">
+                        <h3>Admin</h3>
+                        <button type="button" class="btn btn-dark">Créer un compte</button>
+                        <button type="button" class="btn btn-dark">Modifier un compte</button>
+                        <button type="button" class="btn btn-dark">Supprimer un compte</button>
+                    </div>
+                </div>
+            </div>
 
         </main>
     </div>
 
 </body>
 <script src="../assets/JS/bootstrap.bundle.min.js"></script>
+<script src="../ressource/data/users.js"></script>
+<script src="../assets/JS/script.js"></script>
+<script src="../assets/JS/home.js"></script>
+
 
 <!-- <script src="../assets/JS/script.js"></script> -->
 
